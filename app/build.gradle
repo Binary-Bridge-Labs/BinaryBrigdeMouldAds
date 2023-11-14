@@ -13,9 +13,9 @@ android {
         minSdkVersion 24
         targetSdkVersion 31
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         def formattedDate = new Date().format('MMM.dd.yyyy')
-        archivesBaseName = "MiaStudio_v${versionName}(${versionCode})_${formattedDate}"
+        archivesBaseName = "BBL_v${versionName}(${versionCode})_${formattedDate}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
