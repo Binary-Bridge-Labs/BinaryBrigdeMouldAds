@@ -82,16 +82,16 @@ dependencies {
     implementation 'com.appsflyer:af-android-sdk:6.8.2'
     implementation 'com.appsflyer:adrevenue:6.4.3'
 }
-//
-//afterEvaluate {
-//    publishing {
-//        publications {
-//            release(MavenPublication) {
-//                from components.release
-//                groupId = 'com.github.trongluan99'
-//                artifactId = 'Mia-Studio'
-//                version = '1.0.0'
-//            }
-//        }
-//    }
-//}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.Binary-Bridge-Labs'
+                artifactId = 'BBLModuleAds'
+                version = '1.0.1'
+            }
+        }
+    }
+}
