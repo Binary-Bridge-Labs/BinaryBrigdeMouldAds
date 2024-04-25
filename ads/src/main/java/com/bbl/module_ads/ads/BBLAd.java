@@ -1384,6 +1384,13 @@ public class BBLAd {
                         super.onAdClicked();
                         callback.onAdClicked();
                     }
+
+                    @Override
+                    public void onAdImpression() {
+                        super.onAdImpression();
+                        if (callback != null)
+                            callback.onAdImpression();
+                    }
                 });
                 break;
             case BBLAdConfig.PROVIDER_MAX:
