@@ -625,7 +625,7 @@ public class AppPurchase {
                 params.putString("product_id", productId);
 
 
-                FirebaseAnalyticsUtil.logEventWithAds(activity, params);
+                FirebaseAnalyticsUtil.logEventWithIAP(activity, params);
 
                 return "Subscribed Successfully";
             //}
