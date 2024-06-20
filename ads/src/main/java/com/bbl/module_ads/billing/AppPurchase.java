@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 
 import com.bbl.module_ads.event.BBLLogEventManager;
+import com.bbl.module_ads.event.FirebaseAnalyticsUtil;
 import com.bbl.module_ads.funtion.BillingListener;
 import com.bbl.module_ads.funtion.PurchaseListener;
 import com.bbl.module_ads.funtion.UpdatePurchaseListener;
@@ -543,7 +545,7 @@ public class AppPurchase {
             return "";
         }
         ProductDetails productDetails = skuDetailsINAPMap.get(productId);
-        Log.d(TAG, "purchase: " + productDetails.toString());
+//        Log.d(TAG, "purchase: " + productDetails.toString());
         //ProductDetails{jsonString='{"productId":"android.test.purchased","type":"inapp","title":"Tiêu đề mẫu","description":"Mô tả mẫu về sản phẩm: android.test.purchased.","skuDetailsToken":"AEuhp4Izz50wTvd7YM9wWjPLp8hZY7jRPhBEcM9GAbTYSdUM_v2QX85e8UYklstgqaRC","oneTimePurchaseOfferDetails":{"priceAmountMicros":23207002450,"priceCurrencyCode":"VND","formattedPrice":"23.207 ₫"}}', parsedJson={"productId":"android.test.purchased","type":"inapp","title":"Tiêu đề mẫu","description":"Mô tả mẫu về sản phẩm: android.test.purchased.","skuDetailsToken":"AEuhp4Izz50wTvd7YM9wWjPLp8hZY7jRPhBEcM9GAbTYSdUM_v2QX85e8UYklstgqaRC","oneTimePurchaseOfferDetails":{"priceAmountMicros":23207002450,"priceCurrencyCode":"VND","formattedPrice":"23.207 ₫"}}, productId='android.test.purchased', productType='inapp', title='Tiêu đề mẫu', productDetailsToken='AEuhp4Izz50wTvd7YM9wWjPLp8hZY7jRPhBEcM9GAbTYSdUM_v2QX85e8UYklstgqaRC', subscriptionOfferDetails=null}
         if (AppUtil.VARIANT_DEV) {
             // Auto using id purchase test in variant dev
@@ -617,6 +619,14 @@ public class AppPurchase {
                 return "Request Canceled";
 
             case BillingClient.BillingResponseCode.OK:
+                Bundle params = new Bundle(); // Log ad value in micros.
+                params.putDouble("value", getPriceWithoutCurrency(productId,2));
+                params.putString("currency",getCurrency(productId,2));
+                params.putString("product_id", productId);
+
+
+                FirebaseAnalyticsUtil.logEventWithAds(activity, params);
+
                 return "Subscribed Successfully";
             //}
 

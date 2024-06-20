@@ -10,7 +10,7 @@ public class FirebaseAnalyticsUtil {
     private static final String TAG = "FirebaseAnalyticsUtil";
 
     public static void logEventWithAds(Context context, Bundle params) {
-        FirebaseAnalytics.getInstance(context).logEvent("paid_ad_impression", params);
+        FirebaseAnalytics.getInstance(context).logEvent("ad_revenue_sdk", params);
     }
 
     static void logPaidAdImpressionValue(Context context, Bundle bundle, int mediationProvider) {

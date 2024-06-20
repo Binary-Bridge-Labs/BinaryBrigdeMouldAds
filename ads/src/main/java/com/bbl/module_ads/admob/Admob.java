@@ -1497,6 +1497,7 @@ public class Admob {
 
         InterstitialAd.load(context, id, getAdRequest(),
                 new InterstitialAdLoadCallback() {
+
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                         if (adCallback != null)
@@ -1505,7 +1506,6 @@ public class Admob {
                         //tracking adjust
                         interstitialAd.setOnPaidEventListener(adValue -> {
                             Log.d(TAG, "OnPaidEvent getInterstitialAds:" + adValue.getValueMicros());
-
                             BBLLogEventManager.logPaidAdImpression(context,
                                     adValue,
                                     interstitialAd.getAdUnitId(),
@@ -1514,6 +1514,7 @@ public class Admob {
                         });
                         Log.i(TAG, "InterstitialAds onAdLoaded");
                     }
+
 
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {

@@ -4,11 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.applovin.mediation.MaxAd;
 import com.bbl.module_ads.config.BBLAdConfig;
 import com.bbl.module_ads.funtion.AdType;
 import com.bbl.module_ads.util.AppUtil;
 import com.bbl.module_ads.util.SharePreferenceUtils;
-import com.applovin.mediation.MaxAd;
 import com.facebook.appevents.AppEventsLogger;
 import com.google.android.gms.ads.AdValue;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -21,12 +21,12 @@ public class BBLLogEventManager {
     private static final String TAG = "BBLLogEventManager";
 
     public static void logPaidAdImpression(Context context, AdValue adValue, String adUnitId, String mediationAdapterClassName, AdType adType) {
-        logEventWithAds(context, (float) adValue.getValueMicros(), adValue.getPrecisionType(), adUnitId, mediationAdapterClassName, BBLAdConfig.PROVIDER_ADMOB);
+        logEventWithAds(context, (float) adValue.getValueMicros(), adValue.getPrecisionType(), adUnitId, mediationAdapterClassName, adType,BBLAdConfig.PROVIDER_ADMOB);
         BBLAdjust.pushTrackEventAdmob(adValue);
         BBLAppsflyer.getInstance().pushTrackEventAdmob(adValue, adUnitId, adType);
         // Log revenue Facebook 30/08
-        float value = adValue.getValueMicros() * 1.0f / 1000000 * 24000;
-        AppEventsLogger.newLogger(context).logPurchase(BigDecimal.valueOf(value), Currency.getInstance("VND"));
+        float value = adValue.getValueMicros() * 1.0f / 1000000;
+        AppEventsLogger.newLogger(context).logPurchase(BigDecimal.valueOf(value), Currency.getInstance("USD"));
     }
 
     public static void logPaidAdImpression(Context context, MaxAd adValue, AdType adType) {
@@ -57,7 +57,7 @@ public class BBLLogEventManager {
                 network, mediationProvider));
 
         Bundle params = new Bundle(); // Log ad value in micros.
-        params.putDouble("valuemicros", revenue);
+        params.putDouble("valuemicros", revenue / 1000000.0);
         params.putString("currency", "USD");
         // These values below won’t be used in ROAS recipe.
         // But log for purposes of debugging and future reference.
@@ -66,7 +66,43 @@ public class BBLLogEventManager {
         params.putString("network", network);
 
         // log revenue this ad
-        logPaidAdImpressionValue(context, revenue / 1000000.0, precision, adUnitId, network, mediationProvider);
+        logPaidAdImpressionValue(context, revenue, precision, adUnitId, network, mediationProvider);
+        FirebaseAnalyticsUtil.logEventWithAds(context, params);
+        FacebookEventUtils.logEventWithAds(context, params);
+        // update current tota
+        // l revenue ads
+        SharePreferenceUtils.updateCurrentTotalRevenueAd(context, (float) revenue);
+        logCurrentTotalRevenueAd(context, "event_current_total_revenue_ad");
+
+        // update current total revenue ads for event paid_ad_impression_value_0.01
+        AppUtil.currentTotalRevenue001Ad += revenue;
+        SharePreferenceUtils.updateCurrentTotalRevenue001Ad(context, AppUtil.currentTotalRevenue001Ad);
+        logTotalRevenue001Ad(context);
+
+        logTotalRevenueAdIn3DaysIfNeed(context);
+        logTotalRevenueAdIn7DaysIfNeed(context);
+    }
+
+    private static void logEventWithAds(Context context, float revenue, int precision, String adUnitId, String network, AdType adType, int mediationProvider) {
+        Log.d(TAG, String.format(
+                "Paid event of value %.0f microcents in currency USD of precision %s%n occurred for ad unit %s from ad network %s.mediation provider: %s%n",
+                revenue,
+                precision,
+                adUnitId,
+                network, mediationProvider));
+
+        Bundle params = new Bundle(); // Log ad value in micros.
+        params.putDouble("value", revenue / 1000000.0);
+        params.putString("currency", "USD");
+        // These values below won’t be used in ROAS recipe.
+        // But log for purposes of debugging and future reference.
+        params.putInt("precision", precision);
+        params.putString("placement", adUnitId);
+        params.putString("ad_network", network);
+        params.putString("ad_format", adType.name());
+
+        // log revenue this ad
+        logPaidAdImpressionValue(context, revenue, precision, adUnitId, network, mediationProvider);
         FirebaseAnalyticsUtil.logEventWithAds(context, params);
         FacebookEventUtils.logEventWithAds(context, params);
         // update current tota
