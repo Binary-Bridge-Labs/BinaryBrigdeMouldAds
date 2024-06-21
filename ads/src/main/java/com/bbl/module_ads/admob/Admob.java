@@ -36,6 +36,8 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ads.bbl.R;
+import com.applovin.mediation.AppLovinExtras;
+import com.applovin.mediation.ApplovinAdapter;
 import com.bbl.module_ads.ads.nativeAds.AdmobRecyclerAdapter;
 import com.bbl.module_ads.ads.nativeAds.BBLAdPlacer;
 import com.bbl.module_ads.ads.nativeAds.BBLAdPlacerSettings;
@@ -48,8 +50,6 @@ import com.bbl.module_ads.funtion.AdmobHelper;
 import com.bbl.module_ads.funtion.RewardCallback;
 import com.bbl.module_ads.util.AppUtil;
 import com.bbl.module_ads.util.SharePreferenceUtils;
-import com.applovin.mediation.AppLovinExtras;
-import com.applovin.mediation.ApplovinAdapter;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdError;
@@ -88,12 +88,28 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Admob {
+    public static final String BANNER_INLINE_SMALL_STYLE = "BANNER_INLINE_SMALL_STYLE";
+    public static final String BANNER_INLINE_LARGE_STYLE = "BANNER_INLINE_LARGE_STYLE";
+    public final static int SPLASH_ADS = 0;
+    public final static int RESUME_ADS = 1;
     private static final String TAG = "BBLModuleAds";
+    private final static int BANNER_ADS = 2;
+    private final static int INTERS_ADS = 3;
+    private final static int REWARD_ADS = 4;
+    private final static int NATIVE_ADS = 5;
     private static Admob instance;
+    private final int MAX_SMALL_INLINE_BANNER_HEIGHT = 50;
+    public Thread threadHighFloor;
+    public Thread threadAll;
+    boolean isTimeDelay = false; //xử lý delay time show ads, = true mới show ads
+    InterstitialAd mInterstitialSplash;
+    InterstitialAd interstitialAd;
+    InterstitialAd mInterSplashHighFloor;
+    InterstitialAd mInterSplashAll;
+    //    private AppOpenAd appOpenAd = null;
     private int currentClicked = 0;
     private String nativeId;
     private int numShowAds = 3;
-
     private int maxClickAds = 100;
     private Handler handlerTimeout;
     private Runnable rdTimeout;
@@ -104,23 +120,21 @@ public class Admob {
     private boolean isFan;
     private boolean isAdcolony;
     private boolean isAppLovin;
-    boolean isTimeDelay = false; //xử lý delay time show ads, = true mới show ads
     private boolean openActivityAfterShowInterAds = false;
     private Context context;
-//    private AppOpenAd appOpenAd = null;
+    private RewardedAd rewardedAd;
 
-    public static final String BANNER_INLINE_SMALL_STYLE = "BANNER_INLINE_SMALL_STYLE";
-    public static final String BANNER_INLINE_LARGE_STYLE = "BANNER_INLINE_LARGE_STYLE";
-    private final int MAX_SMALL_INLINE_BANNER_HEIGHT = 50;
+    private Admob() {
 
-    InterstitialAd mInterstitialSplash;
-    InterstitialAd interstitialAd;
+    }
 
-    InterstitialAd mInterSplashHighFloor;
-    InterstitialAd mInterSplashAll;
-
-    public Thread threadHighFloor;
-    public Thread threadAll;
+    public static Admob getInstance() {
+        if (instance == null) {
+            instance = new Admob();
+            instance.isShowLoadingSplash = false;
+        }
+        return instance;
+    }
 
     public void setFan(boolean fan) {
         isFan = fan;
@@ -142,19 +156,6 @@ public class Admob {
      */
     public void setMaxClickAdsPerDay(int maxClickAds) {
         this.maxClickAds = maxClickAds;
-    }
-
-
-    public static Admob getInstance() {
-        if (instance == null) {
-            instance = new Admob();
-            instance.isShowLoadingSplash = false;
-        }
-        return instance;
-    }
-
-    private Admob() {
-
     }
 
     public void setNumToShowAds(int numShowAds) {
@@ -220,7 +221,6 @@ public class Admob {
         });
         this.context = context;
     }
-
 
     public boolean isShowLoadingSplash() {
         return isShowLoadingSplash;
@@ -651,7 +651,6 @@ public class Admob {
         threadAll.start();
     }
 
-
     /**
      * Load quảng cáo Full tại màn SplashActivity
      * Sau khoảng thời gian timeout thì load ads và callback về cho View
@@ -990,7 +989,7 @@ public class Admob {
                     adValue,
                     mInterstitialSplash.getAdUnitId(),
                     mInterstitialSplash.getResponseInfo()
-                            .getMediationAdapterClassName(), AdType.INTERSTITIAL);
+                            .getLoadedAdapterResponseInfo().getAdSourceName(), AdType.INTERSTITIAL);
         });
 
         if (handlerTimeout != null && rdTimeout != null) {
@@ -1128,7 +1127,7 @@ public class Admob {
                     adValue,
                     mInterstitialSplash.getAdUnitId(),
                     mInterstitialSplash.getResponseInfo()
-                            .getMediationAdapterClassName(), AdType.INTERSTITIAL);
+                            .getLoadedAdapterResponseInfo().getAdSourceName(), AdType.INTERSTITIAL);
         });
 
         if (handlerTimeout != null && rdTimeout != null) {
@@ -1267,7 +1266,7 @@ public class Admob {
                     adValue,
                     mInterstitialSplash.getAdUnitId(),
                     mInterstitialSplash.getResponseInfo()
-                            .getMediationAdapterClassName(), AdType.INTERSTITIAL);
+                            .getLoadedAdapterResponseInfo().getAdSourceName(), AdType.INTERSTITIAL);
         });
 
         if (handlerTimeout != null && rdTimeout != null) {
@@ -1442,7 +1441,7 @@ public class Admob {
                                 adValue,
                                 interstitialAd.getAdUnitId(),
                                 interstitialAd.getResponseInfo()
-                                        .getMediationAdapterClassName(), AdType.INTERSTITIAL);
+                                        .getLoadedAdapterResponseInfo().getAdSourceName(), AdType.INTERSTITIAL);
                     });
                 }
             }
@@ -1477,7 +1476,6 @@ public class Admob {
         }
     }
 
-
     /**
      * Trả về 1 InterstitialAd và request Ads
      *
@@ -1510,7 +1508,7 @@ public class Admob {
                                     adValue,
                                     interstitialAd.getAdUnitId(),
                                     interstitialAd.getResponseInfo()
-                                            .getMediationAdapterClassName(), AdType.INTERSTITIAL);
+                                            .getLoadedAdapterResponseInfo().getAdSourceName(), AdType.INTERSTITIAL);
                         });
                         Log.i(TAG, "InterstitialAds onAdLoaded");
                     }
@@ -1527,7 +1525,6 @@ public class Admob {
                 });
 
     }
-
 
     /**
      * Hiển thị ads  timeout
@@ -1551,7 +1548,6 @@ public class Admob {
             forceShowInterstitial(context, mInterstitialAd, callback);
         }
     }
-
 
     /**
      * Hiển thị ads theo số lần được xác định trước và callback result
@@ -1641,7 +1637,6 @@ public class Admob {
             callback.onNextAction();
         }
     }
-
 
     /**
      * Bắt buộc hiển thị  ads full và callback result
@@ -1734,7 +1729,6 @@ public class Admob {
         final ShimmerFrameLayout containerShimmer = mActivity.findViewById(R.id.shimmer_container_banner);
         loadBanner(mActivity, id, adContainer, containerShimmer, callback, false, BANNER_INLINE_LARGE_STYLE);
     }
-
 
     /**
      * Load quảng cáo Banner Trong Activity set Inline adaptive banners
@@ -1961,7 +1955,7 @@ public class Admob {
 
                 @Override
                 public void onAdLoaded() {
-                    Log.d(TAG, "Banner adapter class name: " + adView.getResponseInfo().getMediationAdapterClassName());
+                    Log.d(TAG, "Banner adapter class name: " + adView.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName());
                     containerShimmer.stopShimmer();
                     containerShimmer.setVisibility(View.GONE);
                     adContainer.setVisibility(View.VISIBLE);
@@ -1973,7 +1967,7 @@ public class Admob {
                                     adValue,
                                     adView.getAdUnitId(),
                                     adView.getResponseInfo()
-                                            .getMediationAdapterClassName(), AdType.BANNER);
+                                            .getLoadedAdapterResponseInfo().getAdSourceName(), AdType.BANNER);
                         });
                     }
 
@@ -2045,7 +2039,7 @@ public class Admob {
 
                 @Override
                 public void onAdLoaded() {
-                    Log.d(TAG, "Banner adapter class name: " + adView.getResponseInfo().getMediationAdapterClassName());
+                    Log.d(TAG, "Banner adapter class name: " + adView.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName());
                     containerShimmer.stopShimmer();
                     containerShimmer.setVisibility(View.GONE);
                     adContainer.setVisibility(View.VISIBLE);
@@ -2056,7 +2050,7 @@ public class Admob {
                                 adValue,
                                 adView.getAdUnitId(),
                                 adView.getResponseInfo()
-                                        .getMediationAdapterClassName(), AdType.BANNER);
+                                        .getLoadedAdapterResponseInfo().getAdSourceName(), AdType.BANNER);
                     });
                     if (callback != null) {
                         callback.onAdLoaded();
@@ -2115,7 +2109,7 @@ public class Admob {
 
                 @Override
                 public void onAdLoaded() {
-                    Log.d(TAG, "Banner adapter class name: " + adView.getResponseInfo().getMediationAdapterClassName());
+                    Log.d(TAG, "Banner adapter class name: " + adView.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName());
                     containerShimmer.stopShimmer();
                     containerShimmer.setVisibility(View.GONE);
                     adContainer.setVisibility(View.VISIBLE);
@@ -2126,7 +2120,7 @@ public class Admob {
                                 adValue,
                                 adView.getAdUnitId(),
                                 adView.getResponseInfo()
-                                        .getMediationAdapterClassName(), AdType.BANNER);
+                                        .getLoadedAdapterResponseInfo().getAdSourceName(), AdType.BANNER);
                     });
                     if (callback != null) {
                         callback.onAdLoaded();
@@ -2254,11 +2248,10 @@ public class Admob {
                         callback.onUnifiedNativeAdLoaded(nativeAd);
                         nativeAd.setOnPaidEventListener(adValue -> {
                             Log.d(TAG, "OnPaidEvent getInterstitalAds:" + adValue.getValueMicros());
-
                             BBLLogEventManager.logPaidAdImpression(context,
                                     adValue,
                                     id,
-                                    nativeAd.getResponseInfo().getMediationAdapterClassName(), AdType.NATIVE);
+                                    nativeAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName(), AdType.NATIVE);
                         });
                     }
                 })
@@ -2322,7 +2315,7 @@ public class Admob {
                             BBLLogEventManager.logPaidAdImpression(context,
                                     adValue,
                                     id,
-                                    nativeAd.getResponseInfo().getMediationAdapterClassName(), AdType.NATIVE);
+                                    nativeAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName(), AdType.NATIVE);
                         });
                     }
                 })
@@ -2388,7 +2381,7 @@ public class Admob {
                             BBLLogEventManager.logPaidAdImpression(context,
                                     adValue,
                                     id,
-                                    nativeAd.getResponseInfo().getMediationAdapterClassName(), AdType.NATIVE);
+                                    nativeAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName(), AdType.NATIVE);
                         });
                         populateUnifiedNativeAdView(nativeAd, adView);
                         frameLayout.removeAllViews();
@@ -2458,7 +2451,7 @@ public class Admob {
                             BBLLogEventManager.logPaidAdImpression(context,
                                     adValue,
                                     id,
-                                    nativeAd.getResponseInfo().getMediationAdapterClassName(), AdType.NATIVE);
+                                    nativeAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName(), AdType.NATIVE);
                         });
                         populateUnifiedNativeAdView(nativeAd, adView);
                         frameLayout.removeAllViews();
@@ -2494,7 +2487,6 @@ public class Admob {
 
         adLoader.loadAd(getAdRequest());
     }
-
 
     public void populateUnifiedNativeAdView(NativeAd nativeAd, NativeAdView adView) {
 
@@ -2624,9 +2616,6 @@ public class Admob {
 
     }
 
-
-    private RewardedAd rewardedAd;
-
     /**
      * Khởi tạo quảng cáo reward
      *
@@ -2654,7 +2643,7 @@ public class Admob {
 
                     BBLLogEventManager.logPaidAdImpression(context,
                             adValue,
-                            rewardedAd.getAdUnitId(), Admob.this.rewardedAd.getResponseInfo().getMediationAdapterClassName()
+                            rewardedAd.getAdUnitId(), Admob.this.rewardedAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName()
                             , AdType.REWARDED);
                 });
             }
@@ -2695,7 +2684,7 @@ public class Admob {
                     BBLLogEventManager.logPaidAdImpression(context,
                             adValue,
                             rewardedAd.getAdUnitId(),
-                            Admob.this.rewardedAd.getResponseInfo().getMediationAdapterClassName()
+                            Admob.this.rewardedAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName()
                             , AdType.REWARDED);
                 });
 
@@ -2737,8 +2726,7 @@ public class Admob {
                     BBLLogEventManager.logPaidAdImpression(context,
                             adValue,
                             rewardedAd.getAdUnitId(),
-                            rewardedAd.getResponseInfo().getMediationAdapterClassName()
-                            , AdType.REWARDED);
+                            rewardedAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName(), AdType.REWARDED);
                 });
             }
 
@@ -2879,7 +2867,6 @@ public class Admob {
         }
     }
 
-
     /**
      * Show quảng cáo reward và nhận kết quả trả về
      *
@@ -2946,7 +2933,6 @@ public class Admob {
         }
     }
 
-
     public AdmobRecyclerAdapter getNativeRepeatAdapter(Activity activity, String id, int layoutCustomNative, int layoutAdPlaceHolder, RecyclerView.Adapter originalAdapter,
                                                        BBLAdPlacer.Listener listener, int repeatingInterval) {
         BBLAdPlacerSettings settings = new BBLAdPlacerSettings(layoutCustomNative, layoutAdPlaceHolder);
@@ -2967,7 +2953,6 @@ public class Admob {
         AdmobRecyclerAdapter adAdapter = new AdmobRecyclerAdapter(settings, originalAdapter, activity);
         return adAdapter;
     }
-
 
     @SuppressLint("HardwareIds")
     public String getDeviceId(Activity activity) {
@@ -3039,12 +3024,5 @@ public class Admob {
             throw new RuntimeException("Found test ad id on environment production. Id found: " + id);
         }
     }
-
-    public final static int SPLASH_ADS = 0;
-    public final static int RESUME_ADS = 1;
-    private final static int BANNER_ADS = 2;
-    private final static int INTERS_ADS = 3;
-    private final static int REWARD_ADS = 4;
-    private final static int NATIVE_ADS = 5;
 
 }

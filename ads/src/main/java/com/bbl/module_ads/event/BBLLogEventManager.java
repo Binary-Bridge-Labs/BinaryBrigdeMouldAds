@@ -99,7 +99,7 @@ public class BBLLogEventManager {
         params.putInt("precision", precision);
         params.putString("placement", adUnitId);
         params.putString("ad_network", network);
-        params.putString("ad_format", adType.name());
+        params.putString("ad_format", adType.name().toLowerCase());
 
         // log revenue this ad
         logPaidAdImpressionValue(context, revenue, precision, adUnitId, network, mediationProvider);
