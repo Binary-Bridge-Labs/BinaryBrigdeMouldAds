@@ -15,10 +15,11 @@ import com.bbl.module_ads.admob.Admob;
 import com.bbl.module_ads.ads.BBLAd;
 import com.bbl.module_ads.config.BBLAdConfig;
 import com.bbl.module_ads.funtion.AdCallback;
-import com.mia.module.R;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.bblabs.module_ads.activity.ContentActivity;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.mia.module.R;
+
 
 public class BlankFragment extends Fragment {
     InterstitialAd mInterstitialAd;

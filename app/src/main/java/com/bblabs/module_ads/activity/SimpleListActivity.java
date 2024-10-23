@@ -13,8 +13,8 @@ import com.bbl.module_ads.config.BBLAdConfig;
 import com.bbl.module_ads.ads.nativeAds.BBLAdPlacer;
 import com.bbl.module_ads.ads.nativeAds.BBLAdAdapter;
 import com.bbl.module_ads.ads.wrapper.ApAdValue;
-import com.mia.module.R;
 import com.bblabs.module_ads.adapter.ListSimpleAdapter;
+import com.mia.module.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -718,6 +718,85 @@ public class AppPurchase {
         return "";
     }
 
+    public String subscribe(Activity activity, String SubsId, int packageValue) {
+
+        if (skuListSubsFromStore == null) {
+            if (purchaseListener != null)
+                purchaseListener.displayErrorMessage("Billing error init");
+            return "";
+        }
+
+        ProductDetails productDetails = skuDetailsSubsMap.get(SubsId);
+        if (productDetails == null) {
+            return "Product ID invalid";
+        }
+        ProductDetails skuDetails = skuDetailsSubsMap.get(SubsId);
+        List<ProductDetails.SubscriptionOfferDetails> subsDetail = skuDetails.getSubscriptionOfferDetails();
+        String offerToken = subsDetail.get(packageValue).getOfferToken();
+        ImmutableList<BillingFlowParams.ProductDetailsParams> productDetailsParamsList =
+                ImmutableList.of(
+                        BillingFlowParams.ProductDetailsParams.newBuilder()
+                                .setProductDetails(productDetails)
+                                .setOfferToken(offerToken)
+                                .build()
+                );
+
+        BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
+                .setProductDetailsParamsList(productDetailsParamsList)
+                .build();
+
+        BillingResult billingResult = billingClient.launchBillingFlow(activity, billingFlowParams);
+
+        switch (billingResult.getResponseCode()) {
+
+            case BillingClient.BillingResponseCode.BILLING_UNAVAILABLE:
+                if (purchaseListener != null)
+                    purchaseListener.displayErrorMessage("Billing not supported for type of request");
+                return "Billing not supported for type of request";
+
+            case BillingClient.BillingResponseCode.ITEM_NOT_OWNED:
+            case BillingClient.BillingResponseCode.DEVELOPER_ERROR:
+                return "";
+
+            case BillingClient.BillingResponseCode.ERROR:
+                if (purchaseListener != null)
+                    purchaseListener.displayErrorMessage("Error completing request");
+                return "Error completing request";
+
+            case BillingClient.BillingResponseCode.FEATURE_NOT_SUPPORTED:
+                return "Error processing request.";
+
+            case BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED:
+                return "Selected item is already owned";
+
+            case BillingClient.BillingResponseCode.ITEM_UNAVAILABLE:
+                return "Item not available";
+
+            case BillingClient.BillingResponseCode.SERVICE_DISCONNECTED:
+                return "Play Store service is not connected now";
+
+            case BillingClient.BillingResponseCode.SERVICE_TIMEOUT:
+                return "Timeout";
+
+            case BillingClient.BillingResponseCode.SERVICE_UNAVAILABLE:
+                if (purchaseListener != null)
+                    purchaseListener.displayErrorMessage("Network error.");
+                return "Network Connection down";
+
+            case BillingClient.BillingResponseCode.USER_CANCELED:
+                if (purchaseListener != null)
+                    purchaseListener.displayErrorMessage("Request Canceled");
+                return "Request Canceled";
+
+            case BillingClient.BillingResponseCode.OK:
+                return "Subscribed Successfully";
+
+            //}
+
+        }
+        return "";
+    }
+
     public void consumePurchase() {
         if (productId == null) {
             Log.e(TAG, "Consume Purchase false:productId null ");

@@ -112,7 +112,7 @@ public class BBLAd {
 
     /**
      * @param context
-     * @param adConfig MiaAdConfig object used for SDK initialisation
+     * @param adConfig BBLAdConfig object used for SDK initialisation
      */
     public void init(Application context, BBLAdConfig adConfig) {
         init(context, adConfig, false);
@@ -120,12 +120,12 @@ public class BBLAd {
 
     /**
      * @param context
-     * @param adConfig             MiaAdConfig object used for SDK initialisation
+     * @param adConfig             BBLAdConfig object used for SDK initialisation
      * @param enableDebugMediation set show Mediation Debugger - use only for Max Mediation
      */
     public void init(Application context, BBLAdConfig adConfig, Boolean enableDebugMediation) {
         if (adConfig == null) {
-            throw new RuntimeException("Cant not set MiaAdConfig null");
+            throw new RuntimeException("Cant not set BBLAdConfig null");
         }
         this.adConfig = adConfig;
         AppUtil.VARIANT_DEV = adConfig.isVariantDev();
@@ -373,23 +373,6 @@ public class BBLAd {
         Admob.getInstance().loadCollapsibleBannerFragment(mActivity, id, rootView, gravity, adCallback);
     }
 
-//    public void loadBanner(final Activity mActivity, String id, final MiaAdCallback callback) {
-//        switch (adConfig.getMediationProvider()) {
-//            case MiaAdConfig.PROVIDER_ADMOB:
-//                Admob.getInstance().loadBanner(mActivity, id , new AdCallback(){
-//                    @Override
-//                    public void onAdClicked() {
-//                        super.onAdClicked();
-//                        callback.onAdClicked();
-//                    }
-//                });
-//                break;
-//            case MiaAdConfig.PROVIDER_MAX:
-//                AppLovin.getInstance().loadBanner(mActivity, id, new AppLovinCallback(){
-//
-//                });
-//        }
-//    }
 
     public void loadSplashInterstitialAds(final Context context, String id, long timeOut, long timeDelay, BBLAdCallback adListener) {
         loadSplashInterstitialAds(context, id, timeOut, timeDelay, true, adListener);
