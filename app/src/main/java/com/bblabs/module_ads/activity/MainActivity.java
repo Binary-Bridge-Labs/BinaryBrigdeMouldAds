@@ -28,7 +28,6 @@ import com.bbl.module_ads.event.BBLAdjust;
 import com.bbl.module_ads.funtion.AdCallback;
 import com.bbl.module_ads.funtion.DialogExitListener;
 import com.bbl.module_ads.funtion.PurchaseListener;
-
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.mia.module.BuildConfig;
@@ -183,6 +182,34 @@ public class MainActivity extends AppCompatActivity {
                     dialog.dismiss();
                 });
                 dialog.show();
+            }
+        });
+        Button btnNativeFull = findViewById(R.id.btnNativeFull);
+        btnNativeFull.setOnClickListener(v -> {
+            if (mInterstitialAd.isReady()) {
+
+                ApInterstitialAd inter = BBLAd.getInstance().getInterstitialAds(this, idInter);
+
+                BBLAd.getInstance().showInterstitialAdByTimes(this, mInterstitialAd, new BBLAdCallback() {
+                    @Override
+                    public void onNextAction() {
+                        //ShowNativeFull
+
+                        startActivity(new Intent(MainActivity.this, ContentActivity.class));
+                    }
+
+                    @Override
+                    public void onAdFailedToShow(@Nullable ApAdError adError) {
+                        super.onAdFailedToShow(adError);
+                    }
+
+                    @Override
+                    public void onInterstitialShow() {
+                        super.onInterstitialShow();
+                    }
+                }, true);
+            } else {
+                loadAdInterstitial();
             }
         });
 
