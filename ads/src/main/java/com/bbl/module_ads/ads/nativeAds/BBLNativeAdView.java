@@ -47,10 +47,10 @@ public class BBLNativeAdView extends RelativeLayout {
     }
 
     private void init(AttributeSet attrs) {
-        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.MiaNativeAdView, 0, 0);
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.BBLNativeAdView, 0, 0);
         // Get layout native view custom and  layout loading
-        layoutCustomNativeAd = typedArray.getResourceId(R.styleable.MiaNativeAdView_layoutCustomNativeAd, 0);
-        int idLayoutLoading = typedArray.getResourceId(R.styleable.MiaNativeAdView_layoutLoading, 0);
+        layoutCustomNativeAd = typedArray.getResourceId(R.styleable.BBLNativeAdView_layoutCustomNativeAd, 0);
+        int idLayoutLoading = typedArray.getResourceId(R.styleable.BBLNativeAdView_layoutLoading, 0);
         if (idLayoutLoading != 0)
             layoutLoading = (ShimmerFrameLayout) LayoutInflater.from(getContext()).inflate(idLayoutLoading, null);
 
@@ -85,7 +85,7 @@ public class BBLNativeAdView extends RelativeLayout {
     public void loadNativeAd(Activity activity, String idAd ) {
         loadNativeAd(activity, idAd, new BBLAdCallback(){});
     }
-    public void loadNativeAd(Activity activity, String idAd, BBLAdCallback MiaAdCallback) {
+    public void loadNativeAd(Activity activity, String idAd, BBLAdCallback bblAdCallback) {
         if(layoutLoading == null){
             setLayoutLoading(R.layout.loading_native_medium);
         }
@@ -93,7 +93,7 @@ public class BBLNativeAdView extends RelativeLayout {
             layoutCustomNativeAd = R.layout.custom_native_admod_medium_rate;
             setLayoutCustomNativeAd(layoutCustomNativeAd);
         }
-        BBLAd.getInstance().loadNativeAd(activity, idAd, layoutCustomNativeAd, layoutPlaceHolder, layoutLoading, MiaAdCallback);
+        BBLAd.getInstance().loadNativeAd(activity, idAd, layoutCustomNativeAd, layoutPlaceHolder, layoutLoading, bblAdCallback);
     }
 
     public void loadNativeAd(Activity activity, String idAd, int layoutCustomNativeAd, int idLayoutLoading) {
@@ -102,9 +102,9 @@ public class BBLNativeAdView extends RelativeLayout {
         loadNativeAd(activity,idAd);
     }
 
-    public void loadNativeAd(Activity activity, String idAd, int layoutCustomNativeAd, int idLayoutLoading, BBLAdCallback MiaAdCallback) {
+    public void loadNativeAd(Activity activity, String idAd, int layoutCustomNativeAd, int idLayoutLoading, BBLAdCallback miaAdCallback) {
         setLayoutLoading(idLayoutLoading);
         setLayoutCustomNativeAd(layoutCustomNativeAd);
-        loadNativeAd(activity,idAd, MiaAdCallback);
+        loadNativeAd(activity,idAd, miaAdCallback);
     }
 }

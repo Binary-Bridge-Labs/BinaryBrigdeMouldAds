@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FDA6A6"
     tools:context="com.bblabs.module_ads.activity.MainActivity">
 
     <com.bbl.module_ads.ads.nativeAds.BBLNativeAdView
-        android:id="@+id/mia_native_ads"
+        android:id="@+id/bbl_native_ads"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_150sdp"
         android:background="@drawable/bg_card_ads"
@@ -24,7 +24,7 @@
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mia_native_ads">
+        app:layout_constraintTop_toBottomOf="@+id/bbl_native_ads">
 
 
         <Button
@@ -80,6 +80,15 @@
             android:layout_centerHorizontal="true"
             android:onClick="onTrackRevenueEventClick"
             android:text="Track Revenue adjust" />
+
+        <Button
+            android:id="@+id/btnNativeFull"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnAdjustEvent"
+            android:layout_centerHorizontal="true"
+            android:onClick="onTrackRevenueEventClick"
+            android:text="Show Inter + Native Full" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.bbl.module_ads.ads.bannerAds.BBLBannerAdView

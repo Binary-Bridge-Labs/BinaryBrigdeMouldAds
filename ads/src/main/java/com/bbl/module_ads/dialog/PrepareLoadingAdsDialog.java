@@ -8,6 +8,9 @@ import android.view.View;
 import com.ads.bbl.R;
 
 
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
 public class PrepareLoadingAdsDialog extends Dialog {
 
     public PrepareLoadingAdsDialog(Context context) {
@@ -18,6 +21,10 @@ public class PrepareLoadingAdsDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_prepair_loading_ads);
+
+        // Áp dụng hiệu ứng fade-in cho toàn bộ layout của dialog
+        Animation fadeIn = AnimationUtils.loadAnimation(getContext(), R.anim.fade_in);
+        findViewById(R.id.dialog_root_view).startAnimation(fadeIn);
     }
 
     public void hideLoadingAdsText() {
