@@ -1198,7 +1198,7 @@ public class Admob {
             }
         });
 
-        if (ProcessLifecycleOwner.get().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) {
+        if (ProcessLifecycleOwner.get().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)|| ProcessLifecycleOwner.get().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.INITIALIZED)) {
             try {
                 if (dialog != null && dialog.isShowing())
                     dialog.dismiss();
@@ -1243,7 +1243,7 @@ public class Admob {
                 }
             }, 800);
 
-        } else {
+        } else{
             isShowLoadingSplash = false;
             Log.e(TAG, "onShowSplash: fail on background");
         }
