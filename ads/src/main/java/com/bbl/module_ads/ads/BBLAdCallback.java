@@ -9,6 +9,9 @@ import com.bbl.module_ads.ads.wrapper.ApNativeAd;
 import com.bbl.module_ads.ads.wrapper.ApRewardItem;
 
 public class BBLAdCallback {
+    public void onNotEnoughTimeShowAds() {
+    }
+
     public void onNextAction() {
     }
 

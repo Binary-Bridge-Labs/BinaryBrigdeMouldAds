@@ -6,9 +6,9 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.bbl.module_ads.admob.AppOpenManager;
 import com.bbl.module_ads.ads.BBLAd;
+import com.bbl.module_ads.ads.BBLAdCallback;
 import com.bbl.module_ads.config.BBLAdConfig;
 import com.bbl.module_ads.funtion.AdCallback;
 import com.mia.module.BuildConfig;
@@ -33,15 +33,21 @@ public class SplashActivity extends AppCompatActivity {
         else
             idAdSplash = getString(R.string.applovin_test_inter);
 
-        AppOpenManager.getInstance().loadAdOpenSplash2id(SplashActivity.class, this,
+//        AppOpenManager.getInstance().loadAdOpenSplash2id(SplashActivity.class, this,
+//                "ca-app-pub-3940256099942544/3419835294",
+//                "ca-app-pub-3940256099942544/3419835294", 25000, new AdCallback() {
+//                    @Override
+//                    public void onNextAction() {
+//                        super.onNextAction();
+//                        startMain();
+//                    }
+//                });
+        BBLAd.getInstance().loadSplashInterstitialAdsHighFloor(this,
                 "ca-app-pub-3940256099942544/3419835294",
-                "ca-app-pub-3940256099942544/3419835294", 25000, new AdCallback() {
-                    @Override
-                    public void onNextAction() {
-                        super.onNextAction();
-                        startMain();
-                    }
-                });
+                "ca-app-pub-3940256099942544/3419835294",
+                25000,
+                5000,
+                new BBLAdCallback());
     }
 
     private void startMain() {

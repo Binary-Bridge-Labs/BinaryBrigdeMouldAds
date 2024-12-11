@@ -865,6 +865,7 @@ public class BBLAd {
         ) {
             Log.i(TAG, "forceShowInterstitial: ignore by interval impression interstitial time");
             callback.onNextAction();
+            callback.onAdClosed();
             return;
         }
         if (mInterstitialAd == null || mInterstitialAd.isNotReady()) {
