@@ -1,0 +1,12 @@
+<resources>
+    <string name="cancel">Hủy bỏ</string>
+    <string name="exit">RA</string>
+    <string name="close">ĐÓNG</string>
+    <string name="are_you_sure_you_want_to_exit">Bạn có chắc chắn muốn thoát không\?</string>
+    <string name="remove_ads">XÓA QUẢNG CÁO</string>
+    <string name="remove_all_annoying_ads_forever_by_just">Xóa bỏ mọi quảng cáo gây phiền nhiễu mãi mãi chỉ bằng cách:</string>
+    <string name="buy_now">Mua ngay</string>
+    <string name="loading_ads">Đang tải quảng cáo…</string>
+    <string name="well_comeback">Chào mừng trở lại</string>
+    <string name="offline_notification_text">Tiêu đề</string>
+</resources>

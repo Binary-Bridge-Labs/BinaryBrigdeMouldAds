@@ -56,9 +56,7 @@ public class MyApplication extends AdsMultiDexApplication {
         bblAdConfig.setAdjustConfig(adjustConfig);
 
         AppsflyerConfig appsflyerConfig = new AppsflyerConfig(true,APPSFLYER_TOKEN);
-
-
-        listTestDevice.add("EC25F576DA9B6CE74778B268CB87E431");
+        listTestDevice.add("4271C93CF09454C3100C720F43AADEF4");
         bblAdConfig.setListDeviceTest(listTestDevice);
         bblAdConfig.setIntervalInterstitialAd(15);
 

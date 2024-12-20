@@ -1,0 +1,12 @@
+<resources>
+    <string name="cancel">İptal etmek</string>
+    <string name="exit">ÇIKIŞ</string>
+    <string name="close">KAPALI</string>
+    <string name="are_you_sure_you_want_to_exit">Çıkmak istediğinizden emin misiniz\?</string>
+    <string name="remove_ads">REKLAMLARI KALDIR</string>
+    <string name="remove_all_annoying_ads_forever_by_just">Sadece şunu yaparak tüm sinir bozucu reklamları sonsuza dek kaldırın:</string>
+    <string name="buy_now">Şimdi al</string>
+    <string name="loading_ads">Reklam Yükleniyor…</string>
+    <string name="well_comeback">tekrar hoşgeldiniz</string>
+    <string name="offline_notification_text">Başlık</string>
+</resources>

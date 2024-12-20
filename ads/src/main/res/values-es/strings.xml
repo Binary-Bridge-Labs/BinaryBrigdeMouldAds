@@ -1,0 +1,12 @@
+<resources>
+    <string name="cancel">Cancelar</string>
+    <string name="exit">SALIDA</string>
+    <string name="close">CERCA</string>
+    <string name="are_you_sure_you_want_to_exit">¿Estas seguro que deseas salir\?</string>
+    <string name="remove_ads">ELIMINAR ANUNCIOS</string>
+    <string name="remove_all_annoying_ads_forever_by_just">Elimina todos los anuncios molestos para siempre con solo:</string>
+    <string name="buy_now">Comprar ahora</string>
+    <string name="loading_ads">Cargando anuncio…</string>
+    <string name="well_comeback">Bienvenido de nuevo</string>
+    <string name="offline_notification_text">Título</string>
+</resources>

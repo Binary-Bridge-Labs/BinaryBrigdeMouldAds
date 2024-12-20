@@ -947,7 +947,6 @@ public class AppLovin {
                 .setAdvertiserTextViewId(R.id.ad_advertiser)
                 .setIconImageViewId(R.id.ad_app_icon)
                 .setMediaContentViewGroupId(R.id.ad_media)
-                .setOptionsContentViewGroupId(R.id.options_view)
                 .setCallToActionButtonId(R.id.ad_call_to_action)
                 .build();
 
@@ -1033,15 +1032,8 @@ public class AppLovin {
     public MaxRewardedAd getRewardAd(Activity activity, String id, AppLovinCallback callback) {
         MaxRewardedAd rewardedAd = MaxRewardedAd.getInstance(id, activity);
         rewardedAd.setListener(new MaxRewardedAdListener() {
-            @Override
-            public void onRewardedVideoStarted(MaxAd ad) {
-                Log.d(TAG, "onRewardedVideoStarted: ");
-            }
 
-            @Override
-            public void onRewardedVideoCompleted(MaxAd ad) {
-                Log.d(TAG, "onRewardedVideoCompleted: ");
-            }
+
 
             @Override
             public void onUserRewarded(MaxAd ad, MaxReward reward) {
@@ -1100,15 +1092,8 @@ public class AppLovin {
         if (maxRewardedAd.isReady()) {
             maxRewardedAd.setRevenueListener(ad -> BBLLogEventManager.logPaidAdImpression( activity,ad, AdType.REWARDED));
             maxRewardedAd.setListener(new MaxRewardedAdListener() {
-                @Override
-                public void onRewardedVideoStarted(MaxAd ad) {
-                    Log.d(TAG, "onRewardedVideoStarted: ");
-                }
 
-                @Override
-                public void onRewardedVideoCompleted(MaxAd ad) {
-                    Log.d(TAG, "onRewardedVideoCompleted: ");
-                }
+
 
                 @Override
                 public void onUserRewarded(MaxAd ad, MaxReward reward) {

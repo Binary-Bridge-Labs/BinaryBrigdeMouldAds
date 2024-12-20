@@ -1,0 +1,12 @@
+<resources>
+    <string name="cancel">Annuleren</string>
+    <string name="exit">UITGANG</string>
+    <string name="close">DICHTBIJ</string>
+    <string name="are_you_sure_you_want_to_exit">Weet u zeker dat u wilt afsluiten\?</string>
+    <string name="remove_ads">VERWIJDER ADVERTENTIES</string>
+    <string name="remove_all_annoying_ads_forever_by_just">Verwijder alle vervelende advertenties voorgoed door gewoon:</string>
+    <string name="buy_now">Nu kopen</string>
+    <string name="loading_ads">Advertentie wordt geladen…</string>
+    <string name="well_comeback">Welkom terug</string>
+    <string name="offline_notification_text">Titel</string>
+</resources>

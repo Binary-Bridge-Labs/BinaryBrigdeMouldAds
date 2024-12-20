@@ -1,0 +1,12 @@
+<resources>
+    <string name="cancel">Kanselahin</string>
+    <string name="exit">EXIT</string>
+    <string name="close">Isara</string>
+    <string name="are_you_sure_you_want_to_exit">Sigurado ka bang gusto mong lumabas\?</string>
+    <string name="remove_ads">ALISIN ANG MGA AD</string>
+    <string name="remove_all_annoying_ads_forever_by_just">Alisin ang lahat ng nakakainis na ad magpakailanman sa pamamagitan lamang ng:</string>
+    <string name="buy_now">Bumili na</string>
+    <string name="loading_ads">Naglo-load ng Ad...</string>
+    <string name="well_comeback">Maligayang pagbabalik</string>
+    <string name="offline_notification_text">Pamagat</string>
+</resources>

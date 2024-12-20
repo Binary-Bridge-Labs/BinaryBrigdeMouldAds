@@ -1,0 +1,12 @@
+<resources>
+    <string name="cancel">Batal</string>
+    <string name="exit">KELUAR</string>
+    <string name="close">TUTUP</string>
+    <string name="are_you_sure_you_want_to_exit">Adakah anda pasti mahu keluar\?</string>
+    <string name="remove_ads">KELUARKAN IKLAN</string>
+    <string name="remove_all_annoying_ads_forever_by_just">Alih keluar semua iklan yang menjengkelkan selama-lamanya dengan hanya:</string>
+    <string name="buy_now">Beli sekarang</string>
+    <string name="loading_ads">Memuatkan Iklan…</string>
+    <string name="well_comeback">Selamat kembali</string>
+    <string name="offline_notification_text">Tajuk</string>
+</resources>

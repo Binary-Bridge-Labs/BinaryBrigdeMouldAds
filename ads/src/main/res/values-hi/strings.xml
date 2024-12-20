@@ -1,0 +1,12 @@
+<resources>
+    <string name="cancel">रद्द करना</string>
+    <string name="exit">बाहर निकलना</string>
+    <string name="close">बंद करना</string>
+    <string name="are_you_sure_you_want_to_exit">क्या आप सचमुच बाहर निकलना चाहते हैं\?</string>
+    <string name="remove_ads">विज्ञापन हटाएँ</string>
+    <string name="remove_all_annoying_ads_forever_by_just">सभी कष्टप्रद विज्ञापनों को हमेशा के लिए हटाएँ बस:</string>
+    <string name="buy_now">अभी खरीदें</string>
+    <string name="loading_ads">विज्ञापन लोड हो रहा है…</string>
+    <string name="well_comeback">वापसी पर स्वागत है</string>
+    <string name="offline_notification_text">शीर्षक</string>
+</resources>
