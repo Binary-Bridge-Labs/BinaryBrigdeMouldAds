@@ -52,11 +52,11 @@ Trong file **`build.gradle (Module: app)`**, thêm:
 
 ```gradle
 dependencies {
-    implementation 'com.github.Binary-Bridge-Labs:BinaryBrigdeMouldAds:1.0.0'
+    implementation 'com.github.Binary-Bridge-Labs:BinaryBrigdeMouldAds:1.0.1'
 }
 ```
 
-📌 **Thay thế** `1.0.0` bằng phiên bản mới nhất nếu có.  
+📌 **Thay thế** `1.0.1` bằng phiên bản mới nhất nếu có.  
 
 ---
 
