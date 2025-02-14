@@ -70,5 +70,3 @@ Nếu gặp lỗi quyền truy cập, kiểm tra xem **JitPack đã được c�
 ✅ **Thêm thư viện vào `build.gradle (Module)`**  
 ✅ **Chạy `./gradlew build` để kiểm tra**  
 
-🔥 **Bây giờ bạn có thể sử dụng thư viện từ JitPack!** 🚀  
-```
