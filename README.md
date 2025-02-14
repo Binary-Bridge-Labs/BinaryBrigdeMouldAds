@@ -20,11 +20,6 @@ authToken=jp_2o576u0l0g910mltrtmijps8tp
 Mở file **`build.gradle`** (cấp Project) và thêm đoạn sau vào phần `dependencyResolutionManagement`:  
 
 ```gradle
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
         maven {
             url "https://jitpack.io"
             credentials {
@@ -32,8 +27,6 @@ dependencyResolutionManagement {
                 password = ""
             }
         }
-    }
-}
 ```
 
 📌 **Giải thích:**  
