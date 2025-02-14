@@ -64,7 +64,7 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
-                <com.bbl.module_ads.util.CustomRatingBar
+                <com.binarybrigde.dev.ads.util.CustomRatingBar
                     android:id="@+id/ad_stars"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

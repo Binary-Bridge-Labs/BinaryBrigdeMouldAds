@@ -1,4 +1,4 @@
-package com.bbl.module_ads.ads.wrapper;
+package com.binarybrigde.dev.ads.ads.wrapper;
 
 import com.applovin.mediation.ads.MaxRewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAd;

@@ -1,4 +1,4 @@
-package com.bbl.module_ads.spinkit.animation;
+package com.binarybrigde.dev.ads.spinkit.animation;
 
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
@@ -8,8 +8,8 @@ import android.util.Property;
 import android.view.animation.Animation;
 import android.view.animation.Interpolator;
 
-import com.bbl.module_ads.spinkit.animation.interpolator.KeyFrameInterpolator;
-import com.bbl.module_ads.spinkit.sprite.Sprite;
+import com.binarybrigde.dev.ads.spinkit.animation.interpolator.KeyFrameInterpolator;
+import com.binarybrigde.dev.ads.spinkit.sprite.Sprite;
 
 import java.util.HashMap;
 import java.util.Locale;

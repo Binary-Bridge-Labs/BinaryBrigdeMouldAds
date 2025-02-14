@@ -1,4 +1,4 @@
-package com.bbl.module_ads.admob;
+package com.binarybrigde.dev.ads.admob;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -35,21 +35,21 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ads.bbl.R;
+import com.binarybrigde.dev.ads.R;
 import com.applovin.mediation.AppLovinExtras;
 import com.applovin.mediation.ApplovinAdapter;
-import com.bbl.module_ads.ads.nativeAds.AdmobRecyclerAdapter;
-import com.bbl.module_ads.ads.nativeAds.BBLAdPlacer;
-import com.bbl.module_ads.ads.nativeAds.BBLAdPlacerSettings;
-import com.bbl.module_ads.billing.AppPurchase;
-import com.bbl.module_ads.dialog.PrepareLoadingAdsDialog;
-import com.bbl.module_ads.event.BBLLogEventManager;
-import com.bbl.module_ads.funtion.AdCallback;
-import com.bbl.module_ads.funtion.AdType;
-import com.bbl.module_ads.funtion.AdmobHelper;
-import com.bbl.module_ads.funtion.RewardCallback;
-import com.bbl.module_ads.util.AppUtil;
-import com.bbl.module_ads.util.SharePreferenceUtils;
+import com.binarybrigde.dev.ads.ads.nativeAds.AdmobRecyclerAdapter;
+import com.binarybrigde.dev.ads.ads.nativeAds.BBDAdPlacer;
+import com.binarybrigde.dev.ads.ads.nativeAds.BBDAdPlacerSettings;
+import com.binarybrigde.dev.ads.billing.AppPurchase;
+import com.binarybrigde.dev.ads.dialog.PrepareLoadingAdsDialog;
+import com.binarybrigde.dev.ads.event.BBDLogEventManager;
+import com.binarybrigde.dev.ads.funtion.AdCallback;
+import com.binarybrigde.dev.ads.funtion.AdType;
+import com.binarybrigde.dev.ads.funtion.AdmobHelper;
+import com.binarybrigde.dev.ads.funtion.RewardCallback;
+import com.binarybrigde.dev.ads.util.AppUtil;
+import com.binarybrigde.dev.ads.util.SharePreferenceUtils;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdError;
@@ -92,7 +92,7 @@ public class Admob {
     public static final String BANNER_INLINE_LARGE_STYLE = "BANNER_INLINE_LARGE_STYLE";
     public final static int SPLASH_ADS = 0;
     public final static int RESUME_ADS = 1;
-    private static final String TAG = "BBLModuleAds";
+    private static final String TAG = "BBDModuleAds";
     private final static int BANNER_ADS = 2;
     private final static int INTERS_ADS = 3;
     private final static int REWARD_ADS = 4;
@@ -985,7 +985,7 @@ public class Admob {
         mInterstitialSplash.setOnPaidEventListener(adValue -> {
             Log.d(TAG, "OnPaidEvent splash:" + adValue.getValueMicros());
 
-            BBLLogEventManager.logPaidAdImpression(context,
+            BBDLogEventManager.logPaidAdImpression(context,
                     adValue,
                     mInterstitialSplash.getAdUnitId(),
                     mInterstitialSplash.getResponseInfo()
@@ -1048,7 +1048,7 @@ public class Admob {
                 super.onAdClicked();
                 if (disableAdResumeWhenClickAds)
                     AppOpenManager.getInstance().disableAdResumeByClickAction();
-                BBLLogEventManager.logClickAdsEvent(context, mInterstitialSplash.getAdUnitId());
+                BBDLogEventManager.logClickAdsEvent(context, mInterstitialSplash.getAdUnitId());
             }
 
             @Override
@@ -1123,7 +1123,7 @@ public class Admob {
         mInterstitialSplash.setOnPaidEventListener(adValue -> {
             Log.d(TAG, "OnPaidEvent splash:" + adValue.getValueMicros());
 
-            BBLLogEventManager.logPaidAdImpression(context,
+            BBDLogEventManager.logPaidAdImpression(context,
                     adValue,
                     mInterstitialSplash.getAdUnitId(),
                     mInterstitialSplash.getResponseInfo()
@@ -1186,7 +1186,7 @@ public class Admob {
                 super.onAdClicked();
                 if (disableAdResumeWhenClickAds)
                     AppOpenManager.getInstance().disableAdResumeByClickAction();
-                BBLLogEventManager.logClickAdsEvent(context, mInterstitialSplash.getAdUnitId());
+                BBDLogEventManager.logClickAdsEvent(context, mInterstitialSplash.getAdUnitId());
             }
 
             @Override
@@ -1262,7 +1262,7 @@ public class Admob {
         mInterstitialSplash.setOnPaidEventListener(adValue -> {
             Log.d(TAG, "OnPaidEvent splash:" + adValue.getValueMicros());
 
-            BBLLogEventManager.logPaidAdImpression(context,
+            BBDLogEventManager.logPaidAdImpression(context,
                     adValue,
                     mInterstitialSplash.getAdUnitId(),
                     mInterstitialSplash.getResponseInfo()
@@ -1325,7 +1325,7 @@ public class Admob {
                 super.onAdClicked();
                 if (disableAdResumeWhenClickAds)
                     AppOpenManager.getInstance().disableAdResumeByClickAction();
-                BBLLogEventManager.logClickAdsEvent(context, mInterstitialSplash.getAdUnitId());
+                BBDLogEventManager.logClickAdsEvent(context, mInterstitialSplash.getAdUnitId());
             }
 
             @Override
@@ -1437,7 +1437,7 @@ public class Admob {
                     interstitialAd.setOnPaidEventListener(adValue -> {
 
                         Log.d(TAG, "OnPaidEvent loadInterstitialAds:" + adValue.getValueMicros());
-                        BBLLogEventManager.logPaidAdImpression(context,
+                        BBDLogEventManager.logPaidAdImpression(context,
                                 adValue,
                                 interstitialAd.getAdUnitId(),
                                 interstitialAd.getResponseInfo()
@@ -1504,7 +1504,7 @@ public class Admob {
                         //tracking adjust
                         interstitialAd.setOnPaidEventListener(adValue -> {
                             Log.d(TAG, "OnPaidEvent getInterstitialAds:" + adValue.getValueMicros());
-                            BBLLogEventManager.logPaidAdImpression(context,
+                            BBDLogEventManager.logPaidAdImpression(context,
                                     adValue,
                                     interstitialAd.getAdUnitId(),
                                     interstitialAd.getResponseInfo()
@@ -1625,7 +1625,7 @@ public class Admob {
                 if (callback != null) {
                     callback.onAdClicked();
                 }
-                BBLLogEventManager.logClickAdsEvent(context, mInterstitialAd.getAdUnitId());
+                BBDLogEventManager.logClickAdsEvent(context, mInterstitialAd.getAdUnitId());
             }
         });
 
@@ -1963,7 +1963,7 @@ public class Admob {
                         adView.setOnPaidEventListener(adValue -> {
                             Log.d(TAG, "OnPaidEvent banner:" + adValue.getValueMicros());
 
-                            BBLLogEventManager.logPaidAdImpression(context,
+                            BBDLogEventManager.logPaidAdImpression(context,
                                     adValue,
                                     adView.getAdUnitId(),
                                     adView.getResponseInfo()
@@ -1985,7 +1985,7 @@ public class Admob {
                         callback.onAdClicked();
                         Log.d(TAG, "onAdClicked");
                     }
-                    BBLLogEventManager.logClickAdsEvent(context, id);
+                    BBDLogEventManager.logClickAdsEvent(context, id);
                 }
 
                 @Override
@@ -2046,7 +2046,7 @@ public class Admob {
                     adView.setOnPaidEventListener(adValue -> {
                         Log.d(TAG, "OnPaidEvent banner:" + adValue.getValueMicros());
 
-                        BBLLogEventManager.logPaidAdImpression(context,
+                        BBDLogEventManager.logPaidAdImpression(context,
                                 adValue,
                                 adView.getAdUnitId(),
                                 adView.getResponseInfo()
@@ -2062,7 +2062,7 @@ public class Admob {
                     super.onAdClicked();
                     if (disableAdResumeWhenClickAds)
                         AppOpenManager.getInstance().disableAdResumeByClickAction();
-                    BBLLogEventManager.logClickAdsEvent(context, id);
+                    BBDLogEventManager.logClickAdsEvent(context, id);
                     if (callback != null) {
                         callback.onAdClicked();
                     }
@@ -2116,7 +2116,7 @@ public class Admob {
                     adView.setOnPaidEventListener(adValue -> {
                         Log.d(TAG, "OnPaidEvent banner:" + adValue.getValueMicros());
 
-                        BBLLogEventManager.logPaidAdImpression(context,
+                        BBDLogEventManager.logPaidAdImpression(context,
                                 adValue,
                                 adView.getAdUnitId(),
                                 adView.getResponseInfo()
@@ -2132,7 +2132,7 @@ public class Admob {
                     super.onAdClicked();
                     if (disableAdResumeWhenClickAds)
                         AppOpenManager.getInstance().disableAdResumeByClickAction();
-                    BBLLogEventManager.logClickAdsEvent(context, id);
+                    BBDLogEventManager.logClickAdsEvent(context, id);
                     if (callback != null) {
                         callback.onAdClicked();
                     }
@@ -2248,7 +2248,7 @@ public class Admob {
                         callback.onUnifiedNativeAdLoaded(nativeAd);
                         nativeAd.setOnPaidEventListener(adValue -> {
                             Log.d(TAG, "OnPaidEvent getInterstitalAds:" + adValue.getValueMicros());
-                            BBLLogEventManager.logPaidAdImpression(context,
+                            BBDLogEventManager.logPaidAdImpression(context,
                                     adValue,
                                     id,
                                     nativeAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName(), AdType.NATIVE);
@@ -2280,7 +2280,7 @@ public class Admob {
                             callback.onAdClicked();
                             Log.d(TAG, "onAdClicked");
                         }
-                        BBLLogEventManager.logClickAdsEvent(context, id);
+                        BBDLogEventManager.logClickAdsEvent(context, id);
                     }
                 })
                 .withNativeAdOptions(adOptions)
@@ -2312,7 +2312,7 @@ public class Admob {
                         nativeAd.setOnPaidEventListener(adValue -> {
                             Log.d(TAG, "OnPaidEvent getInterstitalAds:" + adValue.getValueMicros());
 
-                            BBLLogEventManager.logPaidAdImpression(context,
+                            BBDLogEventManager.logPaidAdImpression(context,
                                     adValue,
                                     id,
                                     nativeAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName(), AdType.NATIVE);
@@ -2335,7 +2335,7 @@ public class Admob {
                             callback.onAdClicked();
                             Log.d(TAG, "onAdClicked");
                         }
-                        BBLLogEventManager.logClickAdsEvent(context, id);
+                        BBDLogEventManager.logClickAdsEvent(context, id);
                     }
                 })
                 .withNativeAdOptions(adOptions)
@@ -2378,7 +2378,7 @@ public class Admob {
                         nativeAd.setOnPaidEventListener(adValue -> {
                             Log.d(TAG, "OnPaidEvent native:" + adValue.getValueMicros());
 
-                            BBLLogEventManager.logPaidAdImpression(context,
+                            BBDLogEventManager.logPaidAdImpression(context,
                                     adValue,
                                     id,
                                     nativeAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName(), AdType.NATIVE);
@@ -2404,7 +2404,7 @@ public class Admob {
                         super.onAdClicked();
                         if (disableAdResumeWhenClickAds)
                             AppOpenManager.getInstance().disableAdResumeByClickAction();
-                        BBLLogEventManager.logClickAdsEvent(context, id);
+                        BBDLogEventManager.logClickAdsEvent(context, id);
                     }
                 })
                 .withNativeAdOptions(adOptions)
@@ -2448,7 +2448,7 @@ public class Admob {
                         nativeAd.setOnPaidEventListener(adValue -> {
                             Log.d(TAG, "OnPaidEvent Native:" + adValue.getValueMicros());
 
-                            BBLLogEventManager.logPaidAdImpression(context,
+                            BBDLogEventManager.logPaidAdImpression(context,
                                     adValue,
                                     id,
                                     nativeAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName(), AdType.NATIVE);
@@ -2478,7 +2478,7 @@ public class Admob {
                             callback.onAdClicked();
                             Log.d(TAG, "onAdClicked");
                         }
-                        BBLLogEventManager.logClickAdsEvent(context, id);
+                        BBDLogEventManager.logClickAdsEvent(context, id);
                     }
                 })
                 .withNativeAdOptions(adOptions)
@@ -2641,7 +2641,7 @@ public class Admob {
 
                     Log.d(TAG, "OnPaidEvent Reward:" + adValue.getValueMicros());
 
-                    BBLLogEventManager.logPaidAdImpression(context,
+                    BBDLogEventManager.logPaidAdImpression(context,
                             adValue,
                             rewardedAd.getAdUnitId(), Admob.this.rewardedAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName()
                             , AdType.REWARDED);
@@ -2681,7 +2681,7 @@ public class Admob {
                 Admob.this.rewardedAd.setOnPaidEventListener(adValue -> {
                     Log.d(TAG, "OnPaidEvent Reward:" + adValue.getValueMicros());
 
-                    BBLLogEventManager.logPaidAdImpression(context,
+                    BBDLogEventManager.logPaidAdImpression(context,
                             adValue,
                             rewardedAd.getAdUnitId(),
                             Admob.this.rewardedAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName()
@@ -2723,7 +2723,7 @@ public class Admob {
                 Log.i(TAG, "RewardInterstitial onAdLoaded ");
                 rewardedAd.setOnPaidEventListener(adValue -> {
                     Log.d(TAG, "OnPaidEvent Reward:" + adValue.getValueMicros());
-                    BBLLogEventManager.logPaidAdImpression(context,
+                    BBDLogEventManager.logPaidAdImpression(context,
                             adValue,
                             rewardedAd.getAdUnitId(),
                             rewardedAd.getResponseInfo().getLoadedAdapterResponseInfo().getAdSourceName(), AdType.REWARDED);
@@ -2790,7 +2790,7 @@ public class Admob {
                     super.onAdClicked();
                     if (disableAdResumeWhenClickAds)
                         AppOpenManager.getInstance().disableAdResumeByClickAction();
-                    BBLLogEventManager.logClickAdsEvent(context, rewardedAd.getAdUnitId());
+                    BBDLogEventManager.logClickAdsEvent(context, rewardedAd.getAdUnitId());
                 }
             });
             rewardedAd.show(context, new OnUserEarnedRewardListener() {
@@ -2851,7 +2851,7 @@ public class Admob {
 
                 public void onAdClicked() {
                     super.onAdClicked();
-                    BBLLogEventManager.logClickAdsEvent(activity, rewardedAd.getAdUnitId());
+                    BBDLogEventManager.logClickAdsEvent(activity, rewardedAd.getAdUnitId());
                     if (disableAdResumeWhenClickAds)
                         AppOpenManager.getInstance().disableAdResumeByClickAction();
                 }
@@ -2918,7 +2918,7 @@ public class Admob {
                     if (adCallback != null) {
                         adCallback.onAdClicked();
                     }
-                    BBLLogEventManager.logClickAdsEvent(context, rewardedAd.getAdUnitId());
+                    BBDLogEventManager.logClickAdsEvent(context, rewardedAd.getAdUnitId());
                 }
             });
             rewardedAd.show(context, new OnUserEarnedRewardListener() {
@@ -2934,8 +2934,8 @@ public class Admob {
     }
 
     public AdmobRecyclerAdapter getNativeRepeatAdapter(Activity activity, String id, int layoutCustomNative, int layoutAdPlaceHolder, RecyclerView.Adapter originalAdapter,
-                                                       BBLAdPlacer.Listener listener, int repeatingInterval) {
-        BBLAdPlacerSettings settings = new BBLAdPlacerSettings(layoutCustomNative, layoutAdPlaceHolder);
+                                                       BBDAdPlacer.Listener listener, int repeatingInterval) {
+        BBDAdPlacerSettings settings = new BBDAdPlacerSettings(layoutCustomNative, layoutAdPlaceHolder);
         settings.setAdUnitId(id);
         settings.setListener(listener);
         settings.setRepeatingInterval(repeatingInterval);
@@ -2944,9 +2944,9 @@ public class Admob {
     }
 
     public AdmobRecyclerAdapter getNativeFixedPositionAdapter(Activity activity, String id, int layoutCustomNative, int layoutAdPlaceHolder, RecyclerView.Adapter originalAdapter,
-                                                              BBLAdPlacer.Listener listener, int position) {
+                                                              BBDAdPlacer.Listener listener, int position) {
 
-        BBLAdPlacerSettings settings = new BBLAdPlacerSettings(layoutCustomNative, layoutAdPlaceHolder);
+        BBDAdPlacerSettings settings = new BBDAdPlacerSettings(layoutCustomNative, layoutAdPlaceHolder);
         settings.setAdUnitId(id);
         settings.setListener(listener);
         settings.setFixedPosition(position);
@@ -2964,7 +2964,7 @@ public class Admob {
     private String md5(final String s) {
         try {
             // Create MD5 Hash
-            MessageDigest digest = java.security.MessageDigest
+            MessageDigest digest = MessageDigest
                     .getInstance("MD5");
             digest.update(s.getBytes());
             byte messageDigest[] = digest.digest();

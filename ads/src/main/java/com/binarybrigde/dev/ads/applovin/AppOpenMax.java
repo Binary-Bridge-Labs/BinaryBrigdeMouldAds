@@ -1,4 +1,4 @@
-package com.bbl.module_ads.applovin;
+package com.binarybrigde.dev.ads.applovin;
 
 import android.app.Activity;
 import android.app.Application;
@@ -17,16 +17,16 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
-import com.bbl.module_ads.ads.BBLAdCallback;
-import com.bbl.module_ads.ads.wrapper.ApAdError;
-import com.bbl.module_ads.billing.AppPurchase;
-import com.bbl.module_ads.dialog.ResumeLoadingDialog;
 import com.applovin.mediation.MaxAd;
 import com.applovin.mediation.MaxAdListener;
 import com.applovin.mediation.MaxError;
 import com.applovin.mediation.ads.MaxAppOpenAd;
 import com.applovin.sdk.AppLovinSdk;
 import com.applovin.sdk.AppLovinSdkConfiguration;
+import com.binarybrigde.dev.ads.ads.BBDAdCallback;
+import com.binarybrigde.dev.ads.ads.wrapper.ApAdError;
+import com.binarybrigde.dev.ads.billing.AppPurchase;
+import com.binarybrigde.dev.ads.dialog.ResumeLoadingDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class AppOpenMax implements Application.ActivityLifecycleCallbacks, Lifec
     private boolean disableAdResumeByClickAction = false;
     private boolean displayAdResume = false;
     private boolean isInitialized = false; // on  - off ad resume on app
-    private BBLAdCallback bblAdCallback;
+    private BBDAdCallback BBDAdCallback;
 
     private boolean isShowAppOpenSplash = false;
     private boolean isTimeOut = false;
@@ -73,17 +73,17 @@ public class AppOpenMax implements Application.ActivityLifecycleCallbacks, Lifec
     }
 
     // Load App Open Splash
-    public void initOpenSplash(Activity activity, String idOpenSplash, int timeOut, BBLAdCallback bblAdCallback) {
+    public void initOpenSplash(Activity activity, String idOpenSplash, int timeOut, BBDAdCallback BBDAdCallback) {
         AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
             @Override
             public void onSdkInitialized(AppLovinSdkConfiguration config) {
                 appOpenSplash = new MaxAppOpenAd(idOpenSplash, activity);
-                showAdSplashIfReady(activity, timeOut, bblAdCallback);
+                showAdSplashIfReady(activity, timeOut, BBDAdCallback);
             }
         });
     }
 
-    public void showAdSplashIfReady(Activity activity, int timeOut, BBLAdCallback miaAdCallback) {
+    public void showAdSplashIfReady(Activity activity, int timeOut, BBDAdCallback miaAdCallback) {
         isTimeOut = false;
         hTimeout = new Handler();
         rTimeout = new Runnable() {
@@ -146,7 +146,7 @@ public class AppOpenMax implements Application.ActivityLifecycleCallbacks, Lifec
         appOpenSplash.loadAd();
     }
 
-    private void showOpenSplash(Activity activity, BBLAdCallback miaAdCallback) {
+    private void showOpenSplash(Activity activity, BBDAdCallback miaAdCallback) {
         if (hTimeout != null && rTimeout != null) {
             hTimeout.removeCallbacks(rTimeout);
         }
@@ -232,8 +232,8 @@ public class AppOpenMax implements Application.ActivityLifecycleCallbacks, Lifec
             @Override
             public void onAdLoaded(MaxAd ad) {
                 Log.d(TAG, "onAdLoaded: ");
-                if (bblAdCallback != null) {
-                    bblAdCallback.onAdLoaded();
+                if (BBDAdCallback != null) {
+                    BBDAdCallback.onAdLoaded();
                 }
             }
 
@@ -241,8 +241,8 @@ public class AppOpenMax implements Application.ActivityLifecycleCallbacks, Lifec
             public void onAdDisplayed(MaxAd ad) {
                 displayAdResume = true;
                 Log.d(TAG, "onAdDisplayed: ");
-                if (bblAdCallback != null) {
-                    bblAdCallback.onAdImpression();
+                if (BBDAdCallback != null) {
+                    BBDAdCallback.onAdImpression();
                 }
             }
 
@@ -252,8 +252,8 @@ public class AppOpenMax implements Application.ActivityLifecycleCallbacks, Lifec
                 appOpenAd.loadAd();
                 dismissDialogLoading();
                 displayAdResume = false;
-                if (bblAdCallback != null) {
-                    bblAdCallback.onAdClosed();
+                if (BBDAdCallback != null) {
+                    BBDAdCallback.onAdClosed();
                 }
             }
 
@@ -261,8 +261,8 @@ public class AppOpenMax implements Application.ActivityLifecycleCallbacks, Lifec
             public void onAdClicked(MaxAd ad) {
                 Log.d(TAG, "onAdClicked: ");
                 disableAdResumeByClickAction = true;
-                if (bblAdCallback != null) {
-                    bblAdCallback.onAdClicked();
+                if (BBDAdCallback != null) {
+                    BBDAdCallback.onAdClicked();
                 }
             }
 
@@ -270,8 +270,8 @@ public class AppOpenMax implements Application.ActivityLifecycleCallbacks, Lifec
             public void onAdLoadFailed(String adUnitId, MaxError error) {
                 Log.d(TAG, "onAdLoadFailed: ");
                 dismissDialogLoading();
-                if (bblAdCallback != null) {
-                    bblAdCallback.onAdFailedToLoad(new ApAdError(error));
+                if (BBDAdCallback != null) {
+                    BBDAdCallback.onAdFailedToLoad(new ApAdError(error));
                 }
             }
 
@@ -280,8 +280,8 @@ public class AppOpenMax implements Application.ActivityLifecycleCallbacks, Lifec
                 Log.d(TAG, "onAdDisplayFailed: ");
                 appOpenAd.loadAd();
                 dismissDialogLoading();
-                if (bblAdCallback != null) {
-                    bblAdCallback.onAdFailedToShow(new ApAdError(error));
+                if (BBDAdCallback != null) {
+                    BBDAdCallback.onAdFailedToShow(new ApAdError(error));
                 }
             }
         });
@@ -330,8 +330,8 @@ public class AppOpenMax implements Application.ActivityLifecycleCallbacks, Lifec
         this.disableAdResumeByClickAction = disableAdResumeByClickAction;
     }
 
-    public void setAppOpenMaxCallback(BBLAdCallback MiaAdCallback) {
-        this.bblAdCallback = MiaAdCallback;
+    public void setAppOpenMaxCallback(BBDAdCallback MiaAdCallback) {
+        this.BBDAdCallback = MiaAdCallback;
     }
 
 

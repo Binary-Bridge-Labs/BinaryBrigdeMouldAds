@@ -8,13 +8,13 @@ android {
 
 
     defaultConfig {
-        applicationId "com.bbl.module_ads"
+        applicationId "com.binarybrigde.dev.demo"
         minSdkVersion 24
         targetSdkVersion 34
         versionCode 1
         versionName "1.0.0"
         def formattedDate = new Date().format('MMM.dd.yyyy')
-        archivesBaseName = "BBL_v${versionName}(${versionCode})_${formattedDate}"
+        archivesBaseName = "BBD_v${versionName}(${versionCode})_${formattedDate}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

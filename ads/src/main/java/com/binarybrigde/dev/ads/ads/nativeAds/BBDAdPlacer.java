@@ -27,16 +27,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class BBLAdPlacer {
+public class BBDAdPlacer {
     String TAG = "PAIAdPlacer";
     private HashMap<Integer, ApNativeAd> listAd = new HashMap<>();
     private List<Integer> listPositionAd = new ArrayList<>();
-    private BBLAdPlacerSettings settings;
+    private BBDAdPlacerSettings settings;
     private RecyclerView.Adapter adapterOriginal;
     private Activity activity;
     private int countLoadAd = 0;
 
-    public BBLAdPlacer(BBLAdPlacerSettings settings, RecyclerView.Adapter adapterOriginal, Activity activity) {
+    public BBDAdPlacer(BBDAdPlacerSettings settings, RecyclerView.Adapter adapterOriginal, Activity activity) {
         this.settings = settings;
         this.adapterOriginal = adapterOriginal;
         this.activity = activity;
@@ -77,11 +77,11 @@ public class BBLAdPlacer {
                             unifiedNativeAd.setOnPaidEventListener(new OnPaidEventListener() {
                                 @Override
                                 public void onPaidEvent(@NonNull AdValue adValue) {
-                                    BBLAdPlacer.this.onAdRevenuePaid(new ApAdValue(adValue));
+                                    BBDAdPlacer.this.onAdRevenuePaid(new ApAdValue(adValue));
                                 }
                             });
 
-                            BBLAdPlacer.this.onAdLoaded(pos);
+                            BBDAdPlacer.this.onAdLoaded(pos);
                             nativeAd.setAdmobNativeAd(unifiedNativeAd);
                             nativeAd.setStatus(StatusAd.AD_LOADED);
                             listAd.put(pos, nativeAd);
@@ -98,13 +98,13 @@ public class BBLAdPlacer {
                         @Override
                         public void onAdClicked() {
                             super.onAdClicked();
-                            BBLAdPlacer.this.onAdClicked();
+                            BBDAdPlacer.this.onAdClicked();
                         }
 
                         @Override
                         public void onAdImpression() {
                             super.onAdImpression();
-                            BBLAdPlacer.this.onAdImpression();
+                            BBDAdPlacer.this.onAdImpression();
                         }
                     });
                 });

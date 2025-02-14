@@ -1,4 +1,4 @@
-package com.bbl.module_ads.ads.nativeAds;
+package com.binarybrigde.dev.ads.ads.nativeAds;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -14,19 +14,19 @@ public class AdmobRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public int TYPE_AD_VIEW = 0;
     private final int TYPE_CONTENT_VIEW = 1;
-    private final BBLAdPlacerSettings settings;
+    private final BBDAdPlacerSettings settings;
 
     private RecyclerView.Adapter adapterOriginal;
     private Activity activity;
-    private BBLAdPlacer adPlacer;
+    private BBDAdPlacer adPlacer;
     private AdapterDataObserver adapterDataObserver = new AdapterDataObserver();
 
-    public AdmobRecyclerAdapter(BBLAdPlacerSettings settings, RecyclerView.Adapter adapterOriginal, Activity activity) {
+    public AdmobRecyclerAdapter(BBDAdPlacerSettings settings, RecyclerView.Adapter adapterOriginal, Activity activity) {
         this.adapterOriginal = adapterOriginal;
         this.registerAdapterDataObserver(adapterDataObserver);
         this.activity = activity;
         this.settings = settings;
-        adPlacer = new BBLAdPlacer(settings, adapterOriginal, activity);
+        adPlacer = new BBDAdPlacer(settings, adapterOriginal, activity);
     }
 
     @NonNull
@@ -34,7 +34,7 @@ public class AdmobRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == TYPE_AD_VIEW) {
             View view = LayoutInflater.from(parent.getContext()).inflate(settings.getLayoutAdPlaceHolder(), parent, false);
-            return new BBLViewHolder(view);
+            return new BBDViewHolder(view);
         } else {
             return adapterOriginal.onCreateViewHolder(parent, viewType);
         }
@@ -70,8 +70,8 @@ public class AdmobRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
         return adPlacer.getAdjustedCount();
     }
 
-    private class BBLViewHolder extends RecyclerView.ViewHolder {
-        public BBLViewHolder(@NonNull View itemView) {
+    private class BBDViewHolder extends RecyclerView.ViewHolder {
+        public BBDViewHolder(@NonNull View itemView) {
             super(itemView);
         }
 

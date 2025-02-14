@@ -1,10 +1,10 @@
-package com.bbl.module_ads.spinkit.style;
+package com.binarybrigde.dev.ads.spinkit.style;
 
 import android.animation.ValueAnimator;
 
-import com.bbl.module_ads.spinkit.animation.SpriteAnimatorBuilder;
-import com.bbl.module_ads.spinkit.animation.interpolator.KeyFrameInterpolator;
-import com.bbl.module_ads.spinkit.sprite.RingSprite;
+import com.binarybrigde.dev.ads.spinkit.animation.SpriteAnimatorBuilder;
+import com.binarybrigde.dev.ads.spinkit.animation.interpolator.KeyFrameInterpolator;
+import com.binarybrigde.dev.ads.spinkit.sprite.RingSprite;
 
 /**
  * Created by ybq.

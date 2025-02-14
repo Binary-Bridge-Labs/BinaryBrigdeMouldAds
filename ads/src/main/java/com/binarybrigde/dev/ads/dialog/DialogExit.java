@@ -1,4 +1,4 @@
-package com.bbl.module_ads.dialog;
+package com.binarybrigde.dev.ads.dialog;
 
 import android.content.Context;
 import android.view.ViewGroup;

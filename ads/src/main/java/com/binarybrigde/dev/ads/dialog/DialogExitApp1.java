@@ -1,4 +1,4 @@
-package com.bbl.module_ads.dialog;
+package com.binarybrigde.dev.ads.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -9,9 +9,9 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.bbl.module_ads.admob.Admob;
-import com.bbl.module_ads.funtion.DialogExitListener;
-import com.ads.bbl.R;
+import com.binarybrigde.dev.ads.R;
+import com.binarybrigde.dev.ads.admob.Admob;
+import com.binarybrigde.dev.ads.funtion.DialogExitListener;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdView;
 

@@ -1,4 +1,4 @@
-package com.bbl.module_ads.spinkit;
+package com.binarybrigde.dev.ads.spinkit;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -8,8 +8,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.ads.bbl.R;
-import com.bbl.module_ads.spinkit.sprite.Sprite;
+import com.binarybrigde.dev.ads.R;
+import com.binarybrigde.dev.ads.spinkit.sprite.Sprite;
 
 public class SpinKitView extends ProgressBar {
 

@@ -1,4 +1,4 @@
-package com.bbl.module_ads.spinkit.animation;
+package com.binarybrigde.dev.ads.spinkit.animation;
 
 import android.util.Property;
 

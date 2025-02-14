@@ -1,10 +1,10 @@
-package com.bbl.module_ads.application;
+package com.binarybrigde.dev.ads.application;
 
 import android.app.Application;
 
-import com.bbl.module_ads.config.BBLAdConfig;
-import com.bbl.module_ads.util.AppUtil;
-import com.bbl.module_ads.util.SharePreferenceUtils;
+import com.binarybrigde.dev.ads.config.BBDAdConfig;
+import com.binarybrigde.dev.ads.util.AppUtil;
+import com.binarybrigde.dev.ads.util.SharePreferenceUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +12,14 @@ import java.util.List;
 @Deprecated
 public abstract class AdsApplication extends Application {
 
-    protected BBLAdConfig bblAdConfig;
+    protected BBDAdConfig BBDAdConfig;
     protected List<String> listTestDevice;
 
     @Override
     public void onCreate() {
         super.onCreate();
         listTestDevice = new ArrayList<String>();
-        bblAdConfig = new BBLAdConfig(this);
+        BBDAdConfig = new BBDAdConfig(this);
         if (SharePreferenceUtils.getInstallTime(this) == 0) {
             SharePreferenceUtils.setInstallTime(this);
         }

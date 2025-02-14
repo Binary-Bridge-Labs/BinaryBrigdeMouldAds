@@ -1,4 +1,4 @@
-package com.bbl.module_ads.spinkit.sprite;
+package com.binarybrigde.dev.ads.spinkit.sprite;
 
 import android.graphics.Canvas;
 import android.graphics.Color;

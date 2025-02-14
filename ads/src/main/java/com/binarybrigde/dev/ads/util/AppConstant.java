@@ -1,4 +1,4 @@
-package com.bbl.module_ads.util;
+package com.binarybrigde.dev.ads.util;
 
 import androidx.annotation.StringDef;
 

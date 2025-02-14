@@ -7,15 +7,15 @@ import com.adjust.sdk.AdjustAdRevenue;
 import com.adjust.sdk.AdjustConfig;
 import com.adjust.sdk.AdjustEvent;
 import com.applovin.mediation.MaxAd;
-import com.binarybrigde.dev.ads.ads.BBLAd;
+import com.binarybrigde.dev.ads.ads.BBDAd;
 import com.google.android.gms.ads.AdValue;
 
-public class BBLAdjust {
+public class BBDAdjust {
     public static boolean enableAdjust = false;
     private static String eventNamePurchase = "";
 
     public static void setEventNamePurchase(String eventNamePurchase) {
-        BBLAdjust.eventNamePurchase = eventNamePurchase;
+        BBDAdjust.eventNamePurchase = eventNamePurchase;
     }
 
     public static void trackAdRevenue(String id) {
@@ -43,14 +43,14 @@ public class BBLAdjust {
     }
 
     public static void onTrackRevenuePurchase(float revenue, String currency) {
-        if (BBLAdjust.enableAdjust) {
+        if (BBDAdjust.enableAdjust) {
             onTrackRevenue(eventNamePurchase, revenue, currency);
         }
 
     }
 
     public static void pushTrackEventAdmob(AdValue adValue) {
-        if (BBLAdjust.enableAdjust) {
+        if (BBDAdjust.enableAdjust) {
             AdjustAdRevenue adRevenue = new AdjustAdRevenue(AdjustConfig.AD_REVENUE_ADMOB);
             adRevenue.setRevenue(adValue.getValueMicros() / 1000000.0, adValue.getCurrencyCode());
 
@@ -59,7 +59,7 @@ public class BBLAdjust {
     }
 
     public static void pushTrackEventApplovin(MaxAd ad, Context context) {
-        if (BBLAdjust.enableAdjust) {
+        if (BBDAdjust.enableAdjust) {
             AdjustAdRevenue adjustAdRevenue = new AdjustAdRevenue(AdjustConfig.AD_REVENUE_APPLOVIN_MAX);
             adjustAdRevenue.setRevenue(ad.getRevenue(), "USD");
             adjustAdRevenue.setAdRevenueNetwork(ad.getNetworkName());
@@ -72,8 +72,8 @@ public class BBLAdjust {
     }
 
     static void logPaidAdImpressionValue(double revenue, String currency) {
-        if (BBLAd.getInstance().getAdConfig().getAdjustConfig() != null && BBLAd.getInstance().getAdConfig().getAdjustConfig().isEnableAdjust()) {
-            AdjustEvent event = new AdjustEvent(BBLAd.getInstance().getAdConfig().getAdjustConfig().getEventAdImpression());
+        if (BBDAd.getInstance().getAdConfig().getAdjustConfig() != null && BBDAd.getInstance().getAdConfig().getAdjustConfig().isEnableAdjust()) {
+            AdjustEvent event = new AdjustEvent(BBDAd.getInstance().getAdConfig().getAdjustConfig().getEventAdImpression());
             event.setRevenue(revenue, currency);
             Adjust.trackEvent(event);
         }

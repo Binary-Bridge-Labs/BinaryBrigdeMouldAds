@@ -1,4 +1,4 @@
-package com.bbl.module_ads.util;
+package com.binarybrigde.dev.ads.util;
 
 public class AppUtil {
     public static Boolean VARIANT_DEV = true;

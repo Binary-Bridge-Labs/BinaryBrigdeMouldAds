@@ -1,22 +1,22 @@
-package com.bbl.module_ads.spinkit;
+package com.binarybrigde.dev.ads.spinkit;
 
 
-import com.bbl.module_ads.spinkit.sprite.Sprite;
-import com.bbl.module_ads.spinkit.style.ChasingDots;
-import com.bbl.module_ads.spinkit.style.Circle;
-import com.bbl.module_ads.spinkit.style.CubeGrid;
-import com.bbl.module_ads.spinkit.style.DoubleBounce;
-import com.bbl.module_ads.spinkit.style.FadingCircle;
-import com.bbl.module_ads.spinkit.style.FoldingCube;
-import com.bbl.module_ads.spinkit.style.MultiplePulse;
-import com.bbl.module_ads.spinkit.style.MultiplePulseRing;
-import com.bbl.module_ads.spinkit.style.Pulse;
-import com.bbl.module_ads.spinkit.style.PulseRing;
-import com.bbl.module_ads.spinkit.style.RotatingCircle;
-import com.bbl.module_ads.spinkit.style.RotatingPlane;
-import com.bbl.module_ads.spinkit.style.ThreeBounce;
-import com.bbl.module_ads.spinkit.style.WanderingCubes;
-import com.bbl.module_ads.spinkit.style.Wave;
+import com.binarybrigde.dev.ads.spinkit.sprite.Sprite;
+import com.binarybrigde.dev.ads.spinkit.style.ChasingDots;
+import com.binarybrigde.dev.ads.spinkit.style.Circle;
+import com.binarybrigde.dev.ads.spinkit.style.CubeGrid;
+import com.binarybrigde.dev.ads.spinkit.style.DoubleBounce;
+import com.binarybrigde.dev.ads.spinkit.style.FadingCircle;
+import com.binarybrigde.dev.ads.spinkit.style.FoldingCube;
+import com.binarybrigde.dev.ads.spinkit.style.MultiplePulse;
+import com.binarybrigde.dev.ads.spinkit.style.MultiplePulseRing;
+import com.binarybrigde.dev.ads.spinkit.style.Pulse;
+import com.binarybrigde.dev.ads.spinkit.style.PulseRing;
+import com.binarybrigde.dev.ads.spinkit.style.RotatingCircle;
+import com.binarybrigde.dev.ads.spinkit.style.RotatingPlane;
+import com.binarybrigde.dev.ads.spinkit.style.ThreeBounce;
+import com.binarybrigde.dev.ads.spinkit.style.WanderingCubes;
+import com.binarybrigde.dev.ads.spinkit.style.Wave;
 
 /**
  * Created by ybq.

@@ -41,8 +41,8 @@ import com.applovin.mediation.nativeAds.adPlacer.MaxAdPlacer;
 import com.applovin.mediation.nativeAds.adPlacer.MaxRecyclerAdapter;
 import com.binarybrigde.dev.ads.admob.Admob;
 import com.binarybrigde.dev.ads.admob.AppOpenManager;
-import com.binarybrigde.dev.ads.ads.nativeAds.BBLAdAdapter;
-import com.binarybrigde.dev.ads.ads.nativeAds.BBLAdPlacer;
+import com.binarybrigde.dev.ads.ads.nativeAds.BBDAdAdapter;
+import com.binarybrigde.dev.ads.ads.nativeAds.BBDAdPlacer;
 import com.binarybrigde.dev.ads.ads.wrapper.ApAdError;
 import com.binarybrigde.dev.ads.ads.wrapper.ApAdValue;
 import com.binarybrigde.dev.ads.ads.wrapper.ApInterstitialAd;
@@ -54,9 +54,9 @@ import com.binarybrigde.dev.ads.applovin.AppLovinCallback;
 import com.binarybrigde.dev.ads.applovin.AppOpenMax;
 import com.binarybrigde.dev.ads.billing.AppPurchase;
 import com.binarybrigde.dev.ads.config.BBDAdConfig;
-import com.binarybrigde.dev.ads.event.BBLAdjust;
-import com.binarybrigde.dev.ads.event.BBLAppsflyer;
-import com.binarybrigde.dev.ads.event.BBLLogEventManager;
+import com.binarybrigde.dev.ads.event.BBDAdjust;
+import com.binarybrigde.dev.ads.event.BBDAppsflyer;
+import com.binarybrigde.dev.ads.event.BBDLogEventManager;
 import com.binarybrigde.dev.ads.funtion.AdCallback;
 import com.binarybrigde.dev.ads.funtion.RewardCallback;
 import com.binarybrigde.dev.ads.util.AppUtil;
@@ -73,17 +73,17 @@ import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd;
 
-public class BBLAd {
-    public static final String TAG_ADJUST = "BBLAdjust";
-    public static final String TAG = "BBLAd";
-    private static volatile BBLAd INSTANCE;
+public class BBDAd {
+    public static final String TAG_ADJUST = "BBDAdjust";
+    public static final String TAG = "BBDAd";
+    private static volatile BBDAd INSTANCE;
     private BBDAdConfig adConfig;
-    private BBLInitCallback initCallback;
+    private BBDInitCallback initCallback;
     private Boolean initAdSuccess = false;
 
-    public static synchronized BBLAd getInstance() {
+    public static synchronized BBDAd getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new BBLAd();
+            INSTANCE = new BBDAd();
         }
         return INSTANCE;
     }
@@ -112,7 +112,7 @@ public class BBLAd {
 
     /**
      * @param context
-     * @param adConfig BBLAdConfig object used for SDK initialisation
+     * @param adConfig BBDAdConfig object used for SDK initialisation
      */
     public void init(Application context, BBDAdConfig adConfig) {
         init(context, adConfig, false);
@@ -120,24 +120,24 @@ public class BBLAd {
 
     /**
      * @param context
-     * @param adConfig             BBLAdConfig object used for SDK initialisation
+     * @param adConfig             BBDAdConfig object used for SDK initialisation
      * @param enableDebugMediation set show Mediation Debugger - use only for Max Mediation
      */
     public void init(Application context, BBDAdConfig adConfig, Boolean enableDebugMediation) {
         if (adConfig == null) {
-            throw new RuntimeException("Cant not set BBLAdConfig null");
+            throw new RuntimeException("Cant not set BBDAdConfig null");
         }
         this.adConfig = adConfig;
         AppUtil.VARIANT_DEV = adConfig.isVariantDev();
         Log.i(TAG, "Config variant dev: " + AppUtil.VARIANT_DEV);
         if (adConfig.isEnableAppsflyer()) {
             Log.i(TAG, "init appsflyer");
-            BBLAppsflyer.enableAppsflyer = true;
-            BBLAppsflyer.getInstance().init(context, adConfig.getAppsflyerConfig().getAppsflyerToken(), this.adConfig.isVariantDev());
+            BBDAppsflyer.enableAppsflyer = true;
+            BBDAppsflyer.getInstance().init(context, adConfig.getAppsflyerConfig().getAppsflyerToken(), this.adConfig.isVariantDev());
         }
         if (adConfig.isEnableAdjust()) {
             Log.i(TAG, "init adjust");
-            BBLAdjust.enableAdjust = true;
+            BBDAdjust.enableAdjust = true;
             setupAdjust(adConfig.isVariantDev(), adConfig.getAdjustConfig().getAdjustToken());
         }
         switch (adConfig.getMediationProvider()) {
@@ -173,7 +173,7 @@ public class BBLAd {
         return adConfig.getMediationProvider();
     }
 
-    public void setInitCallback(BBLInitCallback initCallback) {
+    public void setInitCallback(BBDInitCallback initCallback) {
         this.initCallback = initCallback;
         if (initAdSuccess)
             initCallback.initAdSuccess();
@@ -283,7 +283,7 @@ public class BBLAd {
         }
     }
 
-    public void loadBanner(final Activity mActivity, String id, final BBLAdCallback adCallback) {
+    public void loadBanner(final Activity mActivity, String id, final BBDAdCallback adCallback) {
         switch (adConfig.getMediationProvider()) {
             case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadBanner(mActivity, id, new AdCallback() {
@@ -374,11 +374,11 @@ public class BBLAd {
     }
 
 
-    public void loadSplashInterstitialAds(final Context context, String id, long timeOut, long timeDelay, BBLAdCallback adListener) {
+    public void loadSplashInterstitialAds(final Context context, String id, long timeOut, long timeDelay, BBDAdCallback adListener) {
         loadSplashInterstitialAds(context, id, timeOut, timeDelay, true, adListener);
     }
 
-    public void loadSplashInterstitialAdsHighFloor(Activity activity, String idHighFloor, String idAll, long timeOut, long timeDelay, BBLAdCallback adListener) {
+    public void loadSplashInterstitialAdsHighFloor(Activity activity, String idHighFloor, String idAll, long timeOut, long timeDelay, BBDAdCallback adListener) {
         switch (adConfig.getMediationProvider()) {
             case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadSplashInterstitialAdsHighFloor(activity, idHighFloor, idAll, timeOut, timeDelay, new AdCallback() {
@@ -477,7 +477,7 @@ public class BBLAd {
         }
     }
 
-    public void loadSplashInterstitialAds(final Context context, String id, long timeOut, long timeDelay, boolean showSplashIfReady, BBLAdCallback adListener) {
+    public void loadSplashInterstitialAds(final Context context, String id, long timeOut, long timeDelay, boolean showSplashIfReady, BBDAdCallback adListener) {
         switch (adConfig.getMediationProvider()) {
             case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadSplashInterstitialAds(context, id, timeOut, timeDelay, showSplashIfReady, new AdCallback() {
@@ -576,7 +576,7 @@ public class BBLAd {
     }
 
 
-    public void onShowSplash(AppCompatActivity activity, BBLAdCallback adListener) {
+    public void onShowSplash(AppCompatActivity activity, BBDAdCallback adListener) {
         switch (adConfig.getMediationProvider()) {
             case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().onShowSplash(activity, new AdCallback() {
@@ -630,7 +630,7 @@ public class BBLAd {
      * @param callback
      * @param timeDelay time delay before call show ad splash (ms)
      */
-    public void onCheckShowSplashWhenFail(AppCompatActivity activity, BBLAdCallback callback,
+    public void onCheckShowSplashWhenFail(AppCompatActivity activity, BBDAdCallback callback,
                                           int timeDelay) {
         switch (adConfig.getMediationProvider()) {
             case BBDAdConfig.PROVIDER_ADMOB:
@@ -698,7 +698,7 @@ public class BBLAd {
      * @param id         admob or max mediation
      * @param adListener
      */
-    public ApInterstitialAd getInterstitialAds(Context context, String id, BBLAdCallback adListener) {
+    public ApInterstitialAd getInterstitialAds(Context context, String id, BBDAdCallback adListener) {
         ApInterstitialAd apInterstitialAd = new ApInterstitialAd();
         switch (adConfig.getMediationProvider()) {
             case BBDAdConfig.PROVIDER_ADMOB:
@@ -846,7 +846,7 @@ public class BBLAd {
      * @param callback
      */
     public void forceShowInterstitial(Context context, ApInterstitialAd mInterstitialAd,
-                                      final BBLAdCallback callback) {
+                                      final BBDAdCallback callback) {
         forceShowInterstitial(context, mInterstitialAd, callback, false);
     }
 
@@ -859,9 +859,9 @@ public class BBLAd {
      * @param shouldReloadAds auto reload ad when ad close
      */
     public void forceShowInterstitial(@NonNull Context context, ApInterstitialAd mInterstitialAd,
-                                      @NonNull final BBLAdCallback callback, boolean shouldReloadAds) {
+                                      @NonNull final BBDAdCallback callback, boolean shouldReloadAds) {
         if (System.currentTimeMillis() - SharePreferenceUtils.getLastImpressionInterstitialTime(context)
-                < BBLAd.getInstance().adConfig.getIntervalInterstitialAd() * 1000L
+                < BBDAd.getInstance().adConfig.getIntervalInterstitialAd() * 1000L
         ) {
             Log.i(TAG, "forceShowInterstitial: ignore by interval impression interstitial time");
             callback.onNextAction();
@@ -1013,7 +1013,7 @@ public class BBLAd {
      * @param shouldReloadAds auto reload ad when ad close
      */
     public void showInterstitialAdByTimes(Context context, ApInterstitialAd mInterstitialAd,
-                                          final BBLAdCallback callback, boolean shouldReloadAds) {
+                                          final BBDAdCallback callback, boolean shouldReloadAds) {
         if (mInterstitialAd.isNotReady()) {
             Log.e(TAG, "forceShowInterstitial: ApInterstitialAd is not ready");
             callback.onAdFailedToShow(new ApAdError("ApInterstitialAd is not ready"));
@@ -1269,7 +1269,7 @@ public class BBLAd {
      */
     public void loadNativeAd(final Activity activity, String id,
                              int layoutCustomNative, FrameLayout adPlaceHolder, ShimmerFrameLayout
-                                     containerShimmerLoading, BBLAdCallback callback) {
+                                     containerShimmerLoading, BBDAdCallback callback) {
         switch (adConfig.getMediationProvider()) {
             case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadNativeAd(((Context) activity), id, new AdCallback() {
@@ -1340,7 +1340,7 @@ public class BBLAd {
      * @param callback
      */
     public void loadNativeAdResultCallback(final Activity activity, String id,
-                                           int layoutCustomNative, BBLAdCallback callback) {
+                                           int layoutCustomNative, BBDAdCallback callback) {
         switch (adConfig.getMediationProvider()) {
             case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadNativeAd(((Context) activity), id, new AdCallback() {
@@ -1490,7 +1490,7 @@ public class BBLAd {
         return apRewardAd;
     }
 
-    public ApRewardAd getRewardAd(Activity activity, String id, BBLAdCallback callback) {
+    public ApRewardAd getRewardAd(Activity activity, String id, BBDAdCallback callback) {
         ApRewardAd apRewardAd = new ApRewardAd();
         switch (adConfig.getMediationProvider()) {
             case BBDAdConfig.PROVIDER_ADMOB:
@@ -1517,7 +1517,7 @@ public class BBLAd {
         return apRewardAd;
     }
 
-    public ApRewardAd getRewardInterstitialAd(Activity activity, String id, BBLAdCallback callback) {
+    public ApRewardAd getRewardInterstitialAd(Activity activity, String id, BBDAdCallback callback) {
         ApRewardAd apRewardAd = new ApRewardAd();
         switch (adConfig.getMediationProvider()) {
             case BBDAdConfig.PROVIDER_ADMOB:
@@ -1544,7 +1544,7 @@ public class BBLAd {
         return apRewardAd;
     }
 
-    public void forceShowRewardAd(Activity activity, ApRewardAd apRewardAd, BBLAdCallback
+    public void forceShowRewardAd(Activity activity, ApRewardAd apRewardAd, BBDAdCallback
             callback) {
         if (!apRewardAd.isReady()) {
             Log.e(TAG, "forceShowRewardAd fail: reward ad not ready");
@@ -1652,8 +1652,8 @@ public class BBLAd {
      * @param repeatingInterval
      * @return
      */
-    public BBLAdAdapter getNativeRepeatAdapter(Activity activity, String id, int layoutCustomNative, int layoutAdPlaceHolder, RecyclerView.Adapter originalAdapter,
-                                               BBLAdPlacer.Listener listener, int repeatingInterval) {
+    public BBDAdAdapter getNativeRepeatAdapter(Activity activity, String id, int layoutCustomNative, int layoutAdPlaceHolder, RecyclerView.Adapter originalAdapter,
+                                               BBDAdPlacer.Listener listener, int repeatingInterval) {
         switch (adConfig.getMediationProvider()) {
             case BBDAdConfig.PROVIDER_MAX:
                 MaxAdPlacer.Listener maxListener = new MaxAdPlacer.Listener() {
@@ -1670,7 +1670,7 @@ public class BBLAd {
 
                     @Override
                     public void onAdClicked(MaxAd maxAd) {
-                        BBLLogEventManager.logClickAdsEvent(activity, maxAd.getAdUnitId());
+                        BBDLogEventManager.logClickAdsEvent(activity, maxAd.getAdUnitId());
                         listener.onAdClicked();
                     }
 
@@ -1682,9 +1682,9 @@ public class BBLAd {
                 MaxRecyclerAdapter adAdapter = AppLovin.getInstance().getNativeRepeatAdapter(activity, id, layoutCustomNative,
                         originalAdapter, maxListener, repeatingInterval);
 
-                return new BBLAdAdapter(adAdapter);
+                return new BBDAdAdapter(adAdapter);
             default:
-                return new BBLAdAdapter(Admob.getInstance().getNativeRepeatAdapter(activity, id, layoutCustomNative, layoutAdPlaceHolder,
+                return new BBDAdAdapter(Admob.getInstance().getNativeRepeatAdapter(activity, id, layoutCustomNative, layoutAdPlaceHolder,
                         originalAdapter, listener, repeatingInterval));
         }
 
@@ -1700,8 +1700,8 @@ public class BBLAd {
      * @param position
      * @return
      */
-    public BBLAdAdapter getNativeFixedPositionAdapter(Activity activity, String id, int layoutCustomNative, int layoutAdPlaceHolder, RecyclerView.Adapter originalAdapter,
-                                                      BBLAdPlacer.Listener listener, int position) {
+    public BBDAdAdapter getNativeFixedPositionAdapter(Activity activity, String id, int layoutCustomNative, int layoutAdPlaceHolder, RecyclerView.Adapter originalAdapter,
+                                                      BBDAdPlacer.Listener listener, int position) {
         switch (adConfig.getMediationProvider()) {
             case BBDAdConfig.PROVIDER_MAX:
                 MaxAdPlacer.Listener maxListener = new MaxAdPlacer.Listener() {
@@ -1718,7 +1718,7 @@ public class BBLAd {
 
                     @Override
                     public void onAdClicked(MaxAd maxAd) {
-                        BBLLogEventManager.logClickAdsEvent(activity, maxAd.getAdUnitId());
+                        BBDLogEventManager.logClickAdsEvent(activity, maxAd.getAdUnitId());
                         listener.onAdClicked();
                     }
 
@@ -1730,9 +1730,9 @@ public class BBLAd {
                 MaxRecyclerAdapter adAdapter = AppLovin.getInstance().getNativeFixedPositionAdapter(activity, id, layoutCustomNative,
                         originalAdapter, maxListener, position);
                 adAdapter.loadAds();
-                return new BBLAdAdapter(adAdapter);
+                return new BBDAdAdapter(adAdapter);
             default:
-                return new BBLAdAdapter(Admob.getInstance().getNativeFixedPositionAdapter(activity, id, layoutCustomNative, layoutAdPlaceHolder,
+                return new BBDAdAdapter(Admob.getInstance().getNativeFixedPositionAdapter(activity, id, layoutCustomNative, layoutAdPlaceHolder,
                         originalAdapter, listener, position));
         }
     }

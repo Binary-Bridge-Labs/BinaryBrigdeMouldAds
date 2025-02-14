@@ -8,7 +8,7 @@ import com.binarybrigde.dev.ads.ads.wrapper.ApInterstitialAd;
 import com.binarybrigde.dev.ads.ads.wrapper.ApNativeAd;
 import com.binarybrigde.dev.ads.ads.wrapper.ApRewardItem;
 
-public class BBLAdCallback {
+public class BBDAdCallback {
     public void onNextAction() {
     }
 

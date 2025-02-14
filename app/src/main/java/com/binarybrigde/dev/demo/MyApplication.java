@@ -1,17 +1,19 @@
-package com.bblabs.module_ads;
+package com.binarybrigde.dev.demo;
 
-import com.binarybrigde.dev.ads.ads.BBLAd;
-import com.binarybrigde.dev.ads.config.AdjustConfig;
-import com.binarybrigde.dev.ads.config.AppsflyerConfig;
-import com.binarybrigde.dev.ads.config.BBDAdConfig;
+import com.binarybrigde.dev.ads.admob.Admob;
+import com.binarybrigde.dev.ads.admob.AppOpenManager;
+import com.binarybrigde.dev.ads.ads.BBDAd;
 import com.binarybrigde.dev.ads.application.AdsMultiDexApplication;
 import com.binarybrigde.dev.ads.applovin.AppLovin;
 import com.binarybrigde.dev.ads.applovin.AppOpenMax;
 import com.binarybrigde.dev.ads.billing.AppPurchase;
-import com.binarybrigde.dev.ads.admob.Admob;
-import com.binarybrigde.dev.ads.admob.AppOpenManager;
-import com.bblabs.module_ads.activity.MainActivity;
-import com.bblabs.module_ads.activity.SplashActivity;
+import com.binarybrigde.dev.ads.config.AdjustConfig;
+import com.binarybrigde.dev.ads.config.AppsflyerConfig;
+import com.binarybrigde.dev.ads.config.BBDAdConfig;
+import com.binarybrigde.dev.demo.activity.MainActivity;
+import com.binarybrigde.dev.demo.activity.SplashActivity;
+import com.mia.module.BuildConfig;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,13 +61,13 @@ public class MyApplication extends AdsMultiDexApplication {
         BBDAdConfig.setListDeviceTest(listTestDevice);
         BBDAdConfig.setIntervalInterstitialAd(15);
 
-        BBLAd.getInstance().init(this, BBDAdConfig, false);
+        BBDAd.getInstance().init(this, BBDAdConfig, false);
 
         Admob.getInstance().setDisableAdResumeWhenClickAds(true);
         AppLovin.getInstance().setDisableAdResumeWhenClickAds(true);
         Admob.getInstance().setOpenActivityAfterShowInterAds(true);
 
-        if (BBLAd.getInstance().getMediationProvider() == BBDAdConfig.PROVIDER_ADMOB) {
+        if (BBDAd.getInstance().getMediationProvider() == BBDAdConfig.PROVIDER_ADMOB) {
             AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity.class);
         } else {
             AppOpenMax.getInstance().disableAppResumeWithActivity(SplashActivity.class);

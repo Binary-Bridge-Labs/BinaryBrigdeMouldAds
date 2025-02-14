@@ -10,31 +10,31 @@ import androidx.annotation.Nullable;
 
 import com.binarybrigde.dev.ads.R;
 import com.binarybrigde.dev.ads.admob.Admob;
-import com.binarybrigde.dev.ads.ads.BBLAd;
-import com.binarybrigde.dev.ads.ads.BBLAdCallback;
+import com.binarybrigde.dev.ads.ads.BBDAd;
+import com.binarybrigde.dev.ads.ads.BBDAdCallback;
 import com.binarybrigde.dev.ads.funtion.AdCallback;
 
-public class BBLBannerAdView extends RelativeLayout {
+public class BBDBannerAdView extends RelativeLayout {
 
-    private String TAG = "BBLBannerAdView";
+    private String TAG = "BBDBannerAdView";
 
-    public BBLBannerAdView(@NonNull Context context) {
+    public BBDBannerAdView(@NonNull Context context) {
         super(context);
         init();
     }
 
-    public BBLBannerAdView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public BBDBannerAdView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    public BBLBannerAdView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public BBDBannerAdView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs);
     }
 
 
-    public BBLBannerAdView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public BBDBannerAdView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(attrs);
     }
@@ -48,11 +48,11 @@ public class BBLBannerAdView extends RelativeLayout {
     }
 
     public void loadBanner(Activity activity, String idBanner) {
-        loadBanner(activity, idBanner, new BBLAdCallback());
+        loadBanner(activity, idBanner, new BBDAdCallback());
     }
 
-    public void loadBanner(Activity activity, String idBanner, BBLAdCallback bblAdCallback) {
-        BBLAd.getInstance().loadBanner(activity, idBanner, bblAdCallback);
+    public void loadBanner(Activity activity, String idBanner, BBDAdCallback BBDAdCallback) {
+        BBDAd.getInstance().loadBanner(activity, idBanner, BBDAdCallback);
     }
 
     public void loadInlineBanner(Activity activity, String idBanner, String inlineStyle) {
@@ -64,11 +64,11 @@ public class BBLBannerAdView extends RelativeLayout {
     }
 
     public void loadBannerFragment(Activity activity, String idBanner) {
-        BBLAd.getInstance().loadBannerFragment(activity, idBanner, getRootView());
+        BBDAd.getInstance().loadBannerFragment(activity, idBanner, getRootView());
     }
 
     public void loadBannerFragment(Activity activity, String idBanner, AdCallback adCallback) {
-        BBLAd.getInstance().loadBannerFragment(activity, idBanner, getRootView(), adCallback);
+        BBDAd.getInstance().loadBannerFragment(activity, idBanner, getRootView(), adCallback);
     }
 
     public void loadInlineBannerFragment(Activity activity, String idBanner, String inlineStyle) {

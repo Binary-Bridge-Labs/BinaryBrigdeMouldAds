@@ -1,4 +1,4 @@
-package com.bblabs.module_ads.activity;
+package com.binarybrigde.dev.demo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.binarybrigde.dev.ads.admob.Admob;
 import com.binarybrigde.dev.ads.admob.AppOpenManager;
-import com.binarybrigde.dev.ads.ads.BBLAd;
-import com.binarybrigde.dev.ads.ads.BBLAdCallback;
-import com.binarybrigde.dev.ads.ads.bannerAds.BBLBannerAdView;
-import com.binarybrigde.dev.ads.ads.nativeAds.BBLNativeAdView;
+import com.binarybrigde.dev.ads.ads.BBDAd;
+import com.binarybrigde.dev.ads.ads.BBDAdCallback;
+import com.binarybrigde.dev.ads.ads.bannerAds.BBDBannerAdView;
+import com.binarybrigde.dev.ads.ads.nativeAds.BBDNativeAdView;
 import com.binarybrigde.dev.ads.ads.wrapper.ApAdError;
 import com.binarybrigde.dev.ads.ads.wrapper.ApInterstitialAd;
 import com.binarybrigde.dev.ads.ads.wrapper.ApRewardAd;
@@ -24,7 +24,7 @@ import com.binarybrigde.dev.ads.billing.AppPurchase;
 import com.binarybrigde.dev.ads.config.BBDAdConfig;
 import com.binarybrigde.dev.ads.dialog.DialogExitApp1;
 import com.binarybrigde.dev.ads.dialog.InAppDialog;
-import com.binarybrigde.dev.ads.event.BBLAdjust;
+import com.binarybrigde.dev.ads.event.BBDAdjust;
 import com.binarybrigde.dev.ads.funtion.AdCallback;
 import com.binarybrigde.dev.ads.funtion.DialogExitListener;
 import com.binarybrigde.dev.ads.funtion.PurchaseListener;
@@ -52,17 +52,17 @@ public class MainActivity extends AppCompatActivity {
     private String idInter = "";
 
     private int layoutNativeCustom;
-    private BBLNativeAdView BBLNativeAdView;
+    private BBDNativeAdView BBDNativeAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BBLNativeAdView = findViewById(R.id.bbl_native_ads);
+        BBDNativeAdView = findViewById(R.id.bbd_native_ads);
 
 
         configMediationProvider();
-        BBLAd.getInstance().setCountClickToShowAds(3);
+        BBDAd.getInstance().setCountClickToShowAds(3);
 
         AppOpenManager.getInstance().setEnableScreenContentCallback(true);
         AppOpenManager.getInstance().setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        BBLNativeAdView.loadNativeAd(this, idNative, new BBLAdCallback() {
+        BBDNativeAdView.loadNativeAd(this, idNative, new BBDAdCallback() {
             @Override
             public void onAdImpression() {
                 super.onAdImpression();
@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        BBLBannerAdView bannerAdView = findViewById(R.id.bannerView);
-        bannerAdView.loadBanner(this, idBanner, new BBLAdCallback() {
+        BBDBannerAdView bannerAdView = findViewById(R.id.bannerView);
+        bannerAdView.loadBanner(this, idBanner, new BBDAdCallback() {
             @Override
             public void onAdImpression() {
                 super.onAdImpression();
@@ -111,9 +111,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btShowAds).setOnClickListener(v -> {
             if (mInterstitialAd.isReady()) {
 
-                ApInterstitialAd inter = BBLAd.getInstance().getInterstitialAds(this, idInter);
+                ApInterstitialAd inter = BBDAd.getInstance().getInterstitialAds(this, idInter);
 
-                BBLAd.getInstance().showInterstitialAdByTimes(this, mInterstitialAd, new BBLAdCallback() {
+                BBDAd.getInstance().showInterstitialAdByTimes(this, mInterstitialAd, new BBDAdCallback() {
                     @Override
                     public void onNextAction() {
                         startActivity(new Intent(MainActivity.this, ContentActivity.class));
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.btForceShowAds).setOnClickListener(v -> {
             if (mInterstitialAd.isReady()) {
-                BBLAd.getInstance().forceShowInterstitial(this, mInterstitialAd, new BBLAdCallback() {
+                BBDAd.getInstance().forceShowInterstitial(this, mInterstitialAd, new BBDAdCallback() {
                     @Override
                     public void onNextAction() {
                         startActivity(new Intent(MainActivity.this, SimpleListActivity.class));
@@ -160,10 +160,10 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.btnShowReward).setOnClickListener(v -> {
             if (rewardAd != null && rewardAd.isReady()) {
-                BBLAd.getInstance().forceShowRewardAd(this, rewardAd, new BBLAdCallback());
+                BBDAd.getInstance().forceShowRewardAd(this, rewardAd, new BBDAdCallback());
                 return;
             }
-            rewardAd = BBLAd.getInstance().getRewardAd(this, BuildConfig.ad_reward);
+            rewardAd = BBDAd.getInstance().getRewardAd(this, BuildConfig.ad_reward);
         });
 
         Button btnIAP = findViewById(R.id.btIap);
@@ -188,9 +188,9 @@ public class MainActivity extends AppCompatActivity {
         btnNativeFull.setOnClickListener(v -> {
             if (mInterstitialAd.isReady()) {
 
-                ApInterstitialAd inter = BBLAd.getInstance().getInterstitialAds(this, idInter);
+                ApInterstitialAd inter = BBDAd.getInstance().getInterstitialAds(this, idInter);
 
-                BBLAd.getInstance().showInterstitialAdByTimes(this, mInterstitialAd, new BBLAdCallback() {
+                BBDAd.getInstance().showInterstitialAdByTimes(this, mInterstitialAd, new BBDAdCallback() {
                     @Override
                     public void onNextAction() {
                         //ShowNativeFull
@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configMediationProvider() {
-        if (BBLAd.getInstance().getMediationProvider() == BBDAdConfig.PROVIDER_ADMOB) {
+        if (BBDAd.getInstance().getMediationProvider() == BBDAdConfig.PROVIDER_ADMOB) {
             idBanner = BuildConfig.ad_banner;
             idNative = BuildConfig.ad_native;
             idInter = BuildConfig.ad_interstitial_splash;
@@ -231,16 +231,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadAdInterstitial() {
 
-        mInterstitialAd = BBLAd.getInstance().getInterstitialAds(this, idInter);
+        mInterstitialAd = BBDAd.getInstance().getInterstitialAds(this, idInter);
     }
 
 
     public void onTrackSimpleEventClick(View v) {
-        BBLAdjust.onTrackEvent(EVENT_TOKEN_SIMPLE);
+        BBDAdjust.onTrackEvent(EVENT_TOKEN_SIMPLE);
     }
 
     public void onTrackRevenueEventClick(View v) {
-        BBLAdjust.onTrackRevenue(EVENT_TOKEN_REVENUE, 1f, "EUR");
+        BBDAdjust.onTrackRevenue(EVENT_TOKEN_REVENUE, 1f, "EUR");
     }
 
 

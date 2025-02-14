@@ -23,19 +23,19 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class BBLAppsflyer {
-    private static final String TAG = "BBLAppsflyer";
+public class BBDAppsflyer {
+    private static final String TAG = "BBDAppsflyer";
     private Context context;
-    private static BBLAppsflyer BBLAppsflyer;
+    private static BBDAppsflyer BBDAppsflyer;
     public static boolean enableAppsflyer = false;
 
-    public BBLAppsflyer() {
+    public BBDAppsflyer() {
     }
 
-    public static BBLAppsflyer getInstance(){
-        if (BBLAppsflyer ==null)
-            BBLAppsflyer = new BBLAppsflyer();
-        return BBLAppsflyer;
+    public static BBDAppsflyer getInstance(){
+        if (BBDAppsflyer ==null)
+            BBDAppsflyer = new BBDAppsflyer();
+        return BBDAppsflyer;
     }
 
     public void init(Application context, String devKey) {

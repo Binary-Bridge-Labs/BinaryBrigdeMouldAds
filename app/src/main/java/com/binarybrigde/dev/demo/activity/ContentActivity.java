@@ -1,12 +1,12 @@
-package com.bblabs.module_ads.activity;
+package com.binarybrigde.dev.demo.activity;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-
-import com.bblabs.module_ads.fragment.BlankFragment;
+import com.binarybrigde.dev.demo.fragment.BlankFragment;
 import com.mia.module.R;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.bbl.module_ads.ads.wrapper;
+package com.binarybrigde.dev.ads.ads.wrapper;
 
 import com.applovin.mediation.ads.MaxInterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAd;

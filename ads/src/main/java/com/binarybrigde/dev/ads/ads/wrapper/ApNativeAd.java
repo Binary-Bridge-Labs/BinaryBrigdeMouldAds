@@ -1,4 +1,4 @@
-package com.bbl.module_ads.ads.wrapper;
+package com.binarybrigde.dev.ads.ads.wrapper;
 
 import android.view.View;
 

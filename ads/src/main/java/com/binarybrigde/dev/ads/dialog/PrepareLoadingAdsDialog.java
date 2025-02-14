@@ -1,15 +1,13 @@
-package com.bbl.module_ads.dialog;
+package com.binarybrigde.dev.ads.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-
-import com.ads.bbl.R;
-
-
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+
+import com.binarybrigde.dev.ads.R;
 
 public class PrepareLoadingAdsDialog extends Dialog {
 

@@ -1,9 +1,9 @@
-package com.bbl.module_ads.event;
+package com.binarybrigde.dev.ads.event;
 
 import android.content.Context;
 import android.os.Bundle;
 
-import com.bbl.module_ads.config.BBLAdConfig;
+import com.binarybrigde.dev.ads.config.BBDAdConfig;
 import com.facebook.appevents.AppEventsLogger;
 
 public class FacebookEventUtils {
@@ -12,7 +12,7 @@ public class FacebookEventUtils {
     }
 
     static void logPaidAdImpressionValue(Context context, Bundle bundle, int mediationProvider) {
-        if (mediationProvider == BBLAdConfig.PROVIDER_MAX)
+        if (mediationProvider == BBDAdConfig.PROVIDER_MAX)
             AppEventsLogger.newLogger(context).logEvent("max_paid_ad_impression_value", bundle);
         else
             AppEventsLogger.newLogger(context).logEvent("paid_ad_impression_value", bundle);

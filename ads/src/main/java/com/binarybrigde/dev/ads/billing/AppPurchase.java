@@ -1,4 +1,4 @@
-package com.bbl.module_ads.billing;
+package com.binarybrigde.dev.ads.billing;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -13,12 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 
-import com.bbl.module_ads.event.BBLLogEventManager;
-import com.bbl.module_ads.event.FirebaseAnalyticsUtil;
-import com.bbl.module_ads.funtion.BillingListener;
-import com.bbl.module_ads.funtion.PurchaseListener;
-import com.bbl.module_ads.funtion.UpdatePurchaseListener;
-import com.bbl.module_ads.util.AppUtil;
 import com.android.billingclient.api.AcknowledgePurchaseParams;
 import com.android.billingclient.api.AcknowledgePurchaseResponseListener;
 import com.android.billingclient.api.BillingClient;
@@ -34,6 +28,12 @@ import com.android.billingclient.api.PurchasesResponseListener;
 import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
 import com.android.billingclient.api.QueryPurchasesParams;
+import com.binarybrigde.dev.ads.event.BBDLogEventManager;
+import com.binarybrigde.dev.ads.event.FirebaseAnalyticsUtil;
+import com.binarybrigde.dev.ads.funtion.BillingListener;
+import com.binarybrigde.dev.ads.funtion.PurchaseListener;
+import com.binarybrigde.dev.ads.funtion.UpdatePurchaseListener;
+import com.binarybrigde.dev.ads.util.AppUtil;
 import com.google.common.collect.ImmutableList;
 
 import java.text.NumberFormat;
@@ -862,7 +862,7 @@ public class AppPurchase {
         //tracking adjust
         double price = getPriceWithoutCurrency(idPurchaseCurrent, typeIap);
         String currency = getCurrency(idPurchaseCurrent, typeIap);
-        BBLLogEventManager.onTrackRevenuePurchase((float) price, currency, idPurchaseCurrent, typeIap);
+        BBDLogEventManager.onTrackRevenuePurchase((float) price, currency, idPurchaseCurrent, typeIap);
 
         if (purchaseListener != null) {
             isPurchase = true;

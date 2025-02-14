@@ -1,4 +1,4 @@
-package com.bblabs.module_ads;
+package com.binarybrigde.dev.demo;
 
 public class StorageCommon {
 

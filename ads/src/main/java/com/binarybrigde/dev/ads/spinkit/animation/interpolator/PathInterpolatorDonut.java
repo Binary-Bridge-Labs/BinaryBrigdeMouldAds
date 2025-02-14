@@ -1,4 +1,4 @@
-package com.bbl.module_ads.spinkit.animation.interpolator;
+package com.binarybrigde.dev.ads.spinkit.animation.interpolator;
 
 import android.graphics.Path;
 import android.graphics.PathMeasure;

@@ -1,4 +1,4 @@
-package com.bbl.module_ads.applovin;
+package com.binarybrigde.dev.ads.applovin;
 
 import androidx.annotation.Nullable;
 

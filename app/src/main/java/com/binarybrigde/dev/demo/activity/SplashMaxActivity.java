@@ -1,4 +1,4 @@
-package com.bblabs.module_ads.activity;
+package com.binarybrigde.dev.demo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.binarybrigde.dev.ads.ads.BBLAdCallback;
+import com.binarybrigde.dev.ads.ads.BBDAdCallback;
 import com.binarybrigde.dev.ads.ads.wrapper.ApAdError;
 import com.binarybrigde.dev.ads.applovin.AppOpenMax;
 import com.mia.module.R;
@@ -21,7 +21,7 @@ public class SplashMaxActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        AppOpenMax.getInstance().initOpenSplash(this, getString(R.string.applovin_test_open), 25000, new BBLAdCallback() {
+        AppOpenMax.getInstance().initOpenSplash(this, getString(R.string.applovin_test_open), 25000, new BBDAdCallback() {
             @Override
             public void onAdClosed() {
                 super.onAdClosed();

@@ -1,14 +1,13 @@
-package com.bblabs.module_ads.fragment;
+package com.binarybrigde.dev.demo.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.binarybrigde.dev.ads.admob.Admob;
 import com.mia.module.R;

@@ -5,7 +5,7 @@ import android.app.Application;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BBLAdConfig {
+public class BBDAdConfig {
 
     //switch mediation use for app
     public static final int PROVIDER_ADMOB = 0;
@@ -50,11 +50,11 @@ public class BBLAdConfig {
      */
     private int intervalInterstitialAd = 0;
 
-    public BBLAdConfig(Application application) {
+    public BBDAdConfig(Application application) {
         this.application = application;
     }
 
-    public BBLAdConfig(Application application, int mediationProvider, String environment) {
+    public BBDAdConfig(Application application, int mediationProvider, String environment) {
         this.mediationProvider = mediationProvider;
         this.isVariantDev = environment.equals(ENVIRONMENT_DEVELOP);
         this.application = application;

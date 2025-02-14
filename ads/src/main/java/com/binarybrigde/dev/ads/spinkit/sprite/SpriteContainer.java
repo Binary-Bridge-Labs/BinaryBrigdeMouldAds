@@ -1,10 +1,10 @@
-package com.bbl.module_ads.spinkit.sprite;
+package com.binarybrigde.dev.ads.spinkit.sprite;
 
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.bbl.module_ads.spinkit.animation.AnimationUtils;
+import com.binarybrigde.dev.ads.spinkit.animation.AnimationUtils;
 
 public abstract class SpriteContainer extends Sprite {
 

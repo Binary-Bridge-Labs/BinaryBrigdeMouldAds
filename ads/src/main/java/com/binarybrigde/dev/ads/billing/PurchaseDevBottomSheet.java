@@ -1,4 +1,4 @@
-package com.bbl.module_ads.billing;
+package com.binarybrigde.dev.ads.billing;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,9 +8,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.ads.bbl.R;
-import com.bbl.module_ads.funtion.PurchaseListener;
+import com.binarybrigde.dev.ads.R;
 import com.android.billingclient.api.ProductDetails;
+import com.binarybrigde.dev.ads.funtion.PurchaseListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class PurchaseDevBottomSheet extends BottomSheetDialog {

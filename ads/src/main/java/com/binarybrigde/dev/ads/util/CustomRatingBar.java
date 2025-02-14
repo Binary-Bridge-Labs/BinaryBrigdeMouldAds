@@ -1,4 +1,4 @@
-package com.bbl.module_ads.util;
+package com.binarybrigde.dev.ads.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -21,7 +21,7 @@ import android.view.Gravity;
 import androidx.appcompat.graphics.drawable.DrawableWrapper;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
-import com.ads.bbl.R;
+import com.binarybrigde.dev.ads.R;
 
 public class CustomRatingBar extends androidx.appcompat.widget.AppCompatRatingBar {
 

@@ -1,19 +1,19 @@
-package com.bblabs.module_ads.activity;
+package com.binarybrigde.dev.demo.activity;
+
+import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.os.Bundle;
-import android.util.Log;
-
-import com.binarybrigde.dev.ads.ads.BBLAd;
-import com.binarybrigde.dev.ads.config.BBDAdConfig;
-import com.binarybrigde.dev.ads.ads.nativeAds.BBLAdPlacer;
-import com.binarybrigde.dev.ads.ads.nativeAds.BBLAdAdapter;
+import com.binarybrigde.dev.ads.ads.BBDAd;
+import com.binarybrigde.dev.ads.ads.nativeAds.BBDAdAdapter;
+import com.binarybrigde.dev.ads.ads.nativeAds.BBDAdPlacer;
 import com.binarybrigde.dev.ads.ads.wrapper.ApAdValue;
-import com.bblabs.module_ads.adapter.ListSimpleAdapter;
+import com.binarybrigde.dev.ads.config.BBDAdConfig;
+import com.binarybrigde.dev.demo.adapter.ListSimpleAdapter;
 import com.mia.module.R;
 
 import java.util.ArrayList;
@@ -21,13 +21,13 @@ import java.util.List;
 
 public class SimpleListActivity extends AppCompatActivity {
     private static final String TAG = "SimpleListActivity";
-    BBLAdAdapter adAdapter;
+    BBDAdAdapter adAdapter;
     int layoutCustomNative = com.binarybrigde.dev.ads.R.layout.custom_native_admod_medium;
     String idNative = "";
     SwipeRefreshLayout swRefresh;
     ListSimpleAdapter originalAdapter;
     RecyclerView recyclerView;
-    BBLAdPlacer.Listener listener = new BBLAdPlacer.Listener() {
+    BBDAdPlacer.Listener listener = new BBDAdPlacer.Listener() {
         @Override
         public void onAdLoaded(int i) {
             Log.i(TAG, "onAdLoaded native list: " + i);
@@ -76,7 +76,7 @@ public class SimpleListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rvListSimple);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        if (BBLAd.getInstance().getMediationProvider() == BBDAdConfig.PROVIDER_ADMOB) {
+        if (BBDAd.getInstance().getMediationProvider() == BBDAdConfig.PROVIDER_ADMOB) {
             layoutCustomNative = com.binarybrigde.dev.ads.R.layout.custom_native_admod_medium;
             idNative = getString(R.string.admod_native_id);
         } else {
@@ -93,7 +93,7 @@ public class SimpleListActivity extends AppCompatActivity {
     }
 
     private void setupAdAdapter() {
-        adAdapter = BBLAd.getInstance().getNativeRepeatAdapter(this, idNative, layoutCustomNative, com.binarybrigde.dev.ads.R.layout.layout_native_medium,
+        adAdapter = BBDAd.getInstance().getNativeRepeatAdapter(this, idNative, layoutCustomNative, com.binarybrigde.dev.ads.R.layout.layout_native_medium,
                 originalAdapter, listener, 5);
 
         recyclerView.setAdapter(adAdapter.getAdapter());

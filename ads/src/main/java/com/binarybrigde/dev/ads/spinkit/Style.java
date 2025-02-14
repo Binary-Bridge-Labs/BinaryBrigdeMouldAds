@@ -1,4 +1,4 @@
-package com.bbl.module_ads.spinkit;
+package com.binarybrigde.dev.ads.spinkit;
 
 /**
  * Created by ybq.

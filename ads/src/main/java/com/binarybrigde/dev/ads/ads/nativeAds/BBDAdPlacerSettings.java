@@ -1,19 +1,19 @@
 package com.binarybrigde.dev.ads.ads.nativeAds;
 
-public class BBLAdPlacerSettings {
+public class BBDAdPlacerSettings {
 
     private String adUnitId;
     private int positionFixAd = -1;
     private boolean isRepeatingAd = false;
     private int layoutCustomAd = -1;
     private int layoutAdPlaceHolder = -1;
-    private BBLAdPlacer.Listener listener;
-    public BBLAdPlacerSettings(String adUnitId, int layoutCustomAd, int layoutPlaceHolderAd) {
+    private BBDAdPlacer.Listener listener;
+    public BBDAdPlacerSettings(String adUnitId, int layoutCustomAd, int layoutPlaceHolderAd) {
         this.adUnitId = adUnitId;
         this.layoutCustomAd = layoutCustomAd;
         this.layoutAdPlaceHolder = layoutPlaceHolderAd;
     }
-    public BBLAdPlacerSettings(int layoutCustomAd, int layoutPlaceHolderAd) {
+    public BBDAdPlacerSettings(int layoutCustomAd, int layoutPlaceHolderAd) {
         this.adUnitId = adUnitId;
         this.layoutCustomAd = layoutCustomAd;
         this.layoutAdPlaceHolder = layoutPlaceHolderAd;
@@ -24,11 +24,11 @@ public class BBLAdPlacerSettings {
         isRepeatingAd = false;
     }
 
-    public BBLAdPlacer.Listener getListener() {
+    public BBDAdPlacer.Listener getListener() {
         return listener;
     }
 
-    public void setListener(BBLAdPlacer.Listener listener) {
+    public void setListener(BBDAdPlacer.Listener listener) {
         this.listener = listener;
     }
 

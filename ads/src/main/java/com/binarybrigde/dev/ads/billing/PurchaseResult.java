@@ -1,4 +1,4 @@
-package com.bbl.module_ads.billing;
+package com.binarybrigde.dev.ads.billing;
 
 import java.util.List;
 

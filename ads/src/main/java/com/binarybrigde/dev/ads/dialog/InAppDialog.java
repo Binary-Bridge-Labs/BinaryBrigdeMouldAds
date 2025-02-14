@@ -1,4 +1,4 @@
-package com.bbl.module_ads.dialog;
+package com.binarybrigde.dev.ads.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.bbl.module_ads.billing.AppPurchase;
-import com.ads.bbl.R;
+import com.binarybrigde.dev.ads.R;
+import com.binarybrigde.dev.ads.billing.AppPurchase;
 
 public class InAppDialog extends Dialog {
     private Context mContext;

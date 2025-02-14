@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FDA6A6"
-    tools:context="com.bblabs.module_ads.activity.MainActivity">
+   >
 
-    <com.bbl.module_ads.ads.nativeAds.BBLNativeAdView
-        android:id="@+id/bbl_native_ads"
+    <com.binarybrigde.dev.ads.ads.nativeAds.BBDNativeAdView
+        android:id="@+id/bbd_native_ads"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_150sdp"
         android:background="@drawable/bg_card_ads"
@@ -24,7 +24,7 @@
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bbl_native_ads">
+        app:layout_constraintTop_toBottomOf="@+id/bbd_native_ads">
 
 
         <Button
@@ -91,7 +91,7 @@
             android:text="Show Inter + Native Full" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <com.bbl.module_ads.ads.bannerAds.BBLBannerAdView
+    <com.binarybrigde.dev.ads.ads.bannerAds.BBDBannerAdView
         android:id="@+id/bannerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

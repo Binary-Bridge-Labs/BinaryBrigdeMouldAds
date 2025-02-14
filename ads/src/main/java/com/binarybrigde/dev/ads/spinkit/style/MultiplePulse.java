@@ -1,7 +1,7 @@
-package com.bbl.module_ads.spinkit.style;
+package com.binarybrigde.dev.ads.spinkit.style;
 
-import com.bbl.module_ads.spinkit.sprite.Sprite;
-import com.bbl.module_ads.spinkit.sprite.SpriteContainer;
+import com.binarybrigde.dev.ads.spinkit.sprite.Sprite;
+import com.binarybrigde.dev.ads.spinkit.sprite.SpriteContainer;
 
 /**
  * Created by ybq.

@@ -1,4 +1,4 @@
-package com.bblabs.module_ads.fragment;
+package com.binarybrigde.dev.demo.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,11 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.binarybrigde.dev.ads.admob.Admob;
-import com.binarybrigde.dev.ads.ads.BBLAd;
+import com.binarybrigde.dev.ads.ads.BBDAd;
 import com.binarybrigde.dev.ads.config.BBDAdConfig;
 import com.binarybrigde.dev.ads.funtion.AdCallback;
+import com.binarybrigde.dev.demo.activity.ContentActivity;
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.bblabs.module_ads.activity.ContentActivity;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.mia.module.R;
 
@@ -46,13 +46,13 @@ public class BlankFragment extends Fragment {
         button.setEnabled(false);
         View view1 = view.findViewById(R.id.include).getRootView();
         String idBanner;
-        if (BBLAd.getInstance().getMediationProvider() == BBDAdConfig.PROVIDER_ADMOB) {
+        if (BBDAd.getInstance().getMediationProvider() == BBDAdConfig.PROVIDER_ADMOB) {
             idBanner = getString(R.string.admod_banner_id);
         } else {
             idBanner = getString(R.string.applovin_test_banner);
         }
 
-        BBLAd.getInstance().loadBannerFragment(requireActivity(), idBanner, view1, new AdCallback() {
+        BBDAd.getInstance().loadBannerFragment(requireActivity(), idBanner, view1, new AdCallback() {
             @Override
             public void onAdClicked() {
                 super.onAdClicked();
@@ -70,6 +70,6 @@ public class BlankFragment extends Fragment {
 
         FrameLayout flPlaceHolder = view.findViewById(R.id.fl_adplaceholder);
         ShimmerFrameLayout shimmerFrameLayout = view.findViewById(R.id.shimmer_container_native);
-        BBLAd.getInstance().loadNativeAd(requireActivity(), getString(R.string.admod_native_id), com.binarybrigde.dev.ads.R.layout.custom_native_admob_free_size, flPlaceHolder, shimmerFrameLayout);
+        BBDAd.getInstance().loadNativeAd(requireActivity(), getString(R.string.admod_native_id), com.binarybrigde.dev.ads.R.layout.custom_native_admob_free_size, flPlaceHolder, shimmerFrameLayout);
     }
 }

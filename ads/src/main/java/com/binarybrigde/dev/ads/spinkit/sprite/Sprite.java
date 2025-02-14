@@ -1,4 +1,4 @@
-package com.bbl.module_ads.spinkit.sprite;
+package com.binarybrigde.dev.ads.spinkit.sprite;
 
 import android.animation.ValueAnimator;
 import android.graphics.Camera;
@@ -11,9 +11,9 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.util.Property;
 
-import com.bbl.module_ads.spinkit.animation.AnimationUtils;
-import com.bbl.module_ads.spinkit.animation.FloatProperty;
-import com.bbl.module_ads.spinkit.animation.IntProperty;
+import com.binarybrigde.dev.ads.spinkit.animation.AnimationUtils;
+import com.binarybrigde.dev.ads.spinkit.animation.FloatProperty;
+import com.binarybrigde.dev.ads.spinkit.animation.IntProperty;
 
 public abstract class Sprite extends Drawable implements
         ValueAnimator.AnimatorUpdateListener

@@ -1,4 +1,4 @@
-package com.bbl.module_ads.funtion;
+package com.binarybrigde.dev.ads.funtion;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

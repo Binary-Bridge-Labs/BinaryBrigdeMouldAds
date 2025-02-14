@@ -1,10 +1,10 @@
-package com.bbl.module_ads.dialog;
+package com.binarybrigde.dev.ads.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.ads.bbl.R;
+import com.binarybrigde.dev.ads.R;
 
 public class ResumeLoadingDialog extends Dialog {
 

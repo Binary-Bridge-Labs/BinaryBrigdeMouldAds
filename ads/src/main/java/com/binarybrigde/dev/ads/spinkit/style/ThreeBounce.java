@@ -1,12 +1,12 @@
-package com.bbl.module_ads.spinkit.style;
+package com.binarybrigde.dev.ads.spinkit.style;
 
 import android.animation.ValueAnimator;
 import android.graphics.Rect;
 
-import com.bbl.module_ads.spinkit.animation.SpriteAnimatorBuilder;
-import com.bbl.module_ads.spinkit.sprite.CircleSprite;
-import com.bbl.module_ads.spinkit.sprite.Sprite;
-import com.bbl.module_ads.spinkit.sprite.SpriteContainer;
+import com.binarybrigde.dev.ads.spinkit.animation.SpriteAnimatorBuilder;
+import com.binarybrigde.dev.ads.spinkit.sprite.CircleSprite;
+import com.binarybrigde.dev.ads.spinkit.sprite.Sprite;
+import com.binarybrigde.dev.ads.spinkit.sprite.SpriteContainer;
 
 /**
  * Created by ybq.

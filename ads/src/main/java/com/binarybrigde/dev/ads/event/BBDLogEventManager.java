@@ -16,14 +16,14 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import java.math.BigDecimal;
 import java.util.Currency;
 
-public class BBLLogEventManager {
+public class BBDLogEventManager {
 
-    private static final String TAG = "BBLLogEventManager";
+    private static final String TAG = "BBDLogEventManager";
 
     public static void logPaidAdImpression(Context context, AdValue adValue, String adUnitId, String mediationAdapterClassName, AdType adType) {
         logEventWithAds(context, (float) adValue.getValueMicros(), adValue.getPrecisionType(), adUnitId, mediationAdapterClassName, adType, BBDAdConfig.PROVIDER_ADMOB);
-        BBLAdjust.pushTrackEventAdmob(adValue);
-        BBLAppsflyer.getInstance().pushTrackEventAdmob(adValue, adUnitId, adType);
+        BBDAdjust.pushTrackEventAdmob(adValue);
+        BBDAppsflyer.getInstance().pushTrackEventAdmob(adValue, adUnitId, adType);
         // Log revenue Facebook 30/08
         float value = adValue.getValueMicros() * 1.0f / 1000000;
         AppEventsLogger.newLogger(context).logPurchase(BigDecimal.valueOf(value), Currency.getInstance("USD"));
@@ -31,8 +31,8 @@ public class BBLLogEventManager {
 
     public static void logPaidAdImpression(Context context, MaxAd adValue, AdType adType) {
         logEventWithMaxAds(context, adValue);
-        BBLAdjust.pushTrackEventApplovin(adValue, context);
-        BBLAppsflyer.getInstance().pushTrackEventApplovin(adValue, adType);
+        BBDAdjust.pushTrackEventApplovin(adValue, context);
+        BBDAppsflyer.getInstance().pushTrackEventApplovin(adValue, adType);
     }
 
     private static void logEventWithMaxAds(Context context, MaxAd impressionData) {
@@ -128,7 +128,7 @@ public class BBLLogEventManager {
         params.putString("network", network);
 
 
-        BBLAdjust.logPaidAdImpressionValue(value, "USD");
+        BBDAdjust.logPaidAdImpressionValue(value, "USD");
         FirebaseAnalyticsUtil.logPaidAdImpressionValue(context, params, mediationProvider);
 
         FacebookEventUtils.logPaidAdImpressionValue(context, params, mediationProvider);
@@ -189,35 +189,35 @@ public class BBLLogEventManager {
 
 
     public static void setEventNamePurchaseAdjust(String eventNamePurchase) {
-        BBLAdjust.setEventNamePurchase(eventNamePurchase);
+        BBDAdjust.setEventNamePurchase(eventNamePurchase);
     }
 
     public static void trackAdRevenue(String id) {
-        BBLAdjust.trackAdRevenue(id);
+        BBDAdjust.trackAdRevenue(id);
     }
 
     public static void onTrackEvent(String eventName) {
-        BBLAdjust.onTrackEvent(eventName);
+        BBDAdjust.onTrackEvent(eventName);
     }
 
     public static void onTrackEvent(String eventName, String id) {
-        BBLAdjust.onTrackEvent(eventName, id);
+        BBDAdjust.onTrackEvent(eventName, id);
     }
 
     public static void onTrackRevenue(String eventName, float revenue, String currency) {
-        BBLAdjust.onTrackRevenue(eventName, revenue, currency);
+        BBDAdjust.onTrackRevenue(eventName, revenue, currency);
     }
 
     public static void onTrackRevenuePurchase(float revenue, String currency, String idPurchase, int typeIAP) {
-        BBLAdjust.onTrackRevenuePurchase(revenue, currency);
-        BBLAppsflyer.getInstance().onTrackRevenuePurchase(revenue, currency, idPurchase, typeIAP);
+        BBDAdjust.onTrackRevenuePurchase(revenue, currency);
+        BBDAppsflyer.getInstance().onTrackRevenuePurchase(revenue, currency, idPurchase, typeIAP);
     }
 
     public static void pushTrackEventAdmob(AdValue adValue) {
-        BBLAdjust.pushTrackEventAdmob(adValue);
+        BBDAdjust.pushTrackEventAdmob(adValue);
     }
 
     public static void pushTrackEventApplovin(MaxAd ad, Context context) {
-        BBLAdjust.pushTrackEventApplovin(ad, context);
+        BBDAdjust.pushTrackEventApplovin(ad, context);
     }
 }

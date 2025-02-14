@@ -1,4 +1,4 @@
-package com.bbl.module_ads.ads.wrapper;
+package com.binarybrigde.dev.ads.ads.wrapper;
 
 public abstract class ApAdBase {
     protected StatusAd status = StatusAd.AD_INIT;

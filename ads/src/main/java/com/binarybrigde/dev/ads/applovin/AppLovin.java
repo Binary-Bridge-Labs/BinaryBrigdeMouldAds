@@ -1,4 +1,4 @@
-package com.bbl.module_ads.applovin;
+package com.binarybrigde.dev.ads.applovin;
 
 import android.app.Activity;
 import android.app.Application;
@@ -16,13 +16,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ads.bbl.R;
-import com.bbl.module_ads.billing.AppPurchase;
-import com.bbl.module_ads.dialog.PrepareLoadingAdsDialog;
-import com.bbl.module_ads.funtion.AdCallback;
-import com.bbl.module_ads.event.BBLLogEventManager;
-import com.bbl.module_ads.funtion.AdType;
-import com.bbl.module_ads.util.SharePreferenceUtils;
+import com.binarybrigde.dev.ads.R;
 import com.applovin.mediation.MaxAd;
 import com.applovin.mediation.MaxAdListener;
 import com.applovin.mediation.MaxAdViewAdListener;
@@ -40,6 +34,12 @@ import com.applovin.mediation.nativeAds.adPlacer.MaxAdPlacer;
 import com.applovin.mediation.nativeAds.adPlacer.MaxAdPlacerSettings;
 import com.applovin.mediation.nativeAds.adPlacer.MaxRecyclerAdapter;
 import com.applovin.sdk.AppLovinSdk;
+import com.binarybrigde.dev.ads.billing.AppPurchase;
+import com.binarybrigde.dev.ads.dialog.PrepareLoadingAdsDialog;
+import com.binarybrigde.dev.ads.event.BBDLogEventManager;
+import com.binarybrigde.dev.ads.funtion.AdCallback;
+import com.binarybrigde.dev.ads.funtion.AdType;
+import com.binarybrigde.dev.ads.util.SharePreferenceUtils;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.Calendar;
@@ -221,7 +221,7 @@ public class AppLovin {
             public void onAdClicked(MaxAd ad) {
                 if (disableAdResumeWhenClickAds)
                     AppOpenMax.getInstance().disableAdResumeByClickAction();
-                BBLLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
+                BBDLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
             }
 
             @Override
@@ -337,7 +337,7 @@ public class AppLovin {
 
             @Override
             public void onAdClicked(MaxAd ad) {
-                BBLLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
+                BBDLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
                 if (adListener != null) {
                     adListener.onAdClicked();
                 }
@@ -380,7 +380,7 @@ public class AppLovin {
             adListener.onAdClosed();
             return;
         }
-        interstitialSplash.setRevenueListener(ad -> BBLLogEventManager.logPaidAdImpression(context,ad, AdType.INTERSTITIAL));
+        interstitialSplash.setRevenueListener(ad -> BBDLogEventManager.logPaidAdImpression(context,ad, AdType.INTERSTITIAL));
         interstitialSplash.setListener(new MaxAdListener() {
             @Override
             public void onAdLoaded(MaxAd ad) {
@@ -412,7 +412,7 @@ public class AppLovin {
 
             @Override
             public void onAdClicked(MaxAd ad) {
-                BBLLogEventManager.logClickAdsEvent(context, interstitialSplash.getAdUnitId());
+                BBDLogEventManager.logClickAdsEvent(context, interstitialSplash.getAdUnitId());
                 if (adListener != null) {
                     adListener.onAdClicked();
                 }
@@ -512,7 +512,7 @@ public class AppLovin {
 
             @Override
             public void onAdClicked(MaxAd ad) {
-                BBLLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
+                BBDLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
                 if (disableAdResumeWhenClickAds)
                     AppOpenMax.getInstance().disableAdResumeByClickAction();
             }
@@ -572,7 +572,7 @@ public class AppLovin {
             return;
         }
 
-        interstitialAd.setRevenueListener(ad -> BBLLogEventManager.logPaidAdImpression(context,ad, AdType.INTERSTITIAL));
+        interstitialAd.setRevenueListener(ad -> BBDLogEventManager.logPaidAdImpression(context,ad, AdType.INTERSTITIAL));
         interstitialAd.setListener(new MaxAdListener() {
             @Override
             public void onAdLoaded(MaxAd ad) {
@@ -603,7 +603,7 @@ public class AppLovin {
 
             @Override
             public void onAdClicked(MaxAd ad) {
-                BBLLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
+                BBDLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
                 if (callback != null) {
                     callback.onAdClicked();
                 }
@@ -719,7 +719,7 @@ public class AppLovin {
         containerShimmer.setVisibility(View.VISIBLE);
         containerShimmer.startShimmer();
         MaxAdView adView = new MaxAdView(id, mActivity);
-        adView.setRevenueListener(ad -> BBLLogEventManager.logPaidAdImpression( mActivity,ad, AdType.BANNER));
+        adView.setRevenueListener(ad -> BBDLogEventManager.logPaidAdImpression( mActivity,ad, AdType.BANNER));
         int width = ViewGroup.LayoutParams.MATCH_PARENT;
         // Banner height on phones and tablets is 50 and 90, respectively
         int heightPx = mActivity.getResources().getDimensionPixelSize(R.dimen.banner_height);
@@ -756,7 +756,7 @@ public class AppLovin {
 
             @Override
             public void onAdClicked(MaxAd ad) {
-                BBLLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
+                BBDLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
                 if (disableAdResumeWhenClickAds)
                     AppOpenMax.getInstance().disableAdResumeByClickAction();
             }
@@ -785,7 +785,7 @@ public class AppLovin {
         containerShimmer.setVisibility(View.VISIBLE);
         containerShimmer.startShimmer();
         MaxAdView adView = new MaxAdView(id, mActivity);
-        adView.setRevenueListener(ad -> BBLLogEventManager.logPaidAdImpression(mActivity,ad, AdType.BANNER));
+        adView.setRevenueListener(ad -> BBDLogEventManager.logPaidAdImpression(mActivity,ad, AdType.BANNER));
         int width = ViewGroup.LayoutParams.MATCH_PARENT;
         // Banner height on phones and tablets is 50 and 90, respectively
         int heightPx = mActivity.getResources().getDimensionPixelSize(R.dimen.banner_height);
@@ -824,7 +824,7 @@ public class AppLovin {
 
             @Override
             public void onAdClicked(MaxAd ad) {
-                BBLLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
+                BBDLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
                 if (adCallback != null) {
                     adCallback.onAdClicked();
                 }
@@ -897,7 +897,7 @@ public class AppLovin {
         nativeAdView = new MaxNativeAdView(binder, activity);
 
         MaxNativeAdLoader nativeAdLoader = new MaxNativeAdLoader(id, activity);
-        nativeAdLoader.setRevenueListener(ad -> BBLLogEventManager.logPaidAdImpression( activity,ad, AdType.NATIVE));
+        nativeAdLoader.setRevenueListener(ad -> BBDLogEventManager.logPaidAdImpression( activity,ad, AdType.NATIVE));
         nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
             @Override
             public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
@@ -954,7 +954,7 @@ public class AppLovin {
         nativeAdView = new MaxNativeAdView(binder, activity);
 
         MaxNativeAdLoader nativeAdLoader = new MaxNativeAdLoader(id, activity);
-        nativeAdLoader.setRevenueListener(ad -> BBLLogEventManager.logPaidAdImpression( activity,ad, AdType.NATIVE));
+        nativeAdLoader.setRevenueListener(ad -> BBDLogEventManager.logPaidAdImpression( activity,ad, AdType.NATIVE));
         nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
             @Override
             public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
@@ -971,7 +971,7 @@ public class AppLovin {
             @Override
             public void onNativeAdClicked(final MaxAd ad) {
                 Log.e(TAG, "onNativeAdClicked: ");
-                BBLLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
+                BBDLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
                 callback.onAdClicked();
                 if (disableAdResumeWhenClickAds)
                     AppOpenMax.getInstance().disableAdResumeByClickAction();
@@ -990,13 +990,13 @@ public class AppLovin {
         adAdapter.getAdPlacer().setAdSize(-1, -1);
 
         MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(layoutCustomNative)
-                .setTitleTextViewId(com.ads.bbl.R.id.ad_headline)
-                .setBodyTextViewId(com.ads.bbl.R.id.ad_body)
-                .setAdvertiserTextViewId(com.ads.bbl.R.id.ad_advertiser)
-                .setIconImageViewId(com.ads.bbl.R.id.ad_app_icon)
-                .setMediaContentViewGroupId(com.ads.bbl.R.id.ad_media)
-                .setOptionsContentViewGroupId(com.ads.bbl.R.id.ad_options_view)
-                .setCallToActionButtonId(com.ads.bbl.R.id.ad_call_to_action)
+                .setTitleTextViewId(R.id.ad_headline)
+                .setBodyTextViewId(R.id.ad_body)
+                .setAdvertiserTextViewId(R.id.ad_advertiser)
+                .setIconImageViewId(R.id.ad_app_icon)
+                .setMediaContentViewGroupId(R.id.ad_media)
+                .setOptionsContentViewGroupId(R.id.ad_options_view)
+                .setCallToActionButtonId(R.id.ad_call_to_action)
                 .build();
 
         adAdapter.getAdPlacer().setNativeAdViewBinder(binder);
@@ -1014,13 +1014,13 @@ public class AppLovin {
         adAdapter.getAdPlacer().setAdSize(-1, -1);
 
         MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(layoutCustomNative)
-                .setTitleTextViewId(com.ads.bbl.R.id.ad_headline)
-                .setBodyTextViewId(com.ads.bbl.R.id.ad_body)
-                .setAdvertiserTextViewId(com.ads.bbl.R.id.ad_advertiser)
-                .setIconImageViewId(com.ads.bbl.R.id.ad_app_icon)
-                .setMediaContentViewGroupId(com.ads.bbl.R.id.ad_media)
-                .setOptionsContentViewGroupId(com.ads.bbl.R.id.ad_options_view)
-                .setCallToActionButtonId(com.ads.bbl.R.id.ad_call_to_action)
+                .setTitleTextViewId(R.id.ad_headline)
+                .setBodyTextViewId(R.id.ad_body)
+                .setAdvertiserTextViewId(R.id.ad_advertiser)
+                .setIconImageViewId(R.id.ad_app_icon)
+                .setMediaContentViewGroupId(R.id.ad_media)
+                .setOptionsContentViewGroupId(R.id.ad_options_view)
+                .setCallToActionButtonId(R.id.ad_call_to_action)
                 .build();
 
         adAdapter.getAdPlacer().setNativeAdViewBinder(binder);
@@ -1068,7 +1068,7 @@ public class AppLovin {
 
             @Override
             public void onAdClicked(MaxAd ad) {
-                BBLLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
+                BBDLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
                 callback.onAdClicked();
                 if (disableAdResumeWhenClickAds)
                     AppOpenMax.getInstance().disableAdResumeByClickAction();
@@ -1098,7 +1098,7 @@ public class AppLovin {
 
     public void showRewardAd(Activity activity, MaxRewardedAd maxRewardedAd, AppLovinCallback callback) {
         if (maxRewardedAd.isReady()) {
-            maxRewardedAd.setRevenueListener(ad -> BBLLogEventManager.logPaidAdImpression( activity,ad, AdType.REWARDED));
+            maxRewardedAd.setRevenueListener(ad -> BBDLogEventManager.logPaidAdImpression( activity,ad, AdType.REWARDED));
             maxRewardedAd.setListener(new MaxRewardedAdListener() {
                 @Override
                 public void onRewardedVideoStarted(MaxAd ad) {
@@ -1135,7 +1135,7 @@ public class AppLovin {
 
                 @Override
                 public void onAdClicked(MaxAd ad) {
-                    BBLLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
+                    BBDLogEventManager.logClickAdsEvent(context, ad.getAdUnitId());
                     callback.onAdClicked();
                     if (disableAdResumeWhenClickAds)
                         AppOpenMax.getInstance().disableAdResumeByClickAction();
@@ -1162,7 +1162,7 @@ public class AppLovin {
 
     public void showRewardAd(Activity activity, MaxRewardedAd maxRewardedAd) {
         if (maxRewardedAd.isReady()) {
-            maxRewardedAd.setRevenueListener(ad -> BBLLogEventManager.logPaidAdImpression( activity,ad, AdType.REWARDED));
+            maxRewardedAd.setRevenueListener(ad -> BBDLogEventManager.logPaidAdImpression( activity,ad, AdType.REWARDED));
             maxRewardedAd.showAd();
         } else {
             Log.e(TAG, "showRewardAd error -  reward ad not ready");

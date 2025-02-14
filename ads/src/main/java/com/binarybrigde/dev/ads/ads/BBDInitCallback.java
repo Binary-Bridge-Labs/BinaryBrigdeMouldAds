@@ -1,5 +1,5 @@
 package com.binarybrigde.dev.ads.ads;
 
-public interface BBLInitCallback {
+public interface BBDInitCallback {
     void initAdSuccess();
 }

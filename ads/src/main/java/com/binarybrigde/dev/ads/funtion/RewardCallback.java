@@ -1,4 +1,4 @@
-package com.bbl.module_ads.funtion;
+package com.binarybrigde.dev.ads.funtion;
 
 import com.google.android.gms.ads.rewarded.RewardItem;
 

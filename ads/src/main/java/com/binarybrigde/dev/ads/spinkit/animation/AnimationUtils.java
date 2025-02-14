@@ -1,9 +1,9 @@
-package com.bbl.module_ads.spinkit.animation;
+package com.binarybrigde.dev.ads.spinkit.animation;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 
-import com.bbl.module_ads.spinkit.sprite.Sprite;
+import com.binarybrigde.dev.ads.spinkit.sprite.Sprite;
 
 public class AnimationUtils {
 

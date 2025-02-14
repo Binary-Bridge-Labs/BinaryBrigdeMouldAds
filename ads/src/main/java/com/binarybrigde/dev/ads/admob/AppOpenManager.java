@@ -1,4 +1,4 @@
-package com.bbl.module_ads.admob;
+package com.binarybrigde.dev.ads.admob;
 
 import android.app.Activity;
 import android.app.Application;
@@ -23,13 +23,13 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
-import com.ads.bbl.R;
-import com.bbl.module_ads.billing.AppPurchase;
-import com.bbl.module_ads.dialog.PrepareLoadingAdsDialog;
-import com.bbl.module_ads.dialog.ResumeLoadingDialog;
-import com.bbl.module_ads.event.BBLLogEventManager;
-import com.bbl.module_ads.funtion.AdCallback;
-import com.bbl.module_ads.funtion.AdType;
+import com.binarybrigde.dev.ads.R;
+import com.binarybrigde.dev.ads.billing.AppPurchase;
+import com.binarybrigde.dev.ads.dialog.PrepareLoadingAdsDialog;
+import com.binarybrigde.dev.ads.dialog.ResumeLoadingDialog;
+import com.binarybrigde.dev.ads.event.BBDLogEventManager;
+import com.binarybrigde.dev.ads.funtion.AdCallback;
+import com.binarybrigde.dev.ads.funtion.AdType;
 import com.google.android.gms.ads.AdActivity;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
@@ -282,7 +282,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                         if (!isSplash) {
                             AppOpenManager.this.appResumeAd = ad;
                             AppOpenManager.this.appResumeAd.setOnPaidEventListener(adValue -> {
-                                BBLLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                                BBDLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                                         adValue,
                                         ad.getAdUnitId(),
                                         ad.getResponseInfo()
@@ -296,7 +296,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                             AppOpenManager.this.setSplashAd(ad);
 
                             AppOpenManager.this.splashAd.setOnPaidEventListener(adValue -> {
-                                BBLLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                                BBDLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                                         adValue,
                                         ad.getAdUnitId(),
                                         ad.getResponseInfo()
@@ -521,7 +521,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                                 public void onAdClicked() {
                                     super.onAdClicked();
                                     if (currentActivity != null) {
-                                        BBLLogEventManager.logClickAdsEvent(currentActivity, splashAdId);
+                                        BBDLogEventManager.logClickAdsEvent(currentActivity, splashAdId);
                                         if (fullScreenContentCallback != null) {
                                             fullScreenContentCallback.onAdClicked();
                                         }
@@ -615,7 +615,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                     public void onAdClicked() {
                         super.onAdClicked();
                         if (currentActivity != null) {
-                            BBLLogEventManager.logClickAdsEvent(currentActivity, appResumeAdId);
+                            BBDLogEventManager.logClickAdsEvent(currentActivity, appResumeAdId);
                             if (fullScreenContentCallback != null) {
                                 fullScreenContentCallback.onAdClicked();
                             }
@@ -733,7 +733,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                         splashAdHigh = appOpenAd;
                         splashLoadTime = new Date().getTime();
                         appOpenAd.setOnPaidEventListener(adValue -> {
-                            BBLLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                            BBDLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                                     adValue,
                                     appOpenAd.getAdUnitId(),
                                     appOpenAd.getResponseInfo()
@@ -841,7 +841,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                         });
                         splashLoadTime = new Date().getTime();
                         appOpenAd.setOnPaidEventListener(adValue -> {
-                            BBLLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                            BBDLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                                     adValue,
                                     appOpenAd.getAdUnitId(),
                                     appOpenAd.getResponseInfo()
@@ -937,7 +937,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
                         splashLoadTime = new Date().getTime();
                         appOpenAd.setOnPaidEventListener(adValue -> {
-                            BBLLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                            BBDLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                                     adValue,
                                     appOpenAd.getAdUnitId(),
                                     appOpenAd.getResponseInfo()
@@ -1006,7 +1006,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
                         // Log paid App Open High Floor
                         appOpenAd.setOnPaidEventListener(adValue -> {
-                            BBLLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                            BBDLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                                     adValue,
                                     appOpenAd.getAdUnitId(),
                                     appOpenAd.getResponseInfo()
@@ -1141,7 +1141,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
                         // Log paid Ads Interstitial
                         interstitialAd.setOnPaidEventListener(adValue -> {
-                            BBLLogEventManager.logPaidAdImpression(activity,
+                            BBDLogEventManager.logPaidAdImpression(activity,
                                     adValue,
                                     interstitialAd.getAdUnitId(),
                                     interstitialAd.getResponseInfo()
@@ -1210,7 +1210,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                             AppOpenManager.this.splashAd = appOpenAd;
                             splashLoadTime = new Date().getTime();
                             appOpenAd.setOnPaidEventListener(adValue -> {
-                                BBLLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                                BBDLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                                         adValue,
                                         appOpenAd.getAdUnitId(),
                                         appOpenAd.getResponseInfo()
@@ -1317,7 +1317,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                 }
 
                 appOpenAd.setOnPaidEventListener(adValue -> {
-                    BBLLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                    BBDLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                             adValue,
                             appOpenAd.getAdUnitId(),
                             appOpenAd.getResponseInfo()
@@ -1405,7 +1405,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                         }
 
                         appOpenAd.setOnPaidEventListener(adValue -> {
-                            BBLLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                            BBDLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                                     adValue,
                                     appOpenAd.getAdUnitId(),
                                     appOpenAd.getResponseInfo()
@@ -1532,7 +1532,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                         @Override
                         public void onAdClicked() {
                             super.onAdClicked();
-                            BBLLogEventManager.logClickAdsEvent(context, splashAdId);
+                            BBDLogEventManager.logClickAdsEvent(context, splashAdId);
                             adCallback.onAdClicked();
                         }
                     });
@@ -1635,7 +1635,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                     AppOpenManager.this.splashAd.setOnPaidEventListener((adValue) -> {
                     });
                     appOpenAd.setOnPaidEventListener((adValue) -> {
-                        BBLLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                        BBDLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                                 adValue,
                                 appOpenAd.getAdUnitId(),
                                 appOpenAd.getResponseInfo()
@@ -1707,7 +1707,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
                     super.onAdLoaded(appOpenAd);
                     AppOpenManager.this.splashAd = appOpenAd;
                     AppOpenManager.this.splashAd.setOnPaidEventListener((adValue) -> {
-                        BBLLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
+                        BBDLogEventManager.logPaidAdImpression(myApplication.getApplicationContext(),
                                 adValue,
                                 appOpenAd.getAdUnitId(),
                                 appOpenAd.getResponseInfo()
