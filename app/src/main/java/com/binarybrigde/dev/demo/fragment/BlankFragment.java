@@ -11,10 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.bbl.module_ads.admob.Admob;
-import com.bbl.module_ads.ads.BBLAd;
-import com.bbl.module_ads.config.BBLAdConfig;
-import com.bbl.module_ads.funtion.AdCallback;
+import com.binarybrigde.dev.ads.admob.Admob;
+import com.binarybrigde.dev.ads.ads.BBLAd;
+import com.binarybrigde.dev.ads.config.BBDAdConfig;
+import com.binarybrigde.dev.ads.funtion.AdCallback;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.bblabs.module_ads.activity.ContentActivity;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
@@ -46,7 +46,7 @@ public class BlankFragment extends Fragment {
         button.setEnabled(false);
         View view1 = view.findViewById(R.id.include).getRootView();
         String idBanner;
-        if (BBLAd.getInstance().getMediationProvider() == BBLAdConfig.PROVIDER_ADMOB) {
+        if (BBLAd.getInstance().getMediationProvider() == BBDAdConfig.PROVIDER_ADMOB) {
             idBanner = getString(R.string.admod_banner_id);
         } else {
             idBanner = getString(R.string.applovin_test_banner);
@@ -70,6 +70,6 @@ public class BlankFragment extends Fragment {
 
         FrameLayout flPlaceHolder = view.findViewById(R.id.fl_adplaceholder);
         ShimmerFrameLayout shimmerFrameLayout = view.findViewById(R.id.shimmer_container_native);
-        BBLAd.getInstance().loadNativeAd(requireActivity(), getString(R.string.admod_native_id), com.ads.bbl.R.layout.custom_native_admob_free_size, flPlaceHolder, shimmerFrameLayout);
+        BBLAd.getInstance().loadNativeAd(requireActivity(), getString(R.string.admod_native_id), com.binarybrigde.dev.ads.R.layout.custom_native_admob_free_size, flPlaceHolder, shimmerFrameLayout);
     }
 }

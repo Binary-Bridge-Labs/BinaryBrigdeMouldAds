@@ -7,10 +7,10 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.bbl.module_ads.admob.AppOpenManager;
-import com.bbl.module_ads.ads.BBLAd;
-import com.bbl.module_ads.config.BBLAdConfig;
-import com.bbl.module_ads.funtion.AdCallback;
+import com.binarybrigde.dev.ads.admob.AppOpenManager;
+import com.binarybrigde.dev.ads.ads.BBLAd;
+import com.binarybrigde.dev.ads.config.BBDAdConfig;
+import com.binarybrigde.dev.ads.funtion.AdCallback;
 import com.mia.module.BuildConfig;
 import com.mia.module.R;
 
@@ -28,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        if (BBLAd.getInstance().getMediationProvider() == BBLAdConfig.PROVIDER_ADMOB)
+        if (BBLAd.getInstance().getMediationProvider() == BBDAdConfig.PROVIDER_ADMOB)
             idAdSplash = BuildConfig.ad_interstitial_splash;
         else
             idAdSplash = getString(R.string.applovin_test_inter);

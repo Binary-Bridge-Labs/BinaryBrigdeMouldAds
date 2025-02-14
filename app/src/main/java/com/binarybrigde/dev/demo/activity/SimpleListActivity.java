@@ -8,11 +8,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.bbl.module_ads.ads.BBLAd;
-import com.bbl.module_ads.config.BBLAdConfig;
-import com.bbl.module_ads.ads.nativeAds.BBLAdPlacer;
-import com.bbl.module_ads.ads.nativeAds.BBLAdAdapter;
-import com.bbl.module_ads.ads.wrapper.ApAdValue;
+import com.binarybrigde.dev.ads.ads.BBLAd;
+import com.binarybrigde.dev.ads.config.BBDAdConfig;
+import com.binarybrigde.dev.ads.ads.nativeAds.BBLAdPlacer;
+import com.binarybrigde.dev.ads.ads.nativeAds.BBLAdAdapter;
+import com.binarybrigde.dev.ads.ads.wrapper.ApAdValue;
 import com.bblabs.module_ads.adapter.ListSimpleAdapter;
 import com.mia.module.R;
 
@@ -22,7 +22,7 @@ import java.util.List;
 public class SimpleListActivity extends AppCompatActivity {
     private static final String TAG = "SimpleListActivity";
     BBLAdAdapter adAdapter;
-    int layoutCustomNative = com.ads.bbl.R.layout.custom_native_admod_medium;
+    int layoutCustomNative = com.binarybrigde.dev.ads.R.layout.custom_native_admod_medium;
     String idNative = "";
     SwipeRefreshLayout swRefresh;
     ListSimpleAdapter originalAdapter;
@@ -76,11 +76,11 @@ public class SimpleListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rvListSimple);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        if (BBLAd.getInstance().getMediationProvider() == BBLAdConfig.PROVIDER_ADMOB) {
-            layoutCustomNative = com.ads.bbl.R.layout.custom_native_admod_medium;
+        if (BBLAd.getInstance().getMediationProvider() == BBDAdConfig.PROVIDER_ADMOB) {
+            layoutCustomNative = com.binarybrigde.dev.ads.R.layout.custom_native_admod_medium;
             idNative = getString(R.string.admod_native_id);
         } else {
-            layoutCustomNative = com.ads.bbl.R.layout.custom_native_max_small;
+            layoutCustomNative = com.binarybrigde.dev.ads.R.layout.custom_native_max_small;
             idNative = getString(R.string.applovin_test_native);
         }
 
@@ -93,7 +93,7 @@ public class SimpleListActivity extends AppCompatActivity {
     }
 
     private void setupAdAdapter() {
-        adAdapter = BBLAd.getInstance().getNativeRepeatAdapter(this, idNative, layoutCustomNative, com.ads.bbl.R.layout.layout_native_medium,
+        adAdapter = BBLAd.getInstance().getNativeRepeatAdapter(this, idNative, layoutCustomNative, com.binarybrigde.dev.ads.R.layout.layout_native_medium,
                 originalAdapter, listener, 5);
 
         recyclerView.setAdapter(adAdapter.getAdapter());

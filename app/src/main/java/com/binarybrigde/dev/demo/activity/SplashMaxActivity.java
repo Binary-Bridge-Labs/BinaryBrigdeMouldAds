@@ -7,9 +7,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bbl.module_ads.ads.BBLAdCallback;
-import com.bbl.module_ads.ads.wrapper.ApAdError;
-import com.bbl.module_ads.applovin.AppOpenMax;
+import com.binarybrigde.dev.ads.ads.BBLAdCallback;
+import com.binarybrigde.dev.ads.ads.wrapper.ApAdError;
+import com.binarybrigde.dev.ads.applovin.AppOpenMax;
 import com.mia.module.R;
 
 public class SplashMaxActivity extends AppCompatActivity {

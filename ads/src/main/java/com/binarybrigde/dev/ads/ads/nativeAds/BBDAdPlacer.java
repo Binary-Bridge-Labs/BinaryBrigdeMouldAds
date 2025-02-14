@@ -1,4 +1,4 @@
-package com.bbl.module_ads.ads.nativeAds;
+package com.binarybrigde.dev.ads.ads.nativeAds;
 
 import android.app.Activity;
 import android.util.Log;
@@ -10,12 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ads.bbl.R;
-import com.bbl.module_ads.admob.Admob;
-import com.bbl.module_ads.ads.wrapper.ApAdValue;
-import com.bbl.module_ads.ads.wrapper.ApNativeAd;
-import com.bbl.module_ads.ads.wrapper.StatusAd;
-import com.bbl.module_ads.funtion.AdCallback;
+import com.binarybrigde.dev.ads.R;
+import com.binarybrigde.dev.ads.admob.Admob;
+import com.binarybrigde.dev.ads.ads.wrapper.ApAdValue;
+import com.binarybrigde.dev.ads.ads.wrapper.ApNativeAd;
+import com.binarybrigde.dev.ads.ads.wrapper.StatusAd;
+import com.binarybrigde.dev.ads.funtion.AdCallback;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.ads.AdValue;
 import com.google.android.gms.ads.LoadAdError;

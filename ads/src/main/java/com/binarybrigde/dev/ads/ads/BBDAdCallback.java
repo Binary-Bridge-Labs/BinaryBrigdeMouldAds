@@ -1,12 +1,12 @@
-package com.bbl.module_ads.ads;
+package com.binarybrigde.dev.ads.ads;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bbl.module_ads.ads.wrapper.ApAdError;
-import com.bbl.module_ads.ads.wrapper.ApInterstitialAd;
-import com.bbl.module_ads.ads.wrapper.ApNativeAd;
-import com.bbl.module_ads.ads.wrapper.ApRewardItem;
+import com.binarybrigde.dev.ads.ads.wrapper.ApAdError;
+import com.binarybrigde.dev.ads.ads.wrapper.ApInterstitialAd;
+import com.binarybrigde.dev.ads.ads.wrapper.ApNativeAd;
+import com.binarybrigde.dev.ads.ads.wrapper.ApRewardItem;
 
 public class BBLAdCallback {
     public void onNextAction() {

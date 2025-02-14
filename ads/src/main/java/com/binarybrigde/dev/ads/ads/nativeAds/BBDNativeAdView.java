@@ -1,4 +1,4 @@
-package com.bbl.module_ads.ads.nativeAds;
+package com.binarybrigde.dev.ads.ads.nativeAds;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,10 +12,10 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.ads.bbl.R;
-import com.bbl.module_ads.ads.BBLAd;
-import com.bbl.module_ads.ads.BBLAdCallback;
-import com.bbl.module_ads.ads.wrapper.ApNativeAd;
+import com.binarybrigde.dev.ads.R;
+import com.binarybrigde.dev.ads.ads.BBLAd;
+import com.binarybrigde.dev.ads.ads.BBLAdCallback;
+import com.binarybrigde.dev.ads.ads.wrapper.ApNativeAd;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 public class BBLNativeAdView extends RelativeLayout {

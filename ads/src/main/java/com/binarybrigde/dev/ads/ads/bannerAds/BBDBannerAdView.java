@@ -1,4 +1,4 @@
-package com.bbl.module_ads.ads.bannerAds;
+package com.binarybrigde.dev.ads.ads.bannerAds;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,11 +8,11 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.ads.bbl.R;
-import com.bbl.module_ads.admob.Admob;
-import com.bbl.module_ads.ads.BBLAd;
-import com.bbl.module_ads.ads.BBLAdCallback;
-import com.bbl.module_ads.funtion.AdCallback;
+import com.binarybrigde.dev.ads.R;
+import com.binarybrigde.dev.ads.admob.Admob;
+import com.binarybrigde.dev.ads.ads.BBLAd;
+import com.binarybrigde.dev.ads.ads.BBLAdCallback;
+import com.binarybrigde.dev.ads.funtion.AdCallback;
 
 public class BBLBannerAdView extends RelativeLayout {
 

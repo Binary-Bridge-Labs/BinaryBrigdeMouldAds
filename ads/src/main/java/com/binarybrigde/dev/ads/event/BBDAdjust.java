@@ -1,4 +1,4 @@
-package com.bbl.module_ads.event;
+package com.binarybrigde.dev.ads.event;
 
 import android.content.Context;
 
@@ -6,8 +6,8 @@ import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustAdRevenue;
 import com.adjust.sdk.AdjustConfig;
 import com.adjust.sdk.AdjustEvent;
-import com.bbl.module_ads.ads.BBLAd;
 import com.applovin.mediation.MaxAd;
+import com.binarybrigde.dev.ads.ads.BBLAd;
 import com.google.android.gms.ads.AdValue;
 
 public class BBLAdjust {

@@ -1,14 +1,14 @@
-package com.bbl.module_ads.event;
+package com.binarybrigde.dev.ads.event;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.applovin.mediation.MaxAd;
-import com.bbl.module_ads.config.BBLAdConfig;
-import com.bbl.module_ads.funtion.AdType;
-import com.bbl.module_ads.util.AppUtil;
-import com.bbl.module_ads.util.SharePreferenceUtils;
+import com.binarybrigde.dev.ads.config.BBDAdConfig;
+import com.binarybrigde.dev.ads.funtion.AdType;
+import com.binarybrigde.dev.ads.util.AppUtil;
+import com.binarybrigde.dev.ads.util.SharePreferenceUtils;
 import com.facebook.appevents.AppEventsLogger;
 import com.google.android.gms.ads.AdValue;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -21,7 +21,7 @@ public class BBLLogEventManager {
     private static final String TAG = "BBLLogEventManager";
 
     public static void logPaidAdImpression(Context context, AdValue adValue, String adUnitId, String mediationAdapterClassName, AdType adType) {
-        logEventWithAds(context, (float) adValue.getValueMicros(), adValue.getPrecisionType(), adUnitId, mediationAdapterClassName, adType,BBLAdConfig.PROVIDER_ADMOB);
+        logEventWithAds(context, (float) adValue.getValueMicros(), adValue.getPrecisionType(), adUnitId, mediationAdapterClassName, adType, BBDAdConfig.PROVIDER_ADMOB);
         BBLAdjust.pushTrackEventAdmob(adValue);
         BBLAppsflyer.getInstance().pushTrackEventAdmob(adValue, adUnitId, adType);
         // Log revenue Facebook 30/08

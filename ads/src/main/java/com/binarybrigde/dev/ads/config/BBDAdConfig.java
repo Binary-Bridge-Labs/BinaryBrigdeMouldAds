@@ -1,4 +1,4 @@
-package com.bbl.module_ads.config;
+package com.binarybrigde.dev.ads.config;
 
 import android.app.Application;
 

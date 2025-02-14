@@ -1,4 +1,4 @@
-package com.bbl.module_ads.ads.nativeAds;
+package com.binarybrigde.dev.ads.ads.nativeAds;
 
 import androidx.recyclerview.widget.RecyclerView;
 

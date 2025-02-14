@@ -1,4 +1,4 @@
-package com.bbl.module_ads.event;
+package com.binarybrigde.dev.ads.event;
 
 import android.app.Application;
 import android.content.Context;
@@ -6,8 +6,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.bbl.module_ads.billing.AppPurchase;
-import com.bbl.module_ads.funtion.AdType;
 import com.applovin.mediation.MaxAd;
 import com.appsflyer.AFInAppEventParameterName;
 import com.appsflyer.AFInAppEventType;
@@ -16,6 +14,8 @@ import com.appsflyer.adrevenue.AppsFlyerAdRevenue;
 import com.appsflyer.adrevenue.adnetworks.generic.MediationNetwork;
 import com.appsflyer.adrevenue.adnetworks.generic.Scheme;
 import com.appsflyer.attribution.AppsFlyerRequestListener;
+import com.binarybrigde.dev.ads.billing.AppPurchase;
+import com.binarybrigde.dev.ads.funtion.AdType;
 import com.google.android.gms.ads.AdValue;
 
 import java.util.Currency;

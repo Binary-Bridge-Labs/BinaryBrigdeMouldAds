@@ -11,23 +11,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bbl.module_ads.admob.Admob;
-import com.bbl.module_ads.admob.AppOpenManager;
-import com.bbl.module_ads.ads.BBLAd;
-import com.bbl.module_ads.ads.BBLAdCallback;
-import com.bbl.module_ads.ads.bannerAds.BBLBannerAdView;
-import com.bbl.module_ads.ads.nativeAds.BBLNativeAdView;
-import com.bbl.module_ads.ads.wrapper.ApAdError;
-import com.bbl.module_ads.ads.wrapper.ApInterstitialAd;
-import com.bbl.module_ads.ads.wrapper.ApRewardAd;
-import com.bbl.module_ads.billing.AppPurchase;
-import com.bbl.module_ads.config.BBLAdConfig;
-import com.bbl.module_ads.dialog.DialogExitApp1;
-import com.bbl.module_ads.dialog.InAppDialog;
-import com.bbl.module_ads.event.BBLAdjust;
-import com.bbl.module_ads.funtion.AdCallback;
-import com.bbl.module_ads.funtion.DialogExitListener;
-import com.bbl.module_ads.funtion.PurchaseListener;
+import com.binarybrigde.dev.ads.admob.Admob;
+import com.binarybrigde.dev.ads.admob.AppOpenManager;
+import com.binarybrigde.dev.ads.ads.BBLAd;
+import com.binarybrigde.dev.ads.ads.BBLAdCallback;
+import com.binarybrigde.dev.ads.ads.bannerAds.BBLBannerAdView;
+import com.binarybrigde.dev.ads.ads.nativeAds.BBLNativeAdView;
+import com.binarybrigde.dev.ads.ads.wrapper.ApAdError;
+import com.binarybrigde.dev.ads.ads.wrapper.ApInterstitialAd;
+import com.binarybrigde.dev.ads.ads.wrapper.ApRewardAd;
+import com.binarybrigde.dev.ads.billing.AppPurchase;
+import com.binarybrigde.dev.ads.config.BBDAdConfig;
+import com.binarybrigde.dev.ads.dialog.DialogExitApp1;
+import com.binarybrigde.dev.ads.dialog.InAppDialog;
+import com.binarybrigde.dev.ads.event.BBLAdjust;
+import com.binarybrigde.dev.ads.funtion.AdCallback;
+import com.binarybrigde.dev.ads.funtion.DialogExitListener;
+import com.binarybrigde.dev.ads.funtion.PurchaseListener;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.mia.module.BuildConfig;
@@ -216,16 +216,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configMediationProvider() {
-        if (BBLAd.getInstance().getMediationProvider() == BBLAdConfig.PROVIDER_ADMOB) {
+        if (BBLAd.getInstance().getMediationProvider() == BBDAdConfig.PROVIDER_ADMOB) {
             idBanner = BuildConfig.ad_banner;
             idNative = BuildConfig.ad_native;
             idInter = BuildConfig.ad_interstitial_splash;
-            layoutNativeCustom = com.ads.bbl.R.layout.custom_native_admod_medium_rate;
+            layoutNativeCustom = com.binarybrigde.dev.ads.R.layout.custom_native_admod_medium_rate;
         } else {
             idBanner = getString(R.string.applovin_test_banner);
             idNative = getString(R.string.applovin_test_native);
             idInter = getString(R.string.applovin_test_inter);
-            layoutNativeCustom = com.ads.bbl.R.layout.custom_native_max_medium;
+            layoutNativeCustom = com.binarybrigde.dev.ads.R.layout.custom_native_max_medium;
         }
     }
 

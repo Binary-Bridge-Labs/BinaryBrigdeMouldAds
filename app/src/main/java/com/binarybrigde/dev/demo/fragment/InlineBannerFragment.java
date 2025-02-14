@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bbl.module_ads.admob.Admob;
+import com.binarybrigde.dev.ads.admob.Admob;
 import com.mia.module.R;
 
 public class InlineBannerFragment extends Fragment {

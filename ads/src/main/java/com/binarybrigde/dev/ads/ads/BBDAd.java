@@ -1,4 +1,4 @@
-package com.bbl.module_ads.ads;
+package com.binarybrigde.dev.ads.ads;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -29,29 +29,7 @@ import com.adjust.sdk.OnEventTrackingFailedListener;
 import com.adjust.sdk.OnEventTrackingSucceededListener;
 import com.adjust.sdk.OnSessionTrackingFailedListener;
 import com.adjust.sdk.OnSessionTrackingSucceededListener;
-import com.ads.bbl.R;
-import com.bbl.module_ads.admob.Admob;
-import com.bbl.module_ads.admob.AppOpenManager;
-import com.bbl.module_ads.ads.nativeAds.BBLAdAdapter;
-import com.bbl.module_ads.ads.nativeAds.BBLAdPlacer;
-import com.bbl.module_ads.ads.wrapper.ApAdError;
-import com.bbl.module_ads.ads.wrapper.ApAdValue;
-import com.bbl.module_ads.ads.wrapper.ApInterstitialAd;
-import com.bbl.module_ads.ads.wrapper.ApNativeAd;
-import com.bbl.module_ads.ads.wrapper.ApRewardAd;
-import com.bbl.module_ads.ads.wrapper.ApRewardItem;
-import com.bbl.module_ads.applovin.AppLovin;
-import com.bbl.module_ads.applovin.AppLovinCallback;
-import com.bbl.module_ads.applovin.AppOpenMax;
-import com.bbl.module_ads.billing.AppPurchase;
-import com.bbl.module_ads.config.BBLAdConfig;
-import com.bbl.module_ads.event.BBLAdjust;
-import com.bbl.module_ads.event.BBLAppsflyer;
-import com.bbl.module_ads.event.BBLLogEventManager;
-import com.bbl.module_ads.funtion.AdCallback;
-import com.bbl.module_ads.funtion.RewardCallback;
-import com.bbl.module_ads.util.AppUtil;
-import com.bbl.module_ads.util.SharePreferenceUtils;
+import com.binarybrigde.dev.ads.R;
 import com.applovin.mediation.MaxAd;
 import com.applovin.mediation.MaxAdListener;
 import com.applovin.mediation.MaxError;
@@ -61,6 +39,28 @@ import com.applovin.mediation.ads.MaxRewardedAd;
 import com.applovin.mediation.nativeAds.MaxNativeAdView;
 import com.applovin.mediation.nativeAds.adPlacer.MaxAdPlacer;
 import com.applovin.mediation.nativeAds.adPlacer.MaxRecyclerAdapter;
+import com.binarybrigde.dev.ads.admob.Admob;
+import com.binarybrigde.dev.ads.admob.AppOpenManager;
+import com.binarybrigde.dev.ads.ads.nativeAds.BBLAdAdapter;
+import com.binarybrigde.dev.ads.ads.nativeAds.BBLAdPlacer;
+import com.binarybrigde.dev.ads.ads.wrapper.ApAdError;
+import com.binarybrigde.dev.ads.ads.wrapper.ApAdValue;
+import com.binarybrigde.dev.ads.ads.wrapper.ApInterstitialAd;
+import com.binarybrigde.dev.ads.ads.wrapper.ApNativeAd;
+import com.binarybrigde.dev.ads.ads.wrapper.ApRewardAd;
+import com.binarybrigde.dev.ads.ads.wrapper.ApRewardItem;
+import com.binarybrigde.dev.ads.applovin.AppLovin;
+import com.binarybrigde.dev.ads.applovin.AppLovinCallback;
+import com.binarybrigde.dev.ads.applovin.AppOpenMax;
+import com.binarybrigde.dev.ads.billing.AppPurchase;
+import com.binarybrigde.dev.ads.config.BBDAdConfig;
+import com.binarybrigde.dev.ads.event.BBLAdjust;
+import com.binarybrigde.dev.ads.event.BBLAppsflyer;
+import com.binarybrigde.dev.ads.event.BBLLogEventManager;
+import com.binarybrigde.dev.ads.funtion.AdCallback;
+import com.binarybrigde.dev.ads.funtion.RewardCallback;
+import com.binarybrigde.dev.ads.util.AppUtil;
+import com.binarybrigde.dev.ads.util.SharePreferenceUtils;
 import com.facebook.FacebookSdk;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.ads.AdError;
@@ -77,7 +77,7 @@ public class BBLAd {
     public static final String TAG_ADJUST = "BBLAdjust";
     public static final String TAG = "BBLAd";
     private static volatile BBLAd INSTANCE;
-    private BBLAdConfig adConfig;
+    private BBDAdConfig adConfig;
     private BBLInitCallback initCallback;
     private Boolean initAdSuccess = false;
 
@@ -114,7 +114,7 @@ public class BBLAd {
      * @param context
      * @param adConfig BBLAdConfig object used for SDK initialisation
      */
-    public void init(Application context, BBLAdConfig adConfig) {
+    public void init(Application context, BBDAdConfig adConfig) {
         init(context, adConfig, false);
     }
 
@@ -123,7 +123,7 @@ public class BBLAd {
      * @param adConfig             BBLAdConfig object used for SDK initialisation
      * @param enableDebugMediation set show Mediation Debugger - use only for Max Mediation
      */
-    public void init(Application context, BBLAdConfig adConfig, Boolean enableDebugMediation) {
+    public void init(Application context, BBDAdConfig adConfig, Boolean enableDebugMediation) {
         if (adConfig == null) {
             throw new RuntimeException("Cant not set BBLAdConfig null");
         }
@@ -141,7 +141,7 @@ public class BBLAd {
             setupAdjust(adConfig.isVariantDev(), adConfig.getAdjustConfig().getAdjustToken());
         }
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().init(context, new AppLovinCallback() {
                     @Override
                     public void initAppLovinSuccess() {
@@ -155,7 +155,7 @@ public class BBLAd {
                     }
                 }, enableDebugMediation);
                 break;
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().init(context, adConfig.getListDeviceTest());
                 if (adConfig.isEnableAdResume())
                     AppOpenManager.getInstance().init(adConfig.getApplication(), adConfig.getIdAdResume());
@@ -269,23 +269,23 @@ public class BBLAd {
         }
     }
 
-    public BBLAdConfig getAdConfig() {
+    public BBDAdConfig getAdConfig() {
         return adConfig;
     }
 
     public void loadBanner(final Activity mActivity, String id) {
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadBanner(mActivity, id);
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().loadBanner(mActivity, id);
         }
     }
 
     public void loadBanner(final Activity mActivity, String id, final BBLAdCallback adCallback) {
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadBanner(mActivity, id, new AdCallback() {
                     @Override
                     public void onAdLoaded() {
@@ -312,7 +312,7 @@ public class BBLAd {
                     }
                 });
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().loadBanner(mActivity, id, new AdCallback() {
                     @Override
                     public void onAdLoaded() {
@@ -351,20 +351,20 @@ public class BBLAd {
 
     public void loadBannerFragment(final Activity mActivity, String id, final View rootView) {
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadBannerFragment(mActivity, id, rootView);
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().loadBannerFragment(mActivity, id, rootView);
         }
     }
 
     public void loadBannerFragment(final Activity mActivity, String id, final View rootView, final AdCallback adCallback) {
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadBannerFragment(mActivity, id, rootView, adCallback);
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().loadBannerFragment(mActivity, id, rootView, adCallback);
         }
     }
@@ -380,7 +380,7 @@ public class BBLAd {
 
     public void loadSplashInterstitialAdsHighFloor(Activity activity, String idHighFloor, String idAll, long timeOut, long timeDelay, BBLAdCallback adListener) {
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadSplashInterstitialAdsHighFloor(activity, idHighFloor, idAll, timeOut, timeDelay, new AdCallback() {
                     @Override
                     public void onAdClosed() {
@@ -431,7 +431,7 @@ public class BBLAd {
                 });
                 break;
 
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().loadSplashInterstitialAds(activity, idAll, timeOut, timeDelay, true, new AppLovinCallback() {
                     @Override
                     public void onAdClosed() {
@@ -479,7 +479,7 @@ public class BBLAd {
 
     public void loadSplashInterstitialAds(final Context context, String id, long timeOut, long timeDelay, boolean showSplashIfReady, BBLAdCallback adListener) {
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadSplashInterstitialAds(context, id, timeOut, timeDelay, showSplashIfReady, new AdCallback() {
                     @Override
                     public void onAdClosed() {
@@ -529,7 +529,7 @@ public class BBLAd {
                     }
                 });
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().loadSplashInterstitialAds(context, id, timeOut, timeDelay, showSplashIfReady, new AppLovinCallback() {
                     @Override
                     public void onAdClosed() {
@@ -578,7 +578,7 @@ public class BBLAd {
 
     public void onShowSplash(AppCompatActivity activity, BBLAdCallback adListener) {
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().onShowSplash(activity, new AdCallback() {
                             @Override
                             public void onAdFailedToShow(@Nullable AdError adError) {
@@ -602,7 +602,7 @@ public class BBLAd {
                         }
                 );
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().onShowSplash(activity, new AppLovinCallback() {
                     @Override
                     public void onAdFailedToShow(@Nullable MaxError adError) {
@@ -633,7 +633,7 @@ public class BBLAd {
     public void onCheckShowSplashWhenFail(AppCompatActivity activity, BBLAdCallback callback,
                                           int timeDelay) {
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().onCheckShowSplashWhenFail(activity, new AdCallback() {
                     @Override
                     public void onNextAction() {
@@ -661,7 +661,7 @@ public class BBLAd {
                     }
                 }, timeDelay);
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().onCheckShowSplashWhenFail(activity, new AppLovinCallback() {
                     @Override
                     public void onAdClosed() {
@@ -701,7 +701,7 @@ public class BBLAd {
     public ApInterstitialAd getInterstitialAds(Context context, String id, BBLAdCallback adListener) {
         ApInterstitialAd apInterstitialAd = new ApInterstitialAd();
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().getInterstitialAds(context, id, new AdCallback() {
                     @Override
                     public void onInterstitialLoad(@Nullable InterstitialAd interstitialAd) {
@@ -726,7 +726,7 @@ public class BBLAd {
                 });
                 return apInterstitialAd;
 
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 MaxInterstitialAd maxInterstitialAd = AppLovin.getInstance().getInterstitialAds(context, id);
                 maxInterstitialAd.setListener(new MaxAdListener() {
 
@@ -778,7 +778,7 @@ public class BBLAd {
     public ApInterstitialAd getInterstitialAds(Context context, String id) {
         ApInterstitialAd apInterstitialAd = new ApInterstitialAd();
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().getInterstitialAds(context, id, new AdCallback() {
                     @Override
                     public void onInterstitialLoad(@Nullable InterstitialAd interstitialAd) {
@@ -800,7 +800,7 @@ public class BBLAd {
                 });
                 return apInterstitialAd;
 
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 MaxInterstitialAd maxInterstitialAd = AppLovin.getInstance().getInterstitialAds(context, id);
                 maxInterstitialAd.setListener(new MaxAdListener() {
 
@@ -873,7 +873,7 @@ public class BBLAd {
             return;
         }
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 AdCallback adCallback = new AdCallback() {
                     @Override
                     public void onAdClosed() {
@@ -963,7 +963,7 @@ public class BBLAd {
                 };
                 Admob.getInstance().forceShowInterstitial(context, mInterstitialAd.getInterstitialAd(), adCallback);
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().forceShowInterstitial(context, mInterstitialAd.getMaxInterstitialAd(), new AdCallback() {
                     @Override
                     public void onAdClosed() {
@@ -1020,7 +1020,7 @@ public class BBLAd {
             return;
         }
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 AdCallback adCallback = new AdCallback() {
                     @Override
                     public void onAdClosed() {
@@ -1114,7 +1114,7 @@ public class BBLAd {
                 };
                 Admob.getInstance().showInterstitialAdByTimes(context, mInterstitialAd.getInterstitialAd(), adCallback);
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().showInterstitialAdByTimes(context, mInterstitialAd.getMaxInterstitialAd(), new AdCallback() {
                     @Override
                     public void onAdClosed() {
@@ -1179,7 +1179,7 @@ public class BBLAd {
             return;
         }
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadNativeAd(((Context) activity), id, new AdCallback() {
                     @Override
                     public void onUnifiedNativeAdLoaded(@NonNull NativeAd unifiedNativeAd) {
@@ -1194,7 +1194,7 @@ public class BBLAd {
                     }
                 });
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().loadNativeAd(activity, id, layoutCustomNative, new AppLovinCallback() {
                     @Override
                     public void onUnifiedNativeAdLoaded(MaxNativeAdView unifiedNativeAd) {
@@ -1225,7 +1225,7 @@ public class BBLAd {
                              int layoutCustomNative, FrameLayout adPlaceHolder, ShimmerFrameLayout
                                      containerShimmerLoading) {
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadNativeAd(((Context) activity), id, new AdCallback() {
                     @Override
                     public void onUnifiedNativeAdLoaded(@NonNull NativeAd unifiedNativeAd) {
@@ -1240,7 +1240,7 @@ public class BBLAd {
                     }
                 });
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().loadNativeAd(activity, id, layoutCustomNative, new AppLovinCallback() {
                     @Override
                     public void onUnifiedNativeAdLoaded(MaxNativeAdView unifiedNativeAd) {
@@ -1271,7 +1271,7 @@ public class BBLAd {
                              int layoutCustomNative, FrameLayout adPlaceHolder, ShimmerFrameLayout
                                      containerShimmerLoading, BBLAdCallback callback) {
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadNativeAd(((Context) activity), id, new AdCallback() {
                     @Override
                     public void onUnifiedNativeAdLoaded(@NonNull NativeAd unifiedNativeAd) {
@@ -1305,7 +1305,7 @@ public class BBLAd {
                     }
                 });
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().loadNativeAd(activity, id, layoutCustomNative, new AppLovinCallback() {
                     @Override
                     public void onUnifiedNativeAdLoaded(MaxNativeAdView unifiedNativeAd) {
@@ -1342,7 +1342,7 @@ public class BBLAd {
     public void loadNativeAdResultCallback(final Activity activity, String id,
                                            int layoutCustomNative, BBLAdCallback callback) {
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().loadNativeAd(((Context) activity), id, new AdCallback() {
                     @Override
                     public void onUnifiedNativeAdLoaded(@NonNull NativeAd unifiedNativeAd) {
@@ -1376,7 +1376,7 @@ public class BBLAd {
                     }
                 });
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().loadNativeAd(activity, id, layoutCustomNative, new AppLovinCallback() {
                     @Override
                     public void onUnifiedNativeAdLoaded(MaxNativeAdView unifiedNativeAd) {
@@ -1416,7 +1416,7 @@ public class BBLAd {
             return;
         }
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 @SuppressLint("InflateParams") NativeAdView adView = (NativeAdView) LayoutInflater.from(activity).inflate(apNativeAd.getLayoutCustomNative(), null);
                 containerShimmerLoading.stopShimmer();
                 containerShimmerLoading.setVisibility(View.GONE);
@@ -1425,7 +1425,7 @@ public class BBLAd {
                 adPlaceHolder.removeAllViews();
                 adPlaceHolder.addView(adView);
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 containerShimmerLoading.stopShimmer();
                 containerShimmerLoading.setVisibility(View.GONE);
                 adPlaceHolder.setVisibility(View.VISIBLE);
@@ -1441,7 +1441,7 @@ public class BBLAd {
     public ApRewardAd getRewardAd(Activity activity, String id) {
         ApRewardAd apRewardAd = new ApRewardAd();
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().initRewardAds(activity, id, new AdCallback() {
 
                     @Override
@@ -1452,7 +1452,7 @@ public class BBLAd {
                     }
                 });
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 MaxRewardedAd maxRewardedAd = AppLovin.getInstance().getRewardAd(activity, id, new AppLovinCallback() {
                     @Override
                     public void onAdLoaded() {
@@ -1467,7 +1467,7 @@ public class BBLAd {
     public ApRewardAd getRewardAdInterstitial(Activity activity, String id) {
         ApRewardAd apRewardAd = new ApRewardAd();
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().getRewardInterstitial(activity, id, new AdCallback() {
 
                     @Override
@@ -1478,7 +1478,7 @@ public class BBLAd {
                     }
                 });
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 MaxRewardedAd maxRewardedAd = AppLovin.getInstance().getRewardAd(activity, id, new AppLovinCallback() {
                     @Override
                     public void onAdLoaded() {
@@ -1493,7 +1493,7 @@ public class BBLAd {
     public ApRewardAd getRewardAd(Activity activity, String id, BBLAdCallback callback) {
         ApRewardAd apRewardAd = new ApRewardAd();
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().initRewardAds(activity, id, new AdCallback() {
                     @Override
                     public void onRewardAdLoaded(RewardedAd rewardedAd) {
@@ -1503,7 +1503,7 @@ public class BBLAd {
                     }
                 });
                 return apRewardAd;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 MaxRewardedAd maxRewardedAd = AppLovin.getInstance().getRewardAd(activity, id, new AppLovinCallback() {
                     @Override
                     public void onAdLoaded() {
@@ -1520,7 +1520,7 @@ public class BBLAd {
     public ApRewardAd getRewardInterstitialAd(Activity activity, String id, BBLAdCallback callback) {
         ApRewardAd apRewardAd = new ApRewardAd();
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 Admob.getInstance().getRewardInterstitial(activity, id, new AdCallback() {
                     @Override
                     public void onRewardAdLoaded(RewardedInterstitialAd rewardedAd) {
@@ -1530,7 +1530,7 @@ public class BBLAd {
                     }
                 });
                 return apRewardAd;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 MaxRewardedAd maxRewardedAd = AppLovin.getInstance().getRewardAd(activity, id, new AppLovinCallback() {
                     @Override
                     public void onAdLoaded() {
@@ -1552,7 +1552,7 @@ public class BBLAd {
             return;
         }
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_ADMOB:
+            case BBDAdConfig.PROVIDER_ADMOB:
                 if (apRewardAd.isRewardInterstitial()) {
                     Admob.getInstance().showRewardInterstitial(activity, apRewardAd.getAdmobRewardInter(), new RewardCallback() {
 
@@ -1609,7 +1609,7 @@ public class BBLAd {
                     });
                 }
                 break;
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 AppLovin.getInstance().showRewardAd(activity, apRewardAd.getMaxReward(), new AppLovinCallback() {
                     @Override
                     public void onUserRewarded(MaxReward reward) {
@@ -1655,7 +1655,7 @@ public class BBLAd {
     public BBLAdAdapter getNativeRepeatAdapter(Activity activity, String id, int layoutCustomNative, int layoutAdPlaceHolder, RecyclerView.Adapter originalAdapter,
                                                BBLAdPlacer.Listener listener, int repeatingInterval) {
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 MaxAdPlacer.Listener maxListener = new MaxAdPlacer.Listener() {
                     @Override
                     public void onAdLoaded(int i) {
@@ -1703,7 +1703,7 @@ public class BBLAd {
     public BBLAdAdapter getNativeFixedPositionAdapter(Activity activity, String id, int layoutCustomNative, int layoutAdPlaceHolder, RecyclerView.Adapter originalAdapter,
                                                       BBLAdPlacer.Listener listener, int position) {
         switch (adConfig.getMediationProvider()) {
-            case BBLAdConfig.PROVIDER_MAX:
+            case BBDAdConfig.PROVIDER_MAX:
                 MaxAdPlacer.Listener maxListener = new MaxAdPlacer.Listener() {
                     @Override
                     public void onAdLoaded(int i) {
