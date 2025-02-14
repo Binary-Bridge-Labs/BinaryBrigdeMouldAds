@@ -1,0 +1,12 @@
+<resources>
+    <string name="cancel">Zrušit</string>
+    <string name="exit">VÝSTUP</string>
+    <string name="close">BLÍZKO</string>
+    <string name="are_you_sure_you_want_to_exit">Opravdu chcete ukončit\?</string>
+    <string name="remove_ads">ODSTRANIT REKLAMY</string>
+    <string name="remove_all_annoying_ads_forever_by_just">Odstraňte všechny otravné reklamy navždy pouze:</string>
+    <string name="buy_now">Kup teď</string>
+    <string name="loading_ads">Načítání reklamy…</string>
+    <string name="well_comeback">Vítejte zpět</string>
+    <string name="offline_notification_text">Titul</string>
+</resources>

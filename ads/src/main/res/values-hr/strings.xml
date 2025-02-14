@@ -1,0 +1,12 @@
+<resources>
+    <string name="cancel">Otkazati</string>
+    <string name="exit">IZLAZ</string>
+    <string name="close">ZATVORITI</string>
+    <string name="are_you_sure_you_want_to_exit">Jeste li sigurni da želite izaći\?</string>
+    <string name="remove_ads">UKLONI OGLASE</string>
+    <string name="remove_all_annoying_ads_forever_by_just">Uklonite sve dosadne oglase zauvijek tako da samo:</string>
+    <string name="buy_now">Kupi sada</string>
+    <string name="loading_ads">Oglas se učitava...</string>
+    <string name="well_comeback">Dobro došao nazad</string>
+    <string name="offline_notification_text">Titula</string>
+</resources>

@@ -1,0 +1,12 @@
+<resources>
+    <string name="cancel">Avboka</string>
+    <string name="exit">UTGÅNG</string>
+    <string name="close">NÄRA</string>
+    <string name="are_you_sure_you_want_to_exit">Är du säker på att du vill avsluta\?</string>
+    <string name="remove_ads">TA BORT ANNONSER</string>
+    <string name="remove_all_annoying_ads_forever_by_just">Ta bort alla irriterande annonser för alltid genom att bara:</string>
+    <string name="buy_now">Köp nu</string>
+    <string name="loading_ads">Annonsen läses in...</string>
+    <string name="well_comeback">Välkommen tillbaka</string>
+    <string name="offline_notification_text">Titel</string>
+</resources>

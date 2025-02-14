@@ -29,9 +29,13 @@ import com.binarybrigde.dev.ads.funtion.AdCallback;
 import com.binarybrigde.dev.ads.funtion.DialogExitListener;
 import com.binarybrigde.dev.ads.funtion.PurchaseListener;
 import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.AdapterStatus;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.mia.module.BuildConfig;
 import com.mia.module.R;
+
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     public static final String PRODUCT_ID = "android.test.purchased";
@@ -60,6 +64,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BBDNativeAdView = findViewById(R.id.bbd_native_ads);
 
+
+        new Thread(
+                () ->
+                        // Initialize the Google Mobile Ads SDK on a background thread.
+                        MobileAds.initialize(
+                                this,
+                                initializationStatus -> {
+                                    Map<String, AdapterStatus> statusMap =
+                                            initializationStatus.getAdapterStatusMap();
+                                    for (String adapterClass : statusMap.keySet()) {
+                                        AdapterStatus status = statusMap.get(adapterClass);
+                                        Log.d(
+                                                "MyApp",
+                                                String.format(
+                                                        "Adapter name: %s, Description: %s, Latency: %d",
+                                                        adapterClass, status.getDescription(), status.getLatency()));
+                                    }
+                                    // Start loading ads here...
+                                }))
+                .start();
 
         configMediationProvider();
         BBDAd.getInstance().setCountClickToShowAds(3);

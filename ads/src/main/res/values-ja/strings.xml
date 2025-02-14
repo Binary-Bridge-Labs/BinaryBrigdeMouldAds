@@ -1,0 +1,12 @@
+<resources>
+    <string name="cancel">キャンセル</string>
+    <string name="exit">出口</string>
+    <string name="close">近い</string>
+    <string name="are_you_sure_you_want_to_exit">本当に終了しますか\?</string>
+    <string name="remove_ads">広告を削除</string>
+    <string name="remove_all_annoying_ads_forever_by_just">以下の手順で、迷惑な広告をすべて永久に削除します。</string>
+    <string name="buy_now">今すぐ購入</string>
+    <string name="loading_ads">広告を読み込んでいます…</string>
+    <string name="well_comeback">おかえり</string>
+    <string name="offline_notification_text">タイトル</string>
+</resources>

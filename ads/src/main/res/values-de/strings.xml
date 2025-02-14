@@ -1,0 +1,12 @@
+<resources>
+    <string name="cancel">Stornieren</string>
+    <string name="exit">AUSFAHRT</string>
+    <string name="close">SCHLIESSEN</string>
+    <string name="are_you_sure_you_want_to_exit">Möchten Sie wirklich beenden\?</string>
+    <string name="remove_ads">ANZEIGEN ENTFERNEN</string>
+    <string name="remove_all_annoying_ads_forever_by_just">Entfernen Sie alle lästigen Anzeigen dauerhaft, indem Sie einfach:</string>
+    <string name="buy_now">Jetzt kaufen</string>
+    <string name="loading_ads">Anzeige wird geladen …</string>
+    <string name="well_comeback">Willkommen zurück</string>
+    <string name="offline_notification_text">Titel</string>
+</resources>

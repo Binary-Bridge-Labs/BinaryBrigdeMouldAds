@@ -21,8 +21,15 @@
         </activity>
         <activity android:name="com.binarybrigde.dev.demo.activity.ContentActivity" />
 
-        <activity android:name="com.binarybrigde.dev.demo.activity.MainActivity" />
+        <activity
+            android:exported="true"
+            android:name="com.binarybrigde.dev.demo.activity.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.binarybrigde.dev.demo.activity.SplashMaxActivity"
             android:exported="true">
@@ -36,11 +43,7 @@
         <activity
             android:name="com.binarybrigde.dev.demo.activity.SplashActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />

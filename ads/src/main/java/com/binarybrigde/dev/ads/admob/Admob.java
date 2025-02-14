@@ -1077,7 +1077,7 @@ public class Admob {
                 e.printStackTrace();
             }
             new Handler().postDelayed(() -> {
-                if (activity.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) {
+                if (activity.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED) || activity.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.INITIALIZED)) {
                     if (openActivityAfterShowInterAds && adListener != null) {
                         adListener.onNextAction();
                         new Handler().postDelayed(() -> {
@@ -1198,7 +1198,7 @@ public class Admob {
             }
         });
 
-        if (ProcessLifecycleOwner.get().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) {
+        if (ProcessLifecycleOwner.get().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)|| ProcessLifecycleOwner.get().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.INITIALIZED)) {
             try {
                 if (dialog != null && dialog.isShowing())
                     dialog.dismiss();
@@ -1243,7 +1243,7 @@ public class Admob {
                 }
             }, 800);
 
-        } else {
+        } else{
             isShowLoadingSplash = false;
             Log.e(TAG, "onShowSplash: fail on background");
         }
@@ -1660,7 +1660,7 @@ public class Admob {
     private void showInterstitialAd(Context context, InterstitialAd mInterstitialAd, AdCallback callback) {
         currentClicked++;
         if (currentClicked >= numShowAds && mInterstitialAd != null) {
-            if (ProcessLifecycleOwner.get().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) {
+            if (ProcessLifecycleOwner.get().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)|| ProcessLifecycleOwner.get().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.INITIALIZED)) {
                 try {
                     if (dialog != null && dialog.isShowing())
                         dialog.dismiss();

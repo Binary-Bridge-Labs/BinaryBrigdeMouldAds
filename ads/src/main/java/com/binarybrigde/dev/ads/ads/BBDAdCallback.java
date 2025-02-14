@@ -9,6 +9,9 @@ import com.binarybrigde.dev.ads.ads.wrapper.ApNativeAd;
 import com.binarybrigde.dev.ads.ads.wrapper.ApRewardItem;
 
 public class BBDAdCallback {
+
+    public void onNotEnoughTimeShowAds() {
+    }
     public void onNextAction() {
     }
 

@@ -1,0 +1,12 @@
+<resources>
+    <string name="cancel">Отмена</string>
+    <string name="exit">ВЫХОД</string>
+    <string name="close">ЗАКРЫВАТЬ</string>
+    <string name="are_you_sure_you_want_to_exit">Вы уверены, что хотите выйти\?</string>
+    <string name="remove_ads">УДАЛИТЬ РЕКЛАМУ</string>
+    <string name="remove_all_annoying_ads_forever_by_just">Удалите всю раздражающую рекламу навсегда, просто:</string>
+    <string name="buy_now">Купить сейчас</string>
+    <string name="loading_ads">Загрузка объявления…</string>
+    <string name="well_comeback">Добро пожаловать</string>
+    <string name="offline_notification_text">Заголовок</string>
+</resources>
