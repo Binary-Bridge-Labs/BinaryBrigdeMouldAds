@@ -1,2 +1,6 @@
 jdk:
-  -openjdk21
+  - openjdk17  # Hoặc openjdk21 nếu bạn đang dùng Java 21
+before_install:
+  - chmod +x gradlew
+install:
+  - ./gradlew publishToMavenLocal -Pgroup=com.github.Binary-Bridge-Labs -Pversion=v100
