@@ -1,10 +1,6 @@
 ```md
 # 📦 BinaryBrigdeMouldAds
 
-Thư viện này được lưu trữ trên **JitPack** và là **private repository**, vì vậy bạn cần cung cấp **Personal Access Token (PAT)** để có thể import vào dự án của mình.  
-
----
-
 ## 📌 1. Thêm token vào `gradle.properties`  
 
 Mở file **`gradle.properties`** trong thư mục **`$HOME/.gradle/gradle.properties`** (nếu chưa có, hãy tạo mới) và thêm:  
