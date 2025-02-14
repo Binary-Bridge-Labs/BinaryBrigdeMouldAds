@@ -93,9 +93,10 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
                 groupId = 'com.github.Binary-Bridge-Labs'
-                artifactId = 'BBDModuleAds'
+                artifactId = 'BinaryBrigdeMouldAds'
                 version = '1.0.0'
             }
         }
     }
 }
+
