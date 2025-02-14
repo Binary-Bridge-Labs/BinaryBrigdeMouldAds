@@ -747,6 +747,7 @@ public class BBDAd {
                         adListener.onAdClosed();
                     }
 
+
                     @Override
                     public void onAdClicked(MaxAd ad) {
                         adListener.onAdClicked();
