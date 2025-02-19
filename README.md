@@ -6,6 +6,7 @@
 Mở file **`gradle.properties`** trong thư mục **`$HOME/.gradle/gradle.properties`** (nếu chưa có, hãy tạo mới) và thêm:  
 
 ```properties
+--warning-mode all
 authToken=jp_2o576u0l0g910mltrtmijps8tp
 ```
 
